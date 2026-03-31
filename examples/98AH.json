@@ -500,9 +500,6 @@
     { "type": "special", "from": "98H08-04", "to": "98H14-02" },
 
     { "type": "credit_requirement", "to": "98721-04", "min_credits": 60 },
-    { "type": "credit_requirement", "to": "98801-04", "min_credits": 90 },
-    { "type": "credit_requirement", "to": "1501A-04", "min_credits": 60 },
-    { "type": "credit_requirement", "to": "11521-04", "min_credits": 60 },
-    { "type": "credit_requirement", "to": "254CF-02", "min_credits": 60 }
+    { "type": "credit_requirement", "to": "98801-04", "min_credits": 60 },
   ]
 }
