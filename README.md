@@ -8,8 +8,10 @@ Utilitário de linha de comando que, a partir de um arquivo JSON contendo a estr
 
 ## Exemplo de Resultado
 
-Veja aqui um exemplo de resultado do utilitário.
+Veja aqui um exemplo de resultado do utilitário (criado a partir do exemplo [99TI.json](https://github.com/profdcallegari/matriz_curricular/blob/main/examples/99TI.json)).
+
 [Acessar a página de um currículo de exemplo: 99TI](https://profdcallegari.github.io/matriz_curricular/)
+
 
 ## Funcionalidades
 
