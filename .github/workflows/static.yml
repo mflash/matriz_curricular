@@ -1,0 +1,38 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Copy HTML to build
+        run: |
+          mkdir -p build
+          cp examples/98TI.html build/index.html
+      - name: Configure GitHub Pages
+        run: |
+          echo 'Configuring GitHub Pages...'
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: index-html
+          path: build/index.html
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
