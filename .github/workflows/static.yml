@@ -1,38 +1,46 @@
-name: Deploy GitHub Pages
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
+  contents: read
   pages: write
   id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: Copy HTML to build
+
+      # Create a minimal site folder that contains only index.html
+      - name: Prepare Pages content (index.html)
         run: |
-          mkdir -p build
-          cp examples/98TI.html build/index.html
-      - name: Configure GitHub Pages
-        run: |
-          echo 'Configuring GitHub Pages...'
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
+          rm -rf site
+          mkdir -p site
+          cp ./examples/98TI.html ./site/index.html
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: index-html
-          path: build/index.html
+          path: './site'
+
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+        id: deployment
+        uses: actions/deploy-pages@v5
