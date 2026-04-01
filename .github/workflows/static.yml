@@ -31,7 +31,7 @@ jobs:
         run: |
           rm -rf site
           mkdir -p site
-          cp ./examples/98TI.html ./site/index.html
+          cp ./examples/99TI.html ./site/index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
