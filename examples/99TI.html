@@ -29,11 +29,30 @@
       align-items: flex-start;
       gap: 16px;
       padding: 16px;
-      overflow-x: auto;
     }
     .matrix-area {
+      width: var(--matrix-base-w);
+      height: var(--matrix-base-h);
+      overflow: hidden;
       position: relative;
       flex-shrink: 0;
+    }
+    .matrix-canvas {
+      position: relative;
+      transform-origin: top left;
+      isolation: isolate;
+    }
+    @media (max-width: 1200px) {
+      .matrix-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        padding: 12px;
+      }
+      .legend-panel {
+        width: fit-content;
+        max-width: 100%;
+      }
     }
 
     /* Colunas */
@@ -41,6 +60,8 @@
       display: flex;
       gap: 60px;
       align-items: flex-start;
+      position: relative;
+      z-index: 1;
     }
     .level-column {
       width: 140px;
@@ -69,7 +90,7 @@
       padding: 24px 0;
     }
 
-    /* Wrapper do cartão (para badge de créditos mínimos) */
+    /* Wrapper do cartão */
     .card-wrapper {
       position: relative;
       width: 100%;
@@ -132,6 +153,18 @@
     .card-credits { font-size: 0.75rem; color: #555; white-space: nowrap; margin-left: 4px; }
     .card-footer  { position: absolute; bottom: 0; left: 0; right: 0; padding: 2px 6px 4px; display: flex; gap: 4px; flex-wrap: wrap; min-height: 16px; }
     .card-footer:not(:empty) { background: rgba(255,255,255,0.85); }
+    .course-card.fill-category .card-name,
+    .course-card.fill-category .card-credits {
+      color: #222;
+    }
+    .course-card.fill-category .card-footer:not(:empty) {
+      background: rgba(255, 255, 255, 0.45);
+    }
+    .course-card.fill-category .tag {
+      background: rgba(0,0,0,0.12);
+      color: #222;
+      border: 1px solid rgba(0,0,0,0.2);
+    }
 
     /* Tags */
     .tag {
@@ -144,17 +177,34 @@
     .tag-online { background: #f8d7da; color: #721c24; }
     .tag-extensionista { background: #d4edda; color: #155724; }
 
+
     /* Setas SVG */
     .arrows-layer {
       position: absolute;
       top: 0;
       left: 0;
       pointer-events: none;
+      z-index: 0;
     }
     .arrow-line {
       fill: none;
-      stroke: #333;
-      stroke-width: 1.5;
+      stroke: #1a3a6b;
+    }
+    .arrows-layer.link-style-paths .arrow-line {
+      opacity: 0.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .arrows-layer.link-style-arrows .arrow-line {
+      opacity: 0.9;
+      stroke-linecap: butt;
+      stroke-linejoin: miter;
+    }
+    .arrow-group[data-type="special"] .arrow-line {
+      stroke: #b45309;
+    }
+    .arrow-group[data-type="corequisite"] .arrow-line {
+      stroke: #475569;
     }
     .arrows-layer.hidden .arrow-group { display: none; }
     .arrow-label {
@@ -186,6 +236,26 @@
       font-size: 0.78rem;
     }
     .legend-list dt { display: flex; align-items: center; }
+    .legend-subtitle {
+      grid-column: 1 / -1;
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px solid #e5e7eb;
+      font-weight: 700;
+      color: #374151;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .legend-subtitle-spacer { display: none; }
+    .category-chip {
+      display: inline-block;
+      width: 24px;
+      height: 12px;
+      border-radius: 999px;
+      border: 1px solid #9ca3af;
+      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+    }
     .legend-toggle {
       margin-top: 20px;
       padding-top: 12px;
@@ -409,8 +479,222 @@
   <div class="course-meta">99TI &bull; desde 2024/1</div>
 </header>
 <div class="matrix-wrapper">
-  <div class="matrix-area" style="width:940px; min-height:544px;">
-    <div class="columns-row">
+  <div class="matrix-area" style="--matrix-base-w:940px; --matrix-base-h:544px;">
+    <div class="matrix-canvas" style="width:940px; height:544px;">
+      <svg class="arrows-layer link-style-paths" width="940" height="544" aria-hidden="true">
+
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TI102-04"
+       data-to="TI201-04">
+      <path d="M 140 182 L 151.55 182 Q 161 182 161 172.55 L 161 152.1 Q 161 144 169.1 144 L 170.9 144 Q 179 144 179 135.9 L 179 111.45 Q 179 102 188.45 102 L 200 102"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TI102-04"
+       data-to="TI202-04">
+      <path d="M 140 186 L 200 186"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TI103-04"
+       data-to="TI202-04">
+      <path d="M 140 270 L 151.55 270 Q 161 270 161 260.55 L 161 236.1 Q 161 228 169.1 228 L 170.9 228 Q 179 228 179 219.9 L 179 199.45 Q 179 190 188.45 190 L 200 190"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TI101-04"
+       data-to="TI203-04">
+      <path d="M 140 98 L 151.55 98 Q 161 98 161 107.45 L 161 139.4 Q 161 147.5 169.1 147.5 L 170.9 147.5 Q 179 147.5 179 155.6 L 179 256.55 Q 179 266 188.45 266 L 200 266"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TI101-04"
+       data-to="TI204-04">
+      <path d="M 140 106 L 151.55 106 Q 161 106 161 115.45 L 161 303.9 Q 161 312 169.1 312 L 170.9 312 Q 179 312 179 320.1 L 179 344.55 Q 179 354 188.45 354 L 200 354"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TI203-04"
+       data-to="TI301-04">
+      <path d="M 340 270 L 351.55 270 Q 361 270 361 260.55 L 361 236.1 Q 361 228 369.1 228 L 370.9 228 Q 379 228 379 219.9 L 379 111.45 Q 379 102 388.45 102 L 400 102"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TI201-04"
+       data-to="TI302-04">
+      <path d="M 340 98 L 351.55 98 Q 361 98 361 107.45 L 361 135.9 Q 361 144 369.1 144 L 370.9 144 Q 379 144 379 152.1 L 379 172.55 Q 379 182 388.45 182 L 400 182"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TI204-04"
+       data-to="TI302-04">
+      <path d="M 340 354 L 351.55 354 Q 361 354 361 344.55 L 361 320.1 Q 361 312 369.1 312 L 370.9 312 Q 379 312 379 303.9 L 379 199.45 Q 379 190 388.45 190 L 400 190"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TI201-04"
+       data-to="TI303-04">
+      <path d="M 340 106 L 351.55 106 Q 361 106 361 115.45 L 361 139.4 Q 361 147.5 369.1 147.5 L 370.9 147.5 Q 379 147.5 379 155.6 L 379 260.55 Q 379 270 388.45 270 L 400 270"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TI202-04"
+       data-to="TI304-02">
+      <path d="M 340 186 L 351.55 186 Q 361 186 361 195.45 L 361 223.4 Q 361 231.5 369.1 231.5 L 370.9 231.5 Q 379 231.5 379 239.6 L 379 340.55 Q 379 350 388.45 350 L 400 350"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TI301-04"
+       data-to="TI401-04">
+      <path d="M 540 102 L 600 102"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TI303-04"
+       data-to="TI402-04">
+      <path d="M 540 270 L 551.55 270 Q 561 270 561 260.55 L 561 236.1 Q 561 228 569.1 228 L 570.9 228 Q 579 228 579 219.9 L 579 195.45 Q 579 186 588.45 186 L 600 186"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TI301-04"
+       data-to="TI403-04">
+      <path d="M 540 106 L 551.55 106 Q 561 106 561 115.45 L 561 135.9 Q 561 144 569.1 144 L 570.9 144 Q 579 144 579 152.1 L 579 260.55 Q 579 270 588.45 270 L 600 270"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TI302-04"
+       data-to="TI501-04">
+      <path d="M 540 182 L 551.55 182 Q 561 182 561 172.55 L 561 156 Q 561 144 573 144 L 767 144 Q 779 144 779 132 L 779 111.45 Q 779 102 788.45 102 L 800 102"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TI304-02"
+       data-to="TI503-04">
+      <path d="M 540 354 L 551.55 354 Q 561 354 561 344.55 L 561 324 Q 561 312 573 312 L 767 312 Q 779 312 779 300 L 779 279.45 Q 779 270 788.45 270 L 800 270"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TI403-04"
+       data-to="TI502-04">
+      <path d="M 740 270 L 751.55 270 Q 761 270 761 260.55 L 761 236.1 Q 761 228 769.1 228 L 770.9 228 Q 779 228 779 219.9 L 779 199.45 Q 779 190 788.45 190 L 800 190"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TI401-04"
+       data-to="TI502-04">
+      <path d="M 740 102 L 751.55 102 Q 761 102 761 111.45 L 761 135.9 Q 761 144 769.1 144 L 770.9 144 Q 779 144 779 152.1 L 779 172.55 Q 779 182 788.45 182 L 800 182"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TI402-04"
+       data-to="TI503-04">
+      <path d="M 740 186 L 751.55 186 Q 761 186 761 195.45 L 761 223.4 Q 761 231.5 769.1 231.5 L 770.9 231.5 Q 779 231.5 779 239.6 L 779 252.55 Q 779 262 788.45 262 L 800 262"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="TI104-02"
+       data-to="TI203-04">
+      <path d="M 140 354 L 151.55 354 Q 161 354 161 344.55 L 161 323.6 Q 161 315.5 169.1 315.5 L 170.9 315.5 Q 179 315.5 179 307.4 L 179 283.45 Q 179 274 188.45 274 L 200 274"
+            stroke-dasharray="8,4"
+            stroke-width="5"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="TI404-02"
+       data-to="TI503-04">
+      <path d="M 740 354 L 751.55 354 Q 761 354 761 344.55 L 761 320.1 Q 761 312 769.1 312 L 770.9 312 Q 779 312 779 303.9 L 779 287.45 Q 779 278 788.45 278 L 800 278"
+            stroke-dasharray="8,4"
+            stroke-width="5"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="corequisite"
+       data-from="TI302-04"
+       data-to="TI304-02">
+      <path d="M 474 216 L 474 324"
+            stroke-dasharray="3,3"
+            stroke-width="4"
+            class="arrow-line"/>
+      
+    </g>
+      </svg>
+  <div class="columns-row">
       <div class="level-column" data-level="1">
         <div class="col-header">
           <span class="col-roman">I</span>
@@ -747,238 +1031,21 @@
           </div>
         </div>
       </div>
+  </div>
     </div>
-    <svg class="arrows-layer" width="940" height="544" aria-hidden="true">
-      <defs>
-        <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-          <path d="M0,0 L8,3 L0,6 Z" fill="#333"/>
-        </marker>
-      </defs>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="TI102-04"
-       data-to="TI201-04">
-      <polyline points="140,186 170,186 170,102 200,102"
-                stroke-dasharray="none"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="TI102-04"
-       data-to="TI202-04">
-      <polyline points="140,186 200,186"
-                stroke-dasharray="none"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="TI103-04"
-       data-to="TI202-04">
-      <polyline points="140,270 170,270 170,186 200,186"
-                stroke-dasharray="none"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="TI101-04"
-       data-to="TI203-04">
-      <polyline points="140,102 170,102 170,270 200,270"
-                stroke-dasharray="none"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="TI101-04"
-       data-to="TI204-04">
-      <polyline points="140,102 170,102 170,354 200,354"
-                stroke-dasharray="none"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="TI203-04"
-       data-to="TI301-04">
-      <polyline points="340,270 370,270 370,102 400,102"
-                stroke-dasharray="none"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="TI201-04"
-       data-to="TI302-04">
-      <polyline points="340,102 370,102 370,186 400,186"
-                stroke-dasharray="none"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="TI204-04"
-       data-to="TI302-04">
-      <polyline points="340,354 370,354 370,186 400,186"
-                stroke-dasharray="none"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="TI201-04"
-       data-to="TI303-04">
-      <polyline points="340,102 370,102 370,270 400,270"
-                stroke-dasharray="none"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="TI202-04"
-       data-to="TI304-02">
-      <polyline points="340,186 370,186 370,354 400,354"
-                stroke-dasharray="none"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="TI301-04"
-       data-to="TI401-04">
-      <polyline points="540,102 600,102"
-                stroke-dasharray="none"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="TI303-04"
-       data-to="TI402-04">
-      <polyline points="540,270 570,270 570,186 600,186"
-                stroke-dasharray="none"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="TI301-04"
-       data-to="TI403-04">
-      <polyline points="540,102 570,102 570,270 600,270"
-                stroke-dasharray="none"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="TI302-04"
-       data-to="TI501-04">
-      <polyline points="540,186 670,186 670,102 800,102"
-                stroke-dasharray="none"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="TI304-02"
-       data-to="TI503-04">
-      <polyline points="540,354 670,354 670,270 800,270"
-                stroke-dasharray="none"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="TI403-04"
-       data-to="TI502-04">
-      <polyline points="740,270 770,270 770,186 800,186"
-                stroke-dasharray="none"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="TI401-04"
-       data-to="TI502-04">
-      <polyline points="740,102 770,102 770,186 800,186"
-                stroke-dasharray="none"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="TI402-04"
-       data-to="TI503-04">
-      <polyline points="740,186 770,186 770,270 800,270"
-                stroke-dasharray="none"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="special"
-       data-from="TI104-02"
-       data-to="TI203-04">
-      <polyline points="140,354 170,354 170,270 200,270"
-                stroke-dasharray="8,4"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    <text class="arrow-label" x="170" y="266">RE</text>
-    </g>
-    <g class="arrow-group"
-       data-type="special"
-       data-from="TI404-02"
-       data-to="TI503-04">
-      <polyline points="740,354 770,354 770,270 800,270"
-                stroke-dasharray="8,4"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    <text class="arrow-label" x="770" y="266">RE</text>
-    </g>
-    <g class="arrow-group"
-       data-type="corequisite"
-       data-from="TI302-04"
-       data-to="TI304-02">
-      <polyline points="470,216 470,228 470,228 470,324"
-                stroke-dasharray="3,3"
-                class="arrow-line"
-                marker-end="url(#arrowhead)"/>
-      
-    </g>
-    </svg>
   </div>
   <aside class="legend-panel">
     <h2 class="legend-title">Legenda</h2>
     <dl class="legend-list">
-      <dt><svg width="60" height="14"><defs><marker id="arrowhead-legend" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#333"/></marker></defs><line x1="0" y1="7" x2="50" y2="7" stroke="#333" stroke-width="1.5" marker-end="url(#arrowhead-legend)"/></svg></dt>
-      <dd>Pré-requisito</dd>
-      <dt><svg width="60" height="14"><defs><marker id="arrowhead-legend" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#333"/></marker></defs><line x1="0" y1="7" x2="50" y2="7" stroke="#333" stroke-width="1.5" stroke-dasharray="8,4" marker-end="url(#arrowhead-legend)"/></svg></dt>
-      <dd>Pré-requisito especial (RE)</dd>
-      <dt><svg width="60" height="14"><defs><marker id="arrowhead-legend" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#333"/></marker></defs><line x1="0" y1="7" x2="50" y2="7" stroke="#333" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrowhead-legend)"/></svg></dt>
+      <dt><svg width="60" height="14"><path d="M2 7 C 16 7, 20 7, 30 7 S 44 7, 58 7" stroke="#1a3a6b" stroke-width="6" fill="none" stroke-linecap="round"/></svg></dt>
+      <dd>Pr&#233;-requisito</dd>
+      <dt><svg width="60" height="14"><path d="M2 7 C 16 7, 20 7, 30 7 S 44 7, 58 7" stroke="#b45309" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="8,4"/></svg></dt>
+      <dd>Pr&#233;-requisito especial (RE)</dd>
+      <dt><svg width="60" height="14"><path d="M2 7 C 16 7, 20 7, 30 7 S 44 7, 58 7" stroke="#475569" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="3,3"/></svg></dt>
       <dd>Co-requisito</dd>
       <dt><span class="credit-req-badge">XX CR</span></dt>
-      <dd>Requisito de créditos mínimos</dd>
+      <dd>Requisito de cr&#233;ditos m&#237;nimos</dd>
+    
       <dt><span class="tag tag-lab">lab</span></dt>
       <dd>Disciplina lab</dd>
       <dt><span class="tag tag-online">online</span></dt>
@@ -989,12 +1056,12 @@
     <div class="legend-toggle">
       <label>
         <input type="checkbox" id="toggle-arrows">
-        Exibir setas de pré-requisito
+        Exibir setas de pr&#233;-requisito
       </label>
     </div>
     
     <div class="credits-summary">
-    <h2 class="legend-title">Créditos</h2>
+    <h2 class="legend-title">Cr&#233;ditos</h2>
     <table class="credits-summary-table">
       <tbody>
         <tr class="credits-total-row">
@@ -1034,11 +1101,11 @@
       <div class="popup-stats">
         <div class="popup-stat">
           <span class="popup-stat-value" id="popup-hours"></span>
-          <span class="popup-stat-label">Carga horária</span>
+          <span class="popup-stat-label">Carga hor&#225;ria</span>
         </div>
         <div class="popup-stat">
           <span class="popup-stat-value" id="popup-credits"></span>
-          <span class="popup-stat-label">Créditos</span>
+          <span class="popup-stat-label">Cr&#233;ditos</span>
         </div>
       </div>
       <section class="popup-section">
@@ -1046,7 +1113,7 @@
         <p id="popup-syllabus" class="popup-syllabus-text"></p>
       </section>
       <section class="popup-section">
-        <h3 class="popup-section-title">Pré-requisitos</h3>
+        <h3 class="popup-section-title">Pr&#233;-requisitos</h3>
         <div id="popup-prereqs"></div>
       </section>
       <section class="popup-section">
@@ -1060,16 +1127,50 @@
 (function () {
   'use strict';
 
-  const COURSES = [{"code":"TI101-04","name":"Introdução à Computação","hours":60,"credits":4,"syllabus":"Visão geral da computação: história, áreas e aplicações. Representação da informação, sistemas de numeração e lógica booleana. Fundamentos de hardware e software.","tags":[]},{"code":"TI102-04","name":"Algoritmos e Programação","hours":60,"credits":4,"syllabus":"Conceitos de algoritmos. Variáveis, tipos, expressões e comandos de controle de fluxo. Subprogramas e recursão. Implementação em linguagem de programação estruturada.","tags":[]},{"code":"TI103-04","name":"Matemática Discreta","hours":60,"credits":4,"syllabus":"Lógica proposicional. Teoria dos conjuntos. Relações e funções. Combinatória e noções de grafos. Indução matemática.","tags":[]},{"code":"TI104-02","name":"Laboratório de Hardware","hours":30,"credits":2,"syllabus":"Identificação e manutenção de componentes de hardware. Montagem e configuração de PCs. Diagnóstico de falhas e boas práticas de segurança no ambiente de laboratório.","tags":["lab"]},{"code":"TI201-04","name":"Programação Orientada a Objetos","hours":60,"credits":4,"syllabus":"Paradigma orientado a objetos. Classes, objetos, herança, polimorfismo e encapsulamento. Coleções, exceções e entrada/saída. Projeto e implementação de pequenos sistemas.","tags":[]},{"code":"TI202-04","name":"Estruturas de Dados","hours":60,"credits":4,"syllabus":"Listas, filas, pilhas, árvores e grafos. Algoritmos de busca e ordenação. Análise de complexidade de algoritmos.","tags":[]},{"code":"TI203-04","name":"Sistemas Operacionais","hours":60,"credits":4,"syllabus":"Arquitetura e funcionamento de sistemas operacionais. Processos, threads e escalonamento. Gerência de memória, arquivos e dispositivos de entrada e saída.","tags":[]},{"code":"TI204-04","name":"Banco de Dados","hours":60,"credits":4,"syllabus":"Modelos de dados relacionais. Modelagem conceitual (ER). Normalização e SQL. Introdução a bancos de dados não relacionais.","tags":[]},{"code":"TI205-02","name":"Comunicação Técnica","hours":30,"credits":2,"syllabus":"Escrita técnica em Tecnologia da Informação. Documentação de projetos e sistemas. Apresentação oral e visual de resultados técnicos.","tags":["online"]},{"code":"TI301-04","name":"Redes de Computadores","hours":60,"credits":4,"syllabus":"Modelos OSI e TCP/IP. Protocolos de rede, transporte e aplicação. Endereçamento IP, roteamento e fundamentos de segurança em redes.","tags":[]},{"code":"TI302-04","name":"Engenharia de Software","hours":60,"credits":4,"syllabus":"Ciclo de vida de software. Metodologias ágeis e tradicionais. Levantamento de requisitos, design, testes e manutenção. Ferramentas de controle de versão e integração contínua.","tags":["extensionista"]},{"code":"TI303-04","name":"Desenvolvimento Web","hours":60,"credits":4,"syllabus":"Fundamentos de HTML, CSS e JavaScript. Frameworks front-end. Introdução a servidores web e APIs REST. Desenvolvimento de aplicações web responsivas.","tags":["extensionista"]},{"code":"TI304-02","name":"Projeto Integrador I","hours":30,"credits":2,"syllabus":"Desenvolvimento de um projeto integrador que aplica conhecimentos de programação, banco de dados e engenharia de software. Trabalho em equipe e apresentação de resultados.","tags":["extensionista"]},{"code":"TI401-04","name":"Segurança da Informação","hours":60,"credits":4,"syllabus":"Princípios de confidencialidade, integridade e disponibilidade. Criptografia simétrica e assimétrica. Ameaças, vulnerabilidades e boas práticas de proteção de sistemas e dados.","tags":[]},{"code":"TI402-04","name":"Desenvolvimento Mobile","hours":60,"credits":4,"syllabus":"Plataformas móveis. Desenvolvimento de aplicativos para Android e iOS com frameworks multiplataforma. Interface com o usuário, persistência e acesso a serviços web.","tags":[]},{"code":"TI403-04","name":"Infraestrutura em Nuvem","hours":60,"credits":4,"syllabus":"Conceitos de computação em nuvem (IaaS, PaaS, SaaS). Provisionamento de servidores, armazenamento e bancos de dados em nuvem. Contêineres e orquestração com Docker e Kubernetes.","tags":[]},{"code":"TI404-02","name":"Introdução à Inteligência Artificial","hours":30,"credits":2,"syllabus":"Panorama histórico e áreas da IA. Noções de aprendizado de máquina, visão computacional e processamento de linguagem natural. Ferramentas e APIs de IA aplicadas.","tags":[]},{"code":"TI405-02","name":"Ética em Tecnologia","hours":30,"credits":2,"syllabus":"Aspectos éticos e legais do uso da tecnologia. Privacidade de dados e LGPD. Responsabilidade social, acessibilidade digital e impactos socioambientais da computação.","tags":["online"]},{"code":"TI501-04","name":"Gestão de Projetos de TI","hours":60,"credits":4,"syllabus":"Fundamentos de gerenciamento de projetos. Planejamento, escopo, tempo, custo e qualidade. Metodologias PMI e Scrum aplicadas a projetos de TI.","tags":["extensionista"]},{"code":"TI502-04","name":"Sistemas Distribuídos","hours":60,"credits":4,"syllabus":"Arquiteturas de sistemas distribuídos. Comunicação entre processos e microsserviços. Consistência, tolerância a falhas e escalabilidade.","tags":[]},{"code":"TI503-04","name":"Projeto de Conclusão de Curso","hours":60,"credits":4,"syllabus":"Desenvolvimento de um projeto de software completo, integrando competências adquiridas ao longo do curso. Documentação, testes, apresentação e defesa perante banca avaliadora.","tags":["extensionista"]}];
-  const REQUIREMENTS = [{"type":"prerequisite","from":"TI102-04","to":"TI201-04","description":null,"min_credits":null},{"type":"prerequisite","from":"TI102-04","to":"TI202-04","description":null,"min_credits":null},{"type":"prerequisite","from":"TI103-04","to":"TI202-04","description":null,"min_credits":null},{"type":"prerequisite","from":"TI101-04","to":"TI203-04","description":null,"min_credits":null},{"type":"prerequisite","from":"TI101-04","to":"TI204-04","description":null,"min_credits":null},{"type":"prerequisite","from":"TI203-04","to":"TI301-04","description":null,"min_credits":null},{"type":"prerequisite","from":"TI201-04","to":"TI302-04","description":null,"min_credits":null},{"type":"prerequisite","from":"TI204-04","to":"TI302-04","description":null,"min_credits":null},{"type":"prerequisite","from":"TI201-04","to":"TI303-04","description":null,"min_credits":null},{"type":"prerequisite","from":"TI202-04","to":"TI304-02","description":null,"min_credits":null},{"type":"prerequisite","from":"TI301-04","to":"TI401-04","description":null,"min_credits":null},{"type":"prerequisite","from":"TI303-04","to":"TI402-04","description":null,"min_credits":null},{"type":"prerequisite","from":"TI301-04","to":"TI403-04","description":null,"min_credits":null},{"type":"prerequisite","from":"TI302-04","to":"TI501-04","description":null,"min_credits":null},{"type":"prerequisite","from":"TI304-02","to":"TI503-04","description":null,"min_credits":null},{"type":"prerequisite","from":"TI403-04","to":"TI502-04","description":null,"min_credits":null},{"type":"prerequisite","from":"TI401-04","to":"TI502-04","description":null,"min_credits":null},{"type":"prerequisite","from":"TI402-04","to":"TI503-04","description":null,"min_credits":null},{"type":"special","from":"TI104-02","to":"TI203-04","description":null,"min_credits":null},{"type":"special","from":"TI404-02","to":"TI503-04","description":null,"min_credits":null},{"type":"corequisite","from":"TI302-04","to":"TI304-02","description":null,"min_credits":null},{"type":"credit_requirement","from":null,"to":"TI501-04","description":null,"min_credits":60},{"type":"credit_requirement","from":null,"to":"TI503-04","description":null,"min_credits":90}];
+  const COURSES = [{"code": "TI101-04", "name": "Introdução à Computação", "hours": 60, "credits": 4, "syllabus": "Visão geral da computação: história, áreas e aplicações. Representação da informação, sistemas de numeração e lógica booleana. Fundamentos de hardware e software.", "tags": [], "category": null}, {"code": "TI102-04", "name": "Algoritmos e Programação", "hours": 60, "credits": 4, "syllabus": "Conceitos de algoritmos. Variáveis, tipos, expressões e comandos de controle de fluxo. Subprogramas e recursão. Implementação em linguagem de programação estruturada.", "tags": [], "category": null}, {"code": "TI103-04", "name": "Matemática Discreta", "hours": 60, "credits": 4, "syllabus": "Lógica proposicional. Teoria dos conjuntos. Relações e funções. Combinatória e noções de grafos. Indução matemática.", "tags": [], "category": null}, {"code": "TI104-02", "name": "Laboratório de Hardware", "hours": 30, "credits": 2, "syllabus": "Identificação e manutenção de componentes de hardware. Montagem e configuração de PCs. Diagnóstico de falhas e boas práticas de segurança no ambiente de laboratório.", "tags": ["lab"], "category": null}, {"code": "TI201-04", "name": "Programação Orientada a Objetos", "hours": 60, "credits": 4, "syllabus": "Paradigma orientado a objetos. Classes, objetos, herança, polimorfismo e encapsulamento. Coleções, exceções e entrada/saída. Projeto e implementação de pequenos sistemas.", "tags": [], "category": null}, {"code": "TI202-04", "name": "Estruturas de Dados", "hours": 60, "credits": 4, "syllabus": "Listas, filas, pilhas, árvores e grafos. Algoritmos de busca e ordenação. Análise de complexidade de algoritmos.", "tags": [], "category": null}, {"code": "TI203-04", "name": "Sistemas Operacionais", "hours": 60, "credits": 4, "syllabus": "Arquitetura e funcionamento de sistemas operacionais. Processos, threads e escalonamento. Gerência de memória, arquivos e dispositivos de entrada e saída.", "tags": [], "category": null}, {"code": "TI204-04", "name": "Banco de Dados", "hours": 60, "credits": 4, "syllabus": "Modelos de dados relacionais. Modelagem conceitual (ER). Normalização e SQL. Introdução a bancos de dados não relacionais.", "tags": [], "category": null}, {"code": "TI205-02", "name": "Comunicação Técnica", "hours": 30, "credits": 2, "syllabus": "Escrita técnica em Tecnologia da Informação. Documentação de projetos e sistemas. Apresentação oral e visual de resultados técnicos.", "tags": ["online"], "category": null}, {"code": "TI301-04", "name": "Redes de Computadores", "hours": 60, "credits": 4, "syllabus": "Modelos OSI e TCP/IP. Protocolos de rede, transporte e aplicação. Endereçamento IP, roteamento e fundamentos de segurança em redes.", "tags": [], "category": null}, {"code": "TI302-04", "name": "Engenharia de Software", "hours": 60, "credits": 4, "syllabus": "Ciclo de vida de software. Metodologias ágeis e tradicionais. Levantamento de requisitos, design, testes e manutenção. Ferramentas de controle de versão e integração contínua.", "tags": ["extensionista"], "category": null}, {"code": "TI303-04", "name": "Desenvolvimento Web", "hours": 60, "credits": 4, "syllabus": "Fundamentos de HTML, CSS e JavaScript. Frameworks front-end. Introdução a servidores web e APIs REST. Desenvolvimento de aplicações web responsivas.", "tags": ["extensionista"], "category": null}, {"code": "TI304-02", "name": "Projeto Integrador I", "hours": 30, "credits": 2, "syllabus": "Desenvolvimento de um projeto integrador que aplica conhecimentos de programação, banco de dados e engenharia de software. Trabalho em equipe e apresentação de resultados.", "tags": ["extensionista"], "category": null}, {"code": "TI401-04", "name": "Segurança da Informação", "hours": 60, "credits": 4, "syllabus": "Princípios de confidencialidade, integridade e disponibilidade. Criptografia simétrica e assimétrica. Ameaças, vulnerabilidades e boas práticas de proteção de sistemas e dados.", "tags": [], "category": null}, {"code": "TI402-04", "name": "Desenvolvimento Mobile", "hours": 60, "credits": 4, "syllabus": "Plataformas móveis. Desenvolvimento de aplicativos para Android e iOS com frameworks multiplataforma. Interface com o usuário, persistência e acesso a serviços web.", "tags": [], "category": null}, {"code": "TI403-04", "name": "Infraestrutura em Nuvem", "hours": 60, "credits": 4, "syllabus": "Conceitos de computação em nuvem (IaaS, PaaS, SaaS). Provisionamento de servidores, armazenamento e bancos de dados em nuvem. Contêineres e orquestração com Docker e Kubernetes.", "tags": [], "category": null}, {"code": "TI404-02", "name": "Introdução à Inteligência Artificial", "hours": 30, "credits": 2, "syllabus": "Panorama histórico e áreas da IA. Noções de aprendizado de máquina, visão computacional e processamento de linguagem natural. Ferramentas e APIs de IA aplicadas.", "tags": [], "category": null}, {"code": "TI405-02", "name": "Ética em Tecnologia", "hours": 30, "credits": 2, "syllabus": "Aspectos éticos e legais do uso da tecnologia. Privacidade de dados e LGPD. Responsabilidade social, acessibilidade digital e impactos socioambientais da computação.", "tags": ["online"], "category": null}, {"code": "TI501-04", "name": "Gestão de Projetos de TI", "hours": 60, "credits": 4, "syllabus": "Fundamentos de gerenciamento de projetos. Planejamento, escopo, tempo, custo e qualidade. Metodologias PMI e Scrum aplicadas a projetos de TI.", "tags": ["extensionista"], "category": null}, {"code": "TI502-04", "name": "Sistemas Distribuídos", "hours": 60, "credits": 4, "syllabus": "Arquiteturas de sistemas distribuídos. Comunicação entre processos e microsserviços. Consistência, tolerância a falhas e escalabilidade.", "tags": [], "category": null}, {"code": "TI503-04", "name": "Projeto de Conclusão de Curso", "hours": 60, "credits": 4, "syllabus": "Desenvolvimento de um projeto de software completo, integrando competências adquiridas ao longo do curso. Documentação, testes, apresentação e defesa perante banca avaliadora.", "tags": ["extensionista"], "category": null}];
+  const REQUIREMENTS = [{"type": "prerequisite", "from": "TI102-04", "to": "TI201-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TI102-04", "to": "TI202-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TI103-04", "to": "TI202-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TI101-04", "to": "TI203-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TI101-04", "to": "TI204-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TI203-04", "to": "TI301-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TI201-04", "to": "TI302-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TI204-04", "to": "TI302-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TI201-04", "to": "TI303-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TI202-04", "to": "TI304-02", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TI301-04", "to": "TI401-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TI303-04", "to": "TI402-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TI301-04", "to": "TI403-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TI302-04", "to": "TI501-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TI304-02", "to": "TI503-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TI403-04", "to": "TI502-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TI401-04", "to": "TI502-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TI402-04", "to": "TI503-04", "description": null, "min_credits": null}, {"type": "special", "from": "TI104-02", "to": "TI203-04", "description": null, "min_credits": null}, {"type": "special", "from": "TI404-02", "to": "TI503-04", "description": null, "min_credits": null}, {"type": "corequisite", "from": "TI302-04", "to": "TI304-02", "description": null, "min_credits": null}, {"type": "credit_requirement", "from": null, "to": "TI501-04", "description": null, "min_credits": 60}, {"type": "credit_requirement", "from": null, "to": "TI503-04", "description": null, "min_credits": 90}];
+  const CATEGORIES = [];
 
   const courseMap = new Map(COURSES.map(c => [c.code, c]));
+  const categoryColorMap = new Map(
+    CATEGORIES
+      .filter(c => typeof c.color === 'string' && c.color.trim() !== '')
+      .map(c => [c.id, c.color])
+  );
+
+  // ── Escala responsiva da matriz ──────────────────────────────────────────────
+  function applyMatrixScale() {
+    var matrixArea   = document.querySelector('.matrix-area');
+    var matrixCanvas = document.querySelector('.matrix-canvas');
+    var legendPanel  = document.querySelector('.legend-panel');
+    if (!matrixArea || !matrixCanvas) return;
+
+    var baseWidth  = parseFloat(matrixArea.style.getPropertyValue('--matrix-base-w'));
+    var baseHeight = parseFloat(matrixArea.style.getPropertyValue('--matrix-base-h'));
+    if (!baseWidth || !baseHeight) return;
+
+    var padding    = 24;
+    var isStacked  = window.innerWidth <= 1200;
+    var legendW    = (!isStacked && legendPanel) ? (legendPanel.offsetWidth + 16) : 0;
+    var availWidth = window.innerWidth - padding * 2 - legendW;
+    var scale      = Math.min(1, availWidth / baseWidth);
+    var scaledW    = baseWidth  * scale;
+    var scaledH    = baseHeight * scale;
+
+    matrixArea.style.width  = scaledW + 'px';
+    matrixArea.style.height = scaledH + 'px';
+    matrixCanvas.style.transform = scale < 1 ? 'scale(' + scale + ')' : '';
+
+    if (legendPanel) legendPanel.style.width = isStacked ? scaledW + 'px' : '';
+  }
+
+  applyMatrixScale();
+  window.addEventListener('resize', applyMatrixScale);
 
   // ── Toggle de setas ─────────────────────────────────────────────────────────
   const toggleArrows = document.getElementById('toggle-arrows');
   const arrowsLayer  = document.querySelector('.arrows-layer');
 
-  // Estado inicial: setas ocultas (checkbox desmarcado)
   arrowsLayer.classList.add('hidden');
 
   toggleArrows.addEventListener('change', () => {
@@ -1077,11 +1178,11 @@
   });
 
   // ── Hover sobre cartões ─────────────────────────────────────────────────────
-  const allCards = Array.from(document.querySelectorAll('.course-card'));
+  const allCards  = Array.from(document.querySelectorAll('.course-card'));
   const allArrows = Array.from(document.querySelectorAll('.arrow-group'));
 
   function getRelated(code) {
-    const prereqs = new Set();
+    const prereqs    = new Set();
     const dependents = new Set();
     for (const req of REQUIREMENTS) {
       if (req.type === 'credit_requirement') continue;
@@ -1101,7 +1202,6 @@
       card.classList.toggle('faded', !related.has(c));
     });
 
-    // Remove hidden class so active arrows are always visible during hover
     arrowsLayer.classList.remove('hidden');
 
     allArrows.forEach(arrow => {
@@ -1119,7 +1219,6 @@
     allArrows.forEach(arrow => {
       arrow.style.display = '';
     });
-    // Restore hidden state based on checkbox
     arrowsLayer.classList.toggle('hidden', !toggleArrows.checked);
   }
 
@@ -1133,10 +1232,17 @@
   // ── Popup de detalhes ───────────────────────────────────────────────────────
   const popup       = document.getElementById('course-popup');
   const popupClose  = popup.querySelector('.popup-close');
+  const popupHeader = popup.querySelector('.popup-header');
+  const defaultPopupHeaderColor = '#1a3a6b';
 
   function openPopup(code) {
     const course = courseMap.get(code);
     if (!course) return;
+
+    const popupHeaderColor = course.category
+      ? categoryColorMap.get(course.category)
+      : null;
+    popupHeader.style.background = popupHeaderColor || defaultPopupHeaderColor;
 
     document.getElementById('popup-code').textContent     = course.code;
     document.getElementById('popup-name').textContent     = course.name;
@@ -1144,7 +1250,6 @@
     document.getElementById('popup-credits').textContent  = course.credits + ' cr';
     document.getElementById('popup-syllabus').textContent = course.syllabus || '—';
 
-    // Tags como badges
     const tagsEl = document.getElementById('popup-tags');
     tagsEl.innerHTML = '';
     course.tags.forEach(function(tag) {
@@ -1154,7 +1259,6 @@
       tagsEl.appendChild(span);
     });
 
-    // Pré-requisitos
     const prereqs = REQUIREMENTS
       .filter(function(r) { return r.to === code && r.from; })
       .map(function(r) {
@@ -1198,7 +1302,6 @@
       prereqEl.appendChild(ul);
     }
 
-    // Dependentes (cursos que têm esta disciplina como pré-requisito)
     const dependents = REQUIREMENTS
       .filter(function(r) { return r.from === code && r.to; })
       .map(function(r) {

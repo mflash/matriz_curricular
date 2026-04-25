@@ -90,7 +90,7 @@
       padding: 24px 0;
     }
 
-    /* Wrapper do cartão (para badge de créditos mínimos) */
+    /* Wrapper do cartão */
     .card-wrapper {
       position: relative;
       width: 100%;
@@ -173,7 +173,8 @@
       padding: 1px 6px;
       font-weight: 600;
     }
-
+    .tag-eletivas { background: #cce5ff; color: #004085; }
+    .tag-boo { background: #f8d7da; color: #721c24; }
     .course-card.fill-maths { background: #ef8080; border-color: #ef8080; }
     .course-card.fill-logic { background: #dcdc05; border-color: #dcdc05; }
     .course-card.fill-algo { background: #88b9ee; border-color: #88b9ee; }
@@ -799,7 +800,6 @@
             stroke-width="5"
             class="arrow-line"/>
       
-    <text class="arrow-label" x="379" y="56">RE</text>
     </g>
     <g class="arrow-group"
        data-type="special"
@@ -810,7 +810,6 @@
             stroke-width="5"
             class="arrow-line"/>
       
-    <text class="arrow-label" x="200" y="434">RE</text>
     </g>
     <g class="arrow-group"
        data-type="special"
@@ -821,7 +820,6 @@
             stroke-width="5"
             class="arrow-line"/>
       
-    <text class="arrow-label" x="579" y="143.5">RE</text>
     </g>
     <g class="arrow-group"
        data-type="special"
@@ -832,7 +830,6 @@
             stroke-width="5"
             class="arrow-line"/>
       
-    <text class="arrow-label" x="779" y="560">RE</text>
     </g>
     <g class="arrow-group"
        data-type="special"
@@ -843,7 +840,6 @@
             stroke-width="5"
             class="arrow-line"/>
       
-    <text class="arrow-label" x="779" y="56">RE</text>
     </g>
     <g class="arrow-group"
        data-type="special"
@@ -854,7 +850,6 @@
             stroke-width="5"
             class="arrow-line"/>
       
-    <text class="arrow-label" x="1179" y="140">RE</text>
     </g>
     <g class="arrow-group"
        data-type="special"
@@ -865,7 +860,6 @@
             stroke-width="5"
             class="arrow-line"/>
       
-    <text class="arrow-label" x="779" y="560">RE</text>
     </g>
     <g class="arrow-group"
        data-type="special"
@@ -876,7 +870,6 @@
             stroke-width="5"
             class="arrow-line"/>
       
-    <text class="arrow-label" x="1179" y="476">RE</text>
     </g>
     <g class="arrow-group"
        data-type="special"
@@ -887,7 +880,6 @@
             stroke-width="5"
             class="arrow-line"/>
       
-    <text class="arrow-label" x="1000" y="182">RE</text>
     </g>
     <g class="arrow-group"
        data-type="special"
@@ -898,7 +890,6 @@
             stroke-width="5"
             class="arrow-line"/>
       
-    <text class="arrow-label" x="779" y="140">RE</text>
     </g>
     <g class="arrow-group"
        data-type="special"
@@ -909,7 +900,6 @@
             stroke-width="5"
             class="arrow-line"/>
       
-    <text class="arrow-label" x="1379" y="308">RE</text>
     </g>
     <g class="arrow-group"
        data-type="special"
@@ -920,7 +910,6 @@
             stroke-width="5"
             class="arrow-line"/>
       
-    <text class="arrow-label" x="1379" y="476">RE</text>
     </g>
     <g class="arrow-group"
        data-type="corequisite"
@@ -1049,7 +1038,7 @@
       <div class="level-column" data-level="2">
         <div class="col-header">
           <span class="col-roman">II</span>
-          <span class="col-credits">24 créditos</span>
+          <span class="col-credits">48 créditos</span>
         </div>
         <div class="cards-area">
           <div class="card-wrapper">
@@ -1136,6 +1125,20 @@
               <div class="card-footer"></div>
             </div>
           </div>
+          <div class="card-wrapper">
+            <div class="course-card"
+               id="card-980E8-24"
+               data-code="980E8-24"
+               tabindex="0"
+               role="button"
+               aria-label="Disciplinas Eletivas">
+              <div class="card-body">
+                <span class="card-name">Disciplinas Eletivas</span>
+                <span class="card-credits">(24)</span>
+              </div>
+              <div class="card-footer"><span class="tag tag-eletivas">eletivas</span></div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="level-column" data-level="3">
@@ -1155,7 +1158,7 @@
                 <span class="card-name">Linguagens, Autômatos e Computação</span>
                 <span class="card-credits">(4)</span>
               </div>
-              <div class="card-footer"></div>
+              <div class="card-footer"><span class="tag tag-boo">boo</span></div>
             </div>
           </div>
           <div class="card-wrapper">
@@ -1712,13 +1715,13 @@
     <h2 class="legend-title">Legenda</h2>
     <dl class="legend-list">
       <dt><svg width="60" height="14"><path d="M2 7 C 16 7, 20 7, 30 7 S 44 7, 58 7" stroke="#1a3a6b" stroke-width="6" fill="none" stroke-linecap="round"/></svg></dt>
-      <dd>Pré-requisito</dd>
+      <dd>Pr&#233;-requisito</dd>
       <dt><svg width="60" height="14"><path d="M2 7 C 16 7, 20 7, 30 7 S 44 7, 58 7" stroke="#b45309" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="8,4"/></svg></dt>
-      <dd>Pré-requisito especial (RE)</dd>
+      <dd>Pr&#233;-requisito especial (RE)</dd>
       <dt><svg width="60" height="14"><path d="M2 7 C 16 7, 20 7, 30 7 S 44 7, 58 7" stroke="#475569" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="3,3"/></svg></dt>
       <dd>Co-requisito</dd>
       <dt><span class="credit-req-badge">XX CR</span></dt>
-      <dd>Requisito de créditos mínimos</dd>
+      <dd>Requisito de cr&#233;ditos m&#237;nimos</dd>
     
       <dt class="legend-subtitle">Eixos</dt>
       <dd class="legend-subtitle-spacer"></dd>
@@ -1742,24 +1745,34 @@
       <dd>Computação Distribuída e em Rede</dd>
       <dt><span class="category-chip" style="background:#a8e88c; border-color:#a8e88c;"></span></dt>
       <dd>Computação</dd>
-
+      <dt><span class="tag tag-eletivas">eletivas</span></dt>
+      <dd>Disciplina eletivas</dd>
+      <dt><span class="tag tag-boo">boo</span></dt>
+      <dd>Disciplina boo</dd>
     </dl>
     <div class="legend-toggle">
       <label>
         <input type="checkbox" id="toggle-arrows">
-        Exibir setas de pré-requisito
+        Exibir setas de pr&#233;-requisito
       </label>
     </div>
     
     <div class="credits-summary">
-    <h2 class="legend-title">Créditos</h2>
+    <h2 class="legend-title">Cr&#233;ditos</h2>
     <table class="credits-summary-table">
       <tbody>
         <tr class="credits-total-row">
           <td>Total geral</td>
-          <td class="credits-value">182</td>
+          <td class="credits-value">206</td>
         </tr>
-
+      <tr>
+        <td><span class="tag tag-eletivas">eletivas</span></td>
+        <td class="credits-value">24</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-boo">boo</span></td>
+        <td class="credits-value">4</td>
+      </tr>
       </tbody>
     </table>
     </div>
@@ -1781,11 +1794,11 @@
       <div class="popup-stats">
         <div class="popup-stat">
           <span class="popup-stat-value" id="popup-hours"></span>
-          <span class="popup-stat-label">Carga horária</span>
+          <span class="popup-stat-label">Carga hor&#225;ria</span>
         </div>
         <div class="popup-stat">
           <span class="popup-stat-value" id="popup-credits"></span>
-          <span class="popup-stat-label">Créditos</span>
+          <span class="popup-stat-label">Cr&#233;ditos</span>
         </div>
       </div>
       <section class="popup-section">
@@ -1793,7 +1806,7 @@
         <p id="popup-syllabus" class="popup-syllabus-text"></p>
       </section>
       <section class="popup-section">
-        <h3 class="popup-section-title">Pré-requisitos</h3>
+        <h3 class="popup-section-title">Pr&#233;-requisitos</h3>
         <div id="popup-prereqs"></div>
       </section>
       <section class="popup-section">
@@ -1807,9 +1820,9 @@
 (function () {
   'use strict';
 
-  const COURSES = [{"code":"95303-04","name":"Matemática Discreta","hours":60,"credits":4,"syllabus":"Estudo da lógica proposicional e técnicas básicas de demonstração. Estudo da álgebra de conjuntos. Estudo e discussão dos conceitos de relações, funções totais e parciais, relações de ordem parcial e total e relações de equivalência. Análise de definições indutivas, recursão e do princípio de indução. Introdução à álgebra Booleana.","tags":[],"category":"logic"},{"code":"98707-02","name":"Metodologia Científica","hours":30,"credits":2,"syllabus":"x","tags":[],"category":"met"},{"code":"4611C-06","name":"Fundamentos de Programação","hours":90,"credits":6,"syllabus":"Discussão sobre algoritmos como ferramenta para a descrição da solução de problemas e os fundamentos necessários para sua implementação usando linguagens de programação. Exame das noções de constantes, variáveis, tipos e expressões. Estudo de programas sequenciais, comandos de entrada e saída e o processo de compilação. Construção de programas com seleção, iterativos e uso do conceito de subprogramas. Estudo e uso de estruturas de dados usando arranjos e matrizes e conceitos básicos de classes e objetos.","tags":[],"category":"algo"},{"code":"1501A-04","name":"Ética e Cidadania","hours":60,"credits":4,"syllabus":"Abordagem de problemas e conceitos filosóficos relacionados à moralidade e ao exercício da cidadania. Introdução aos principais temas e problemas de Ética, presentes na História da Filosofia. Reflexão filosófica sobre o ideal democrático, a cidadania e os direitos humanos.","tags":[],"category":"social"},{"code":"98705-02","name":"Introdução à Computação","hours":30,"credits":2,"syllabus":"Apresentação da Computação como área de estudo: suas origens, seu tema de estudo e sua relação com os diversos cursos de computação. Apresentação das grandes camadas de um sistema computacional: informação, hardware, sistema operacional, aplicações. Estudo teórico-prático da representação de informação, com ênfase em sistemas de numeração, em particular o sistema binário. Discussão sobre os grandes desafios da computação.","tags":[],"category":"cs"},{"code":"95300-04","name":"Cálculo I","hours":60,"credits":4,"syllabus":"Caracterização de funções de uma variável. Estudo do domínio e representação gráfica dessas funções. Análise de limites e continuidade. Definições e aplicações de derivadas diferenciais.","tags":[],"category":"maths"},{"code":"4611E-04","name":"Lógica para Computação","hours":60,"credits":4,"syllabus":"Estudos dos principais conceitos da Lógica Matemática e de sua aplicação na Ciência da Computação. Exame e discussão dos conceitos de sintaxe e semântica, equivalência, relação de consequência lógica, relação de dedutibilidade, cálculo de dedução natural e outros sistemas de dedução tanto para a lógica proposicional como para a lógica de predicados. Aplicação do raciocínio automático na computação.","tags":[],"category":"logic"},{"code":"4611F-04","name":"Programação Orientada a Objetos","hours":60,"credits":4,"syllabus":"Desenvolvimento de sistemas de software de complexidade média utilizando o paradigma de orientação a objetos. Estudo e análise dos conceitos de abstração, herança e polimorfismo. Discussão de aspectos avançados sobre classes. Uso de bibliotecas de coleções. Projeto de sistemas orientados a objetos. Manipulação básica de arquivos texto. Noções de programação orientada a eventos.","tags":[],"category":"algo"},{"code":"4645G-04","name":"Algoritmos e Estruturas de Dados I","hours":60,"credits":4,"syllabus":"Construção e raciocínio sobre diferentes algoritmos e implementações para estruturas de dados lineares e hierárquicas: listas, filas, pilhas e árvores. Exame da adequação destes algoritmos na solução de diversas classes de problemas. Construção de algoritmos e implementações para problemas de ordenação e pesquisa. Discussão, análise e raciocínio sobre a complexidade de algoritmos e implementações correspondentes.","tags":[],"category":"algo"},{"code":"98901-04","name":"Banco de Dados I","hours":60,"credits":4,"syllabus":"Entendimento da arquitetura típica de um banco de dados. Estudo sobre modelos de dados: clássicos, relacional e pós-relacionais. Compreensão dos diferentes formalismos para modelagem conceitual. Solução de projetos de bancos de dados pelo uso de dependências funcionais, formas normais e de restrições de integridade. Solução de implementação de bancos de dados: modelo lógico e físico, e mapeamento do modelo conceitual para o de implementação.","tags":[],"category":"infra"},{"code":"4646B-04","name":"Fundamentos de Sistemas Digitais","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"infra"},{"code":"95301-04","name":"Cálculo II","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"maths"},{"code":"46515-04","name":"Linguagens, Autômatos e Computação","hours":60,"credits":4,"syllabus":"Introdução às linguagens formais: definições, propriedades e operações. Estudo de linguagens na hierarquia de Chomsky: regulares, livres de contexto, sensíveis ao contexto, enumeráveis recursivamente. Estudo de máquinas como reconhecedores de linguagens: autômatos finitos, autômatos de pilha e máquinas de Turing. Estudo teórico prático de expressões regulares. Introdução ao conceito de computabilidade.","tags":[],"category":"logic"},{"code":"98702-04","name":"Prática em Pesquisa","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"met"},{"code":"4645H-04","name":"Algoritmos e Estruturas de Dados II","hours":60,"credits":4,"syllabus":"Construção e raciocínio sobre diferentes algoritmos e implementações para estruturas de dados não lineares: heaps, tabelas de espalhamento e grafos. Apresentação de aplicações avançadas das estruturas de dados: heapsort, conjuntos, tries, árvores B, quadtrees e codificação de Huffman. Exame da adequação destes algoritmos na solução de diversas classes de problemas. Discussão, análise e raciocínio sobre a complexidade de algoritmos e implementações correspondentes.","tags":[],"category":"algo"},{"code":"98902-02","name":"Banco de Dados II","hours":30,"credits":2,"syllabus":"Visão geral das principais formas de uso de bancos de dados: orientados a transação, orientados ao processamento analítico e orientados a consultas de dados não convencionais. Visão geral da definição de dados na abordagem relacional, em modelos OLAP, bem como nas abordagens sem esquemas prévios (NoSQL). Estudo sobre linguagens de definição e manipulação de banco de dados e, em especial, SQL. Definição e consultas de dados nas principais formas de uso de bancos de dados, com entendimento dos principais fatores envolvidos com desempenho.","tags":[],"category":"infra"},{"code":"98701-04","name":"Programação de Baixo Nível","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"algo"},{"code":"98G03-04","name":"Organização e Arquitetura de Processadores","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"infra"},{"code":"95304-04","name":"Probabilidade e Estatística","hours":60,"credits":4,"syllabus":"Organização, análise, interpretação de dados e estudo de modelos probabilísticas enfatizando o princípio da incerteza. Investigação da relação entre variáveis. Noções de amostragem visando à estimação de parâmetros e o estabelecimento de hipóteses estatísticas.","tags":[],"category":"maths"},{"code":"98713-04","name":"Fundamentos de Proc. Paralelo e Distribuído","hours":60,"credits":4,"syllabus":"Introdução à computação concorrente e sua representação com sistemas de transição de estados. Estudo de processos e threads. Estudo sobre memória compartilhada e passagem de mensagem. Descrição da semântica de mecanismos de sincronização e seu uso na programação concorrente. Apresentação de abordagens para modelagem e avaliação de propriedades de sistemas concorrentes. Apresentação dos objetivos e pressupostos ambientais para sistemas paralelos e para sistemas distribuídos. Análise das abordagens para modelagem de aplicações paralelas com memória compartilhada e passagem de mensagem. Estudo das principais abstrações para programação distribuída. Apresentação de estudos de caso de sistemas paralelos e de sistemas distribuídos.","tags":[],"category":"net"},{"code":"98703-02","name":"Programação Funcional","hours":60,"credits":2,"syllabus":"x","tags":[],"category":"aplic"},{"code":"4636H-04","name":"Fundamentos de Desenvolvimento de Software","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"sist"},{"code":"98801-04","name":"Engenharia de Software I","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"sist"},{"code":"98H00-04","name":"Infraestrutura para Gestão de Dados","hours":60,"credits":4,"syllabus":"Visão geral de sistemas de bancos de dados, suas principais funcionalidades e formas de uso: orientados a transação, orientados ao processamento analítico e orientados a consultas de dados não convencionais. Entendimento dos modelos de transações de bancos de dados, de gerência de memória principal e secundária, de controle de concorrência e de recuperação após falhas. Estudo sobre a otimização de consultas e de transações em bancos de dados. Visão geral sobre a gestão de bancos de dados sem esquemas prévios.","tags":[],"category":"infra"},{"code":"98716-04","name":"Computação Gráfica","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"aplic"},{"code":"95302-04","name":"Álgebra Linear e Geometria Analítica","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"maths"},{"code":"4647F-04","name":"Teoria da Computabilidade e Complexidade","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"logic"},{"code":"98802-02","name":"Engenharia de Software II","hours":30,"credits":2,"syllabus":"x","tags":[],"category":"sist"},{"code":"98905-04","name":"Experiência do Usuário","hours":60,"credits":4,"syllabus":"Reflexão sobre conceitos e teorias relacionados à qualidade de uso e design de sistemas interativos. Aplicação de técnicas para elicitação e análise de dados sobre usuários e tarefas. Aplicação de fundamentos e técnicas para concepção de interfaces e de interação. Aplicação de métodos de avaliação de sistemas interativos. Investigação de interfaces não-convencionais e seu impacto em sistemas interativos.","tags":[],"category":"aplic"},{"code":"4646Z-04","name":"Projeto e Otimização de Algoritmos","hours":60,"credits":4,"syllabus":"Estudo teórico e prático das principais técnicas para o projeto de algoritmos, como algoritmos gulosos, divisão e conquista, programação dinâmica, backtracking, branch and bound e algoritmos aproximativos como algoritmos genéticos, gradiente descendente e outros.","tags":[],"category":"algo"},{"code":"4646X-04","name":"Projeto de Desenvolvimento de Jogos","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"aplic"},{"code":"98700-04","name":"Sistemas Operacionais","hours":60,"credits":4,"syllabus":"Apresentação da organização básica de sistemas operacionais. Estudo da evolução da estrutura e funcionamento dos sistemas operacionais. Apresentação do conceito de processos e de mecanismos de sincronização entre processos que compartilham memória e sua implementação em um sistema operacional. Exemplos práticos de criação e sincronização de processos. Introdução e exploração do conceito de algoritmos de escalonamento. Estudo da comunicação inter-processos. Análise e discussão de problemas relacionados à \"deadlock\" e à comunicação entre processos. Estudo sobre gerenciamento de memória, gerenciamento de entrada e saída e gerenciamento de arquivos. Análise e discussão de problemas relacionados ao gerenciamento de memória, gerenciamento de entrada e saída e gerenciamento de arquivos.","tags":[],"category":"infra"},{"code":"4646N-04","name":"Métodos Numéricos","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"aplic"},{"code":"4646M-04","name":"Métodos Formais","hours":60,"credits":4,"syllabus":"Conceitos essenciais de especificação formal, verificação formal e métodos formais. Especificação e verificação de modelos e programas. Estudo da lógica de Hoare. Especificação de assertivas, pré e pós-condições, invariantes e variantes. Aplicação de ferramentas de verificação automática sobre especificações e programas.","tags":[],"category":"sist"},{"code":"98704-04","name":"Prática em Engenharia de Software","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"met"},{"code":"98708-04","name":"Inteligência Artificial","hours":60,"credits":4,"syllabus":"Estudo teórico-prático das diversas abordagens de formalização e resolução de problemas utilizando algoritmos de inteligência artificial. Estudo teórico-prático de algoritmos de busca para resolução de problemas em agentes autônomos. Apresentação de abordagens para representação de conhecimento. Apresentação de técnicas de geração automática de planos. Introdução ao Aprendizado de Máquina com ênfase em Aprendizado por reforço.","tags":[],"category":"aplic"},{"code":"98709-04","name":"Fundamentos de Redes de Computadores","hours":60,"credits":4,"syllabus":"Estudo dos Modelos de referência de interconexão de computadores OSI/ISO e da Arquitetura Internet, apresentando em mais detalhamento os Níveis de Rede, Transporte e Aplicação, com seus conceitos, funções e protocolos. Estudo e análise do impacto das funções dos protocolos de comunicação no desenvolvimento e desempenho das aplicações.","tags":[],"category":"net"},{"code":"98710-02","name":"Laboratório de Redes de Computadores","hours":30,"credits":2,"syllabus":"Desenvolvimento de experimentos que abranjam operação, configuração e análise de protocolos da Arquitetura Internet. Desenvolvimento e análise de comportamento de aplicações distribuídas com diferentes requisitos de qualidade. Simulação e análise de arquiteturas de comunicação variadas.","tags":[],"category":"net"},{"code":"4646I-04","name":"Laboratório de Sistemas Operacionais","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"infra"},{"code":"98711-02","name":"Trabalho de Conclusão I","hours":30,"credits":2,"syllabus":"x","tags":[],"category":"met"},{"code":"4645K-04","name":"Construção de Compiladores","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"aplic"},{"code":"98706-04","name":"Aprendizado de Máquina","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"aplic"},{"code":"4647A-04","name":"Redes de Computadores Avançadas","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"net"},{"code":"4611G-04","name":"Simulação e Métodos Analíticos","hours":60,"credits":4,"syllabus":"Estudo de técnicas e opções para simulação e análise estocástica através de modelos computacionais. Apresentação de técnicas de representação de estados e de tempo, de aleatoriedade e determinismo em contexto computacional. Estudo de métodos e ferramentas básicas de simulação e métodos analíticos. Apresentação de formalismos clássicos e estruturados para representação de modelos.","tags":[],"category":"aplic"},{"code":"98714-02","name":"Trabalho de Conclusão II","hours":30,"credits":2,"syllabus":"x","tags":[],"category":"met"},{"code":"11521-04","name":"Humanismo e Cultura Religiosa","hours":60,"credits":4,"syllabus":"A condição humana aberta ao transcendente; Fé cristã e cultura atual; O estudo do fenômeno religioso em suas diferentes Tradições; Elementos da cultura e da religiosidade afro-brasileira e indígena; A relação entre fé e razão, e ciência e religião; Motivação para ações comunitárias, como engajamento consequente de uma consciência social e da fé cristã.","tags":[],"category":"social"},{"code":"98715-04","name":"Segurança de Sistemas","hours":60,"credits":4,"syllabus":"Apresentação e implementação de criptografia clássica; cifras de fluxo (stream ciphers) e cifras de bloco (block ciphers). Entendimento de integridade de mensagens (Message Authentication Codes). Conhecimento de criptografia simétrica, aritmética modular; números primos e fatoração, funções e geradores pseudo-aleatórios, e criptografia assimétrica. Uso de bibliotecas de criptografia. Apresentação do Marco Civil da Internet. Entendimento e como cumprir a Lei de Proteção de Dados.","tags":[],"category":"infra"},{"code":"4647B-04","name":"Sistemas Distribuídos","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"net"},{"code":"4645J-04","name":"Computação Paralela","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"net"}];
-  const REQUIREMENTS = [{"type":"prerequisite","from":"95303-04","to":"4611E-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98707-02","to":"98702-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4611C-06","to":"4611F-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4611C-06","to":"4645G-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4611C-06","to":"98701-04","description":null,"min_credits":null},{"type":"prerequisite","from":"95300-04","to":"95301-04","description":null,"min_credits":null},{"type":"prerequisite","from":"95300-04","to":"95304-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4611F-04","to":"4636H-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4611F-04","to":"98713-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4645G-04","to":"4645H-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98901-04","to":"98902-02","description":null,"min_credits":null},{"type":"prerequisite","from":"4646B-04","to":"98G03-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4646B-04","to":"98701-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4611E-04","to":"4646M-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4611E-04","to":"98708-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4645H-04","to":"4646Z-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4645H-04","to":"98708-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98902-02","to":"98H00-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98701-04","to":"98716-04","description":null,"min_credits":null},{"type":"prerequisite","from":"95304-04","to":"4611G-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98801-04","to":"98802-02","description":null,"min_credits":null},{"type":"prerequisite","from":"98801-04","to":"98905-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98716-04","to":"4646X-04","description":null,"min_credits":null},{"type":"prerequisite","from":"95302-04","to":"4646N-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4646Z-04","to":"98715-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98700-04","to":"98709-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98700-04","to":"4646I-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98708-04","to":"98706-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98709-04","to":"4647A-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98711-02","to":"98714-02","description":null,"min_credits":null},{"type":"special","from":"95303-04","to":"46515-04","description":null,"min_credits":null},{"type":"special","from":"98705-02","to":"4646B-04","description":null,"min_credits":null},{"type":"special","from":"4611E-04","to":"98703-02","description":null,"min_credits":null},{"type":"special","from":"95301-04","to":"4646N-04","description":null,"min_credits":null},{"type":"special","from":"46515-04","to":"4647F-04","description":null,"min_credits":null},{"type":"special","from":"46515-04","to":"4645K-04","description":null,"min_credits":null},{"type":"special","from":"98G03-04","to":"98700-04","description":null,"min_credits":null},{"type":"special","from":"98G03-04","to":"4645K-04","description":null,"min_credits":null},{"type":"special","from":"98802-02","to":"98704-04","description":null,"min_credits":null},{"type":"special","from":"98713-04","to":"98700-04","description":null,"min_credits":null},{"type":"special","from":"98709-04","to":"4647B-04","description":null,"min_credits":null},{"type":"special","from":"4646I-04","to":"4645J-04","description":null,"min_credits":null},{"type":"corequisite","from":"4645H-04","to":"98702-04","description":null,"min_credits":null},{"type":"corequisite","from":"4636H-04","to":"98801-04","description":null,"min_credits":null},{"type":"corequisite","from":"98709-04","to":"98710-02","description":null,"min_credits":null},{"type":"credit_requirement","from":null,"to":"11521-04","description":null,"min_credits":60}];
-  const CATEGORIES = [{"id":"maths","color":"#ef8080"},{"id":"logic","color":"#dcdc05"},{"id":"algo","color":"#88b9ee"},{"id":"met","color":"#4ecf6c"},{"id":"infra","color":"#f6ac5a"},{"id":"aplic","color":"#d9b8ec"},{"id":"sist","color":"#c3ac68"},{"id":"social","color":"#10dec3"},{"id":"net","color":"#30c1d9"},{"id":"cs","color":"#a8e88c"}];
+  const COURSES = [{"code": "95303-04", "name": "Matemática Discreta", "hours": 60, "credits": 4, "syllabus": "Estudo da lógica proposicional e técnicas básicas de demonstração. Estudo da álgebra de conjuntos. Estudo e discussão dos conceitos de relações, funções totais e parciais, relações de ordem parcial e total e relações de equivalência. Análise de definições indutivas, recursão e do princípio de indução. Introdução à álgebra Booleana.", "tags": [], "category": "logic"}, {"code": "98707-02", "name": "Metodologia Científica", "hours": 30, "credits": 2, "syllabus": "x", "tags": [], "category": "met"}, {"code": "4611C-06", "name": "Fundamentos de Programação", "hours": 90, "credits": 6, "syllabus": "Discussão sobre algoritmos como ferramenta para a descrição da solução de problemas e os fundamentos necessários para sua implementação usando linguagens de programação. Exame das noções de constantes, variáveis, tipos e expressões. Estudo de programas sequenciais, comandos de entrada e saída e o processo de compilação. Construção de programas com seleção, iterativos e uso do conceito de subprogramas. Estudo e uso de estruturas de dados usando arranjos e matrizes e conceitos básicos de classes e objetos.", "tags": [], "category": "algo"}, {"code": "1501A-04", "name": "Ética e Cidadania", "hours": 60, "credits": 4, "syllabus": "Abordagem de problemas e conceitos filosóficos relacionados à moralidade e ao exercício da cidadania. Introdução aos principais temas e problemas de Ética, presentes na História da Filosofia. Reflexão filosófica sobre o ideal democrático, a cidadania e os direitos humanos.", "tags": [], "category": "social"}, {"code": "98705-02", "name": "Introdução à Computação", "hours": 30, "credits": 2, "syllabus": "Apresentação da Computação como área de estudo: suas origens, seu tema de estudo e sua relação com os diversos cursos de computação. Apresentação das grandes camadas de um sistema computacional: informação, hardware, sistema operacional, aplicações. Estudo teórico-prático da representação de informação, com ênfase em sistemas de numeração, em particular o sistema binário. Discussão sobre os grandes desafios da computação.", "tags": [], "category": "cs"}, {"code": "95300-04", "name": "Cálculo I", "hours": 60, "credits": 4, "syllabus": "Caracterização de funções de uma variável. Estudo do domínio e representação gráfica dessas funções. Análise de limites e continuidade. Definições e aplicações de derivadas diferenciais.", "tags": [], "category": "maths"}, {"code": "4611E-04", "name": "Lógica para Computação", "hours": 60, "credits": 4, "syllabus": "Estudos dos principais conceitos da Lógica Matemática e de sua aplicação na Ciência da Computação. Exame e discussão dos conceitos de sintaxe e semântica, equivalência, relação de consequência lógica, relação de dedutibilidade, cálculo de dedução natural e outros sistemas de dedução tanto para a lógica proposicional como para a lógica de predicados. Aplicação do raciocínio automático na computação.", "tags": [], "category": "logic"}, {"code": "4611F-04", "name": "Programação Orientada a Objetos", "hours": 60, "credits": 4, "syllabus": "Desenvolvimento de sistemas de software de complexidade média utilizando o paradigma de orientação a objetos. Estudo e análise dos conceitos de abstração, herança e polimorfismo. Discussão de aspectos avançados sobre classes. Uso de bibliotecas de coleções. Projeto de sistemas orientados a objetos. Manipulação básica de arquivos texto. Noções de programação orientada a eventos.", "tags": [], "category": "algo"}, {"code": "4645G-04", "name": "Algoritmos e Estruturas de Dados I", "hours": 60, "credits": 4, "syllabus": "Construção e raciocínio sobre diferentes algoritmos e implementações para estruturas de dados lineares e hierárquicas: listas, filas, pilhas e árvores. Exame da adequação destes algoritmos na solução de diversas classes de problemas. Construção de algoritmos e implementações para problemas de ordenação e pesquisa. Discussão, análise e raciocínio sobre a complexidade de algoritmos e implementações correspondentes.", "tags": [], "category": "algo"}, {"code": "98901-04", "name": "Banco de Dados I", "hours": 60, "credits": 4, "syllabus": "Entendimento da arquitetura típica de um banco de dados. Estudo sobre modelos de dados: clássicos, relacional e pós-relacionais. Compreensão dos diferentes formalismos para modelagem conceitual. Solução de projetos de bancos de dados pelo uso de dependências funcionais, formas normais e de restrições de integridade. Solução de implementação de bancos de dados: modelo lógico e físico, e mapeamento do modelo conceitual para o de implementação.", "tags": [], "category": "infra"}, {"code": "4646B-04", "name": "Fundamentos de Sistemas Digitais", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "infra"}, {"code": "95301-04", "name": "Cálculo II", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "maths"}, {"code": "980E8-24", "name": "Disciplinas Eletivas", "hours": 360, "credits": 24, "syllabus": "Disciplinas eletivas a serem escolhidas pelo estudante, de acordo com seus interesses e objetivos de formação. As disciplinas eletivas podem ser escolhidas entre as disciplinas ofertadas pela Universidade, respeitando os pré-requisitos estabelecidos para cada disciplina. O aluno deve completar 24 créditos em disciplinas eletivas.", "tags": ["eletivas"], "category": null}, {"code": "46515-04", "name": "Linguagens, Autômatos e Computação", "hours": 60, "credits": 4, "syllabus": "Introdução às linguagens formais: definições, propriedades e operações. Estudo de linguagens na hierarquia de Chomsky: regulares, livres de contexto, sensíveis ao contexto, enumeráveis recursivamente. Estudo de máquinas como reconhecedores de linguagens: autômatos finitos, autômatos de pilha e máquinas de Turing. Estudo teórico prático de expressões regulares. Introdução ao conceito de computabilidade.", "tags": ["boo"], "category": "logic"}, {"code": "98702-04", "name": "Prática em Pesquisa", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "met"}, {"code": "4645H-04", "name": "Algoritmos e Estruturas de Dados II", "hours": 60, "credits": 4, "syllabus": "Construção e raciocínio sobre diferentes algoritmos e implementações para estruturas de dados não lineares: heaps, tabelas de espalhamento e grafos. Apresentação de aplicações avançadas das estruturas de dados: heapsort, conjuntos, tries, árvores B, quadtrees e codificação de Huffman. Exame da adequação destes algoritmos na solução de diversas classes de problemas. Discussão, análise e raciocínio sobre a complexidade de algoritmos e implementações correspondentes.", "tags": [], "category": "algo"}, {"code": "98902-02", "name": "Banco de Dados II", "hours": 30, "credits": 2, "syllabus": "Visão geral das principais formas de uso de bancos de dados: orientados a transação, orientados ao processamento analítico e orientados a consultas de dados não convencionais. Visão geral da definição de dados na abordagem relacional, em modelos OLAP, bem como nas abordagens sem esquemas prévios (NoSQL). Estudo sobre linguagens de definição e manipulação de banco de dados e, em especial, SQL. Definição e consultas de dados nas principais formas de uso de bancos de dados, com entendimento dos principais fatores envolvidos com desempenho.", "tags": [], "category": "infra"}, {"code": "98701-04", "name": "Programação de Baixo Nível", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "algo"}, {"code": "98G03-04", "name": "Organização e Arquitetura de Processadores", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "infra"}, {"code": "95304-04", "name": "Probabilidade e Estatística", "hours": 60, "credits": 4, "syllabus": "Organização, análise, interpretação de dados e estudo de modelos probabilísticas enfatizando o princípio da incerteza. Investigação da relação entre variáveis. Noções de amostragem visando à estimação de parâmetros e o estabelecimento de hipóteses estatísticas.", "tags": [], "category": "maths"}, {"code": "98713-04", "name": "Fundamentos de Proc. Paralelo e Distribuído", "hours": 60, "credits": 4, "syllabus": "Introdução à computação concorrente e sua representação com sistemas de transição de estados. Estudo de processos e threads. Estudo sobre memória compartilhada e passagem de mensagem. Descrição da semântica de mecanismos de sincronização e seu uso na programação concorrente. Apresentação de abordagens para modelagem e avaliação de propriedades de sistemas concorrentes. Apresentação dos objetivos e pressupostos ambientais para sistemas paralelos e para sistemas distribuídos. Análise das abordagens para modelagem de aplicações paralelas com memória compartilhada e passagem de mensagem. Estudo das principais abstrações para programação distribuída. Apresentação de estudos de caso de sistemas paralelos e de sistemas distribuídos.", "tags": [], "category": "net"}, {"code": "98703-02", "name": "Programação Funcional", "hours": 60, "credits": 2, "syllabus": "x", "tags": [], "category": "aplic"}, {"code": "4636H-04", "name": "Fundamentos de Desenvolvimento de Software", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "sist"}, {"code": "98801-04", "name": "Engenharia de Software I", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "sist"}, {"code": "98H00-04", "name": "Infraestrutura para Gestão de Dados", "hours": 60, "credits": 4, "syllabus": "Visão geral de sistemas de bancos de dados, suas principais funcionalidades e formas de uso: orientados a transação, orientados ao processamento analítico e orientados a consultas de dados não convencionais. Entendimento dos modelos de transações de bancos de dados, de gerência de memória principal e secundária, de controle de concorrência e de recuperação após falhas. Estudo sobre a otimização de consultas e de transações em bancos de dados. Visão geral sobre a gestão de bancos de dados sem esquemas prévios.", "tags": [], "category": "infra"}, {"code": "98716-04", "name": "Computação Gráfica", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "aplic"}, {"code": "95302-04", "name": "Álgebra Linear e Geometria Analítica", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "maths"}, {"code": "4647F-04", "name": "Teoria da Computabilidade e Complexidade", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "logic"}, {"code": "98802-02", "name": "Engenharia de Software II", "hours": 30, "credits": 2, "syllabus": "x", "tags": [], "category": "sist"}, {"code": "98905-04", "name": "Experiência do Usuário", "hours": 60, "credits": 4, "syllabus": "Reflexão sobre conceitos e teorias relacionados à qualidade de uso e design de sistemas interativos. Aplicação de técnicas para elicitação e análise de dados sobre usuários e tarefas. Aplicação de fundamentos e técnicas para concepção de interfaces e de interação. Aplicação de métodos de avaliação de sistemas interativos. Investigação de interfaces não-convencionais e seu impacto em sistemas interativos.", "tags": [], "category": "aplic"}, {"code": "4646Z-04", "name": "Projeto e Otimização de Algoritmos", "hours": 60, "credits": 4, "syllabus": "Estudo teórico e prático das principais técnicas para o projeto de algoritmos, como algoritmos gulosos, divisão e conquista, programação dinâmica, backtracking, branch and bound e algoritmos aproximativos como algoritmos genéticos, gradiente descendente e outros.", "tags": [], "category": "algo"}, {"code": "4646X-04", "name": "Projeto de Desenvolvimento de Jogos", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "aplic"}, {"code": "98700-04", "name": "Sistemas Operacionais", "hours": 60, "credits": 4, "syllabus": "Apresentação da organização básica de sistemas operacionais. Estudo da evolução da estrutura e funcionamento dos sistemas operacionais. Apresentação do conceito de processos e de mecanismos de sincronização entre processos que compartilham memória e sua implementação em um sistema operacional. Exemplos práticos de criação e sincronização de processos. Introdução e exploração do conceito de algoritmos de escalonamento. Estudo da comunicação inter-processos. Análise e discussão de problemas relacionados à \"deadlock\" e à comunicação entre processos. Estudo sobre gerenciamento de memória, gerenciamento de entrada e saída e gerenciamento de arquivos. Análise e discussão de problemas relacionados ao gerenciamento de memória, gerenciamento de entrada e saída e gerenciamento de arquivos.", "tags": [], "category": "infra"}, {"code": "4646N-04", "name": "Métodos Numéricos", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "aplic"}, {"code": "4646M-04", "name": "Métodos Formais", "hours": 60, "credits": 4, "syllabus": "Conceitos essenciais de especificação formal, verificação formal e métodos formais. Especificação e verificação de modelos e programas. Estudo da lógica de Hoare. Especificação de assertivas, pré e pós-condições, invariantes e variantes. Aplicação de ferramentas de verificação automática sobre especificações e programas.", "tags": [], "category": "sist"}, {"code": "98704-04", "name": "Prática em Engenharia de Software", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "met"}, {"code": "98708-04", "name": "Inteligência Artificial", "hours": 60, "credits": 4, "syllabus": "Estudo teórico-prático das diversas abordagens de formalização e resolução de problemas utilizando algoritmos de inteligência artificial. Estudo teórico-prático de algoritmos de busca para resolução de problemas em agentes autônomos. Apresentação de abordagens para representação de conhecimento. Apresentação de técnicas de geração automática de planos. Introdução ao Aprendizado de Máquina com ênfase em Aprendizado por reforço.", "tags": [], "category": "aplic"}, {"code": "98709-04", "name": "Fundamentos de Redes de Computadores", "hours": 60, "credits": 4, "syllabus": "Estudo dos Modelos de referência de interconexão de computadores OSI/ISO e da Arquitetura Internet, apresentando em mais detalhamento os Níveis de Rede, Transporte e Aplicação, com seus conceitos, funções e protocolos. Estudo e análise do impacto das funções dos protocolos de comunicação no desenvolvimento e desempenho das aplicações.", "tags": [], "category": "net"}, {"code": "98710-02", "name": "Laboratório de Redes de Computadores", "hours": 30, "credits": 2, "syllabus": "Desenvolvimento de experimentos que abranjam operação, configuração e análise de protocolos da Arquitetura Internet. Desenvolvimento e análise de comportamento de aplicações distribuídas com diferentes requisitos de qualidade. Simulação e análise de arquiteturas de comunicação variadas.", "tags": [], "category": "net"}, {"code": "4646I-04", "name": "Laboratório de Sistemas Operacionais", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "infra"}, {"code": "98711-02", "name": "Trabalho de Conclusão I", "hours": 30, "credits": 2, "syllabus": "x", "tags": [], "category": "met"}, {"code": "4645K-04", "name": "Construção de Compiladores", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "aplic"}, {"code": "98706-04", "name": "Aprendizado de Máquina", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "aplic"}, {"code": "4647A-04", "name": "Redes de Computadores Avançadas", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "net"}, {"code": "4611G-04", "name": "Simulação e Métodos Analíticos", "hours": 60, "credits": 4, "syllabus": "Estudo de técnicas e opções para simulação e análise estocástica através de modelos computacionais. Apresentação de técnicas de representação de estados e de tempo, de aleatoriedade e determinismo em contexto computacional. Estudo de métodos e ferramentas básicas de simulação e métodos analíticos. Apresentação de formalismos clássicos e estruturados para representação de modelos.", "tags": [], "category": "aplic"}, {"code": "98714-02", "name": "Trabalho de Conclusão II", "hours": 30, "credits": 2, "syllabus": "x", "tags": [], "category": "met"}, {"code": "11521-04", "name": "Humanismo e Cultura Religiosa", "hours": 60, "credits": 4, "syllabus": "A condição humana aberta ao transcendente; Fé cristã e cultura atual; O estudo do fenômeno religioso em suas diferentes Tradições; Elementos da cultura e da religiosidade afro-brasileira e indígena; A relação entre fé e razão, e ciência e religião; Motivação para ações comunitárias, como engajamento consequente de uma consciência social e da fé cristã.", "tags": [], "category": "social"}, {"code": "98715-04", "name": "Segurança de Sistemas", "hours": 60, "credits": 4, "syllabus": "Apresentação e implementação de criptografia clássica; cifras de fluxo (stream ciphers) e cifras de bloco (block ciphers). Entendimento de integridade de mensagens (Message Authentication Codes). Conhecimento de criptografia simétrica, aritmética modular; números primos e fatoração, funções e geradores pseudo-aleatórios, e criptografia assimétrica. Uso de bibliotecas de criptografia. Apresentação do Marco Civil da Internet. Entendimento e como cumprir a Lei de Proteção de Dados.", "tags": [], "category": "infra"}, {"code": "4647B-04", "name": "Sistemas Distribuídos", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "net"}, {"code": "4645J-04", "name": "Computação Paralela", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "net"}];
+  const REQUIREMENTS = [{"type": "prerequisite", "from": "95303-04", "to": "4611E-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98707-02", "to": "98702-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4611C-06", "to": "4611F-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4611C-06", "to": "4645G-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4611C-06", "to": "98701-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "95300-04", "to": "95301-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "95300-04", "to": "95304-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4611F-04", "to": "4636H-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4611F-04", "to": "98713-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4645G-04", "to": "4645H-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98901-04", "to": "98902-02", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4646B-04", "to": "98G03-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4646B-04", "to": "98701-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4611E-04", "to": "4646M-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4611E-04", "to": "98708-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4645H-04", "to": "4646Z-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4645H-04", "to": "98708-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98902-02", "to": "98H00-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98701-04", "to": "98716-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "95304-04", "to": "4611G-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98801-04", "to": "98802-02", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98801-04", "to": "98905-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98716-04", "to": "4646X-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "95302-04", "to": "4646N-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4646Z-04", "to": "98715-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98700-04", "to": "98709-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98700-04", "to": "4646I-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98708-04", "to": "98706-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98709-04", "to": "4647A-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98711-02", "to": "98714-02", "description": null, "min_credits": null}, {"type": "special", "from": "95303-04", "to": "46515-04", "description": null, "min_credits": null}, {"type": "special", "from": "98705-02", "to": "4646B-04", "description": null, "min_credits": null}, {"type": "special", "from": "4611E-04", "to": "98703-02", "description": null, "min_credits": null}, {"type": "special", "from": "95301-04", "to": "4646N-04", "description": null, "min_credits": null}, {"type": "special", "from": "46515-04", "to": "4647F-04", "description": null, "min_credits": null}, {"type": "special", "from": "46515-04", "to": "4645K-04", "description": null, "min_credits": null}, {"type": "special", "from": "98G03-04", "to": "98700-04", "description": null, "min_credits": null}, {"type": "special", "from": "98G03-04", "to": "4645K-04", "description": null, "min_credits": null}, {"type": "special", "from": "98802-02", "to": "98704-04", "description": null, "min_credits": null}, {"type": "special", "from": "98713-04", "to": "98700-04", "description": null, "min_credits": null}, {"type": "special", "from": "98709-04", "to": "4647B-04", "description": null, "min_credits": null}, {"type": "special", "from": "4646I-04", "to": "4645J-04", "description": null, "min_credits": null}, {"type": "corequisite", "from": "4645H-04", "to": "98702-04", "description": null, "min_credits": null}, {"type": "corequisite", "from": "4636H-04", "to": "98801-04", "description": null, "min_credits": null}, {"type": "corequisite", "from": "98709-04", "to": "98710-02", "description": null, "min_credits": null}, {"type": "credit_requirement", "from": null, "to": "11521-04", "description": null, "min_credits": 60}];
+  const CATEGORIES = [{"id": "maths", "color": "#ef8080"}, {"id": "logic", "color": "#dcdc05"}, {"id": "algo", "color": "#88b9ee"}, {"id": "met", "color": "#4ecf6c"}, {"id": "infra", "color": "#f6ac5a"}, {"id": "aplic", "color": "#d9b8ec"}, {"id": "sist", "color": "#c3ac68"}, {"id": "social", "color": "#10dec3"}, {"id": "net", "color": "#30c1d9"}, {"id": "cs", "color": "#a8e88c"}];
 
   const courseMap = new Map(COURSES.map(c => [c.code, c]));
   const categoryColorMap = new Map(
@@ -1851,7 +1864,6 @@
   const toggleArrows = document.getElementById('toggle-arrows');
   const arrowsLayer  = document.querySelector('.arrows-layer');
 
-  // Estado inicial: setas ocultas (checkbox desmarcado)
   arrowsLayer.classList.add('hidden');
 
   toggleArrows.addEventListener('change', () => {
@@ -1859,11 +1871,11 @@
   });
 
   // ── Hover sobre cartões ─────────────────────────────────────────────────────
-  const allCards = Array.from(document.querySelectorAll('.course-card'));
+  const allCards  = Array.from(document.querySelectorAll('.course-card'));
   const allArrows = Array.from(document.querySelectorAll('.arrow-group'));
 
   function getRelated(code) {
-    const prereqs = new Set();
+    const prereqs    = new Set();
     const dependents = new Set();
     for (const req of REQUIREMENTS) {
       if (req.type === 'credit_requirement') continue;
@@ -1883,7 +1895,6 @@
       card.classList.toggle('faded', !related.has(c));
     });
 
-    // Remove hidden class so active arrows are always visible during hover
     arrowsLayer.classList.remove('hidden');
 
     allArrows.forEach(arrow => {
@@ -1901,7 +1912,6 @@
     allArrows.forEach(arrow => {
       arrow.style.display = '';
     });
-    // Restore hidden state based on checkbox
     arrowsLayer.classList.toggle('hidden', !toggleArrows.checked);
   }
 
@@ -1933,7 +1943,6 @@
     document.getElementById('popup-credits').textContent  = course.credits + ' cr';
     document.getElementById('popup-syllabus').textContent = course.syllabus || '—';
 
-    // Tags como badges
     const tagsEl = document.getElementById('popup-tags');
     tagsEl.innerHTML = '';
     course.tags.forEach(function(tag) {
@@ -1943,7 +1952,6 @@
       tagsEl.appendChild(span);
     });
 
-    // Pré-requisitos
     const prereqs = REQUIREMENTS
       .filter(function(r) { return r.to === code && r.from; })
       .map(function(r) {
@@ -1987,7 +1995,6 @@
       prereqEl.appendChild(ul);
     }
 
-    // Dependentes (cursos que têm esta disciplina como pré-requisito)
     const dependents = REQUIREMENTS
       .filter(function(r) { return r.from === code && r.to; })
       .map(function(r) {

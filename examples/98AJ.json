@@ -146,6 +146,15 @@
       "tags": [],
       "category": "maths"
     },
+    {
+      "code": "980E8-24",
+      "name": "Disciplinas Eletivas",
+      "hours": 360,
+      "credits": 24,
+      "level": 2,
+      "syllabus": "Disciplinas eletivas a serem escolhidas pelo estudante, de acordo com seus interesses e objetivos de formação. As disciplinas eletivas podem ser escolhidas entre as disciplinas ofertadas pela Universidade, respeitando os pré-requisitos estabelecidos para cada disciplina. O aluno deve completar 24 créditos em disciplinas eletivas.",
+      "tags": ["eletivas"]
+    },
 
     {
       "code": "46515-04",
@@ -154,7 +163,6 @@
       "credits": 4,
       "level": 3,
       "syllabus": "Introdução às linguagens formais: definições, propriedades e operações. Estudo de linguagens na hierarquia de Chomsky: regulares, livres de contexto, sensíveis ao contexto, enumeráveis recursivamente. Estudo de máquinas como reconhecedores de linguagens: autômatos finitos, autômatos de pilha e máquinas de Turing. Estudo teórico prático de expressões regulares. Introdução ao conceito de computabilidade.",
-      "tags": [],
       "category": "logic"
     },
     {
