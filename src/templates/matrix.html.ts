@@ -866,6 +866,7 @@ function renderJs(data: CurriculumFile, _layout: LayoutData, _routes: RouteData)
       credits: c.credits,
       syllabus: c.syllabus,
       tags: c.tags,
+      category: c.category ?? null,
     }))
   );
 
@@ -879,13 +880,26 @@ function renderJs(data: CurriculumFile, _layout: LayoutData, _routes: RouteData)
     }))
   );
 
+  const categories = JSON.stringify(
+    (data.categories ?? []).map(c => ({
+      id: c.id,
+      color: c.color ?? null,
+    }))
+  );
+
   return `(function () {
   'use strict';
 
   const COURSES = ${courses};
   const REQUIREMENTS = ${requirements};
+  const CATEGORIES = ${categories};
 
   const courseMap = new Map(COURSES.map(c => [c.code, c]));
+  const categoryColorMap = new Map(
+    CATEGORIES
+      .filter(c => typeof c.color === 'string' && c.color.trim() !== '')
+      .map(c => [c.id, c.color])
+  );
 
   // ── Escala responsiva da matriz ──────────────────────────────────────────────
   function applyMatrixScale() {
@@ -984,10 +998,17 @@ function renderJs(data: CurriculumFile, _layout: LayoutData, _routes: RouteData)
   // ── Popup de detalhes ───────────────────────────────────────────────────────
   const popup       = document.getElementById('course-popup');
   const popupClose  = popup.querySelector('.popup-close');
+  const popupHeader = popup.querySelector('.popup-header');
+  const defaultPopupHeaderColor = '#1a3a6b';
 
   function openPopup(code) {
     const course = courseMap.get(code);
     if (!course) return;
+
+    const popupHeaderColor = course.category
+      ? categoryColorMap.get(course.category)
+      : null;
+    popupHeader.style.background = popupHeaderColor || defaultPopupHeaderColor;
 
     document.getElementById('popup-code').textContent     = course.code;
     document.getElementById('popup-name').textContent     = course.name;
