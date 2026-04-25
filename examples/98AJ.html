@@ -40,6 +40,7 @@
     .matrix-canvas {
       position: relative;
       transform-origin: top left;
+      isolation: isolate;
     }
     @media (max-width: 1200px) {
       .matrix-wrapper {
@@ -59,6 +60,8 @@
       display: flex;
       gap: 60px;
       align-items: flex-start;
+      position: relative;
+      z-index: 1;
     }
     .level-column {
       width: 140px;
@@ -171,16 +174,16 @@
       font-weight: 600;
     }
 
-    .course-card.fill-maths { background: #ff000070; border-color: #ff000070; }
-    .course-card.fill-logic { background: #ffff0070; border-color: #ffff0070; }
-    .course-card.fill-algo { background: #00408570; border-color: #00408570; }
-    .course-card.fill-met { background: #15572470; border-color: #15572470; }
-    .course-card.fill-infra { background: #e48822a0; border-color: #e48822a0; }
-    .course-card.fill-aplic { background: #721c2470; border-color: #721c2470; }
-    .course-card.fill-sist { background: #533f03a0; border-color: #533f03a0; }
-    .course-card.fill-social { background: #0030f070; border-color: #0030f070; }
-    .course-card.fill-net { background: #0c546070; border-color: #0c546070; }
-    .course-card.fill-cs { background: #0000ff70; border-color: #0000ff70; }
+    .course-card.fill-maths { background: #ef8080; border-color: #ef8080; }
+    .course-card.fill-logic { background: #dcdc05; border-color: #dcdc05; }
+    .course-card.fill-algo { background: #88b9ee; border-color: #88b9ee; }
+    .course-card.fill-met { background: #4ecf6c; border-color: #4ecf6c; }
+    .course-card.fill-infra { background: #f6ac5a; border-color: #f6ac5a; }
+    .course-card.fill-aplic { background: #d9b8ec; border-color: #d9b8ec; }
+    .course-card.fill-sist { background: #c3ac68; border-color: #c3ac68; }
+    .course-card.fill-social { background: #10dec3; border-color: #10dec3; }
+    .course-card.fill-net { background: #30c1d9; border-color: #30c1d9; }
+    .course-card.fill-cs { background: #a8e88c; border-color: #a8e88c; }
 
     /* Setas SVG */
     .arrows-layer {
@@ -188,6 +191,7 @@
       top: 0;
       left: 0;
       pointer-events: none;
+      z-index: 0;
     }
     .arrow-line {
       fill: none;
@@ -484,7 +488,472 @@
 <div class="matrix-wrapper">
   <div class="matrix-area" style="--matrix-base-w:1540px; --matrix-base-h:712px;">
     <div class="matrix-canvas" style="width:1540px; height:712px;">
-      <div class="columns-row">
+      <svg class="arrows-layer link-style-paths" width="1540" height="712" aria-hidden="true">
+
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="95303-04"
+       data-to="4611E-04">
+      <path d="M 140 102 L 200 102"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98707-02"
+       data-to="98702-04">
+      <path d="M 140 186 L 151.55 186 Q 161 186 161 176.55 L 161 156 Q 161 144 173 144 L 367 144 Q 379 144 379 156 L 379 172.55 Q 379 182 388.45 182 L 400 182"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4611C-06"
+       data-to="4611F-04">
+      <path d="M 140 262 L 151.55 262 Q 161 262 161 252.55 L 161 236.1 Q 161 228 169.1 228 L 170.9 228 Q 179 228 179 219.9 L 179 195.45 Q 179 186 188.45 186 L 200 186"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4611C-06"
+       data-to="4645G-04">
+      <path d="M 140 270 L 200 270"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4611C-06"
+       data-to="98701-04">
+      <path d="M 140 278 L 151.55 278 Q 161 278 161 287.45 L 161 300 Q 161 312 173 312 L 367 312 Q 379 312 379 324 L 379 424.55 Q 379 434 388.45 434 L 400 434"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="95300-04"
+       data-to="95301-04">
+      <path d="M 140 522 L 200 522"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="95300-04"
+       data-to="95304-04">
+      <path d="M 140 526 L 151.55 526 Q 161 526 161 535.45 L 161 552 Q 161 564 173 564 L 367 564 Q 379 564 379 576 L 379 596.55 Q 379 606 388.45 606 L 400 606"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4611F-04"
+       data-to="4636H-04">
+      <path d="M 340 190 L 351.55 190 Q 361 190 361 199.45 L 361 216 Q 361 228 373 228 L 567 228 Q 579 228 579 240 L 579 260.55 Q 579 270 588.45 270 L 600 270"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4611F-04"
+       data-to="98713-04">
+      <path d="M 340 182 L 351.55 182 Q 361 182 361 172.55 L 361 156 Q 361 144 373 144 L 567 144 Q 579 144 579 132 L 579 111.45 Q 579 102 588.45 102 L 600 102"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4645G-04"
+       data-to="4645H-04">
+      <path d="M 340 270 L 400 270"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98901-04"
+       data-to="98902-02">
+      <path d="M 340 354 L 400 354"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4646B-04"
+       data-to="98G03-04">
+      <path d="M 340 442 L 351.55 442 Q 361 442 361 451.45 L 361 471.9 Q 361 480 369.1 480 L 370.9 480 Q 379 480 379 488.1 L 379 512.55 Q 379 522 388.45 522 L 400 522"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4646B-04"
+       data-to="98701-04">
+      <path d="M 340 438 L 400 438"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4611E-04"
+       data-to="4646M-04">
+      <path d="M 340 94 L 351.55 94 Q 361 94 361 84.55 L 361 72 Q 361 60 373 60 L 967 60 Q 979 60 979 72 L 979 92.55 Q 979 102 988.45 102 L 1000 102"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4611E-04"
+       data-to="98708-04">
+      <path d="M 340 110 L 351.55 110 Q 361 110 361 119.45 L 361 132 Q 361 144 373 144 L 967 144 Q 979 144 979 156 L 979 256.55 Q 979 266 988.45 266 L 1000 266"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4645H-04"
+       data-to="4646Z-04">
+      <path d="M 540 278 L 551.55 278 Q 561 278 561 287.45 L 561 300 Q 561 312 573 312 L 767 312 Q 779 312 779 324 L 779 344.55 Q 779 354 788.45 354 L 800 354"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4645H-04"
+       data-to="98708-04">
+      <path d="M 540 270 L 551.55 270 Q 561 270 561 279.45 L 561 300 Q 561 312 573 312 L 967 312 Q 979 312 979 300 L 979 283.45 Q 979 274 988.45 274 L 1000 274"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98902-02"
+       data-to="98H00-04">
+      <path d="M 540 354 L 551.55 354 Q 561 354 561 363.45 L 561 387.9 Q 561 396 569.1 396 L 570.9 396 Q 579 396 579 404.1 L 579 428.55 Q 579 438 588.45 438 L 600 438"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98701-04"
+       data-to="98716-04">
+      <path d="M 540 438 L 551.55 438 Q 561 438 561 447.45 L 561 471.9 Q 561 480 569.1 480 L 570.9 480 Q 579 480 579 488.1 L 579 512.55 Q 579 522 588.45 522 L 600 522"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="95304-04"
+       data-to="4611G-04">
+      <path d="M 540 606 L 551.55 606 Q 561 606 561 596.55 L 561 576 Q 561 564 573 564 L 1167 564 Q 1179 564 1179 552 L 1179 447.45 Q 1179 438 1188.45 438 L 1200 438"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98801-04"
+       data-to="98802-02">
+      <path d="M 740 350 L 751.55 350 Q 761 350 761 340.55 L 761 320.1 Q 761 312 769.1 312 L 770.9 312 Q 779 312 779 303.9 L 779 195.45 Q 779 186 788.45 186 L 800 186"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98801-04"
+       data-to="98905-04">
+      <path d="M 740 358 L 751.55 358 Q 761 358 761 348.55 L 761 323.6 Q 761 315.5 769.1 315.5 L 770.9 315.5 Q 779 315.5 779 307.4 L 779 279.45 Q 779 270 788.45 270 L 800 270"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98716-04"
+       data-to="4646X-04">
+      <path d="M 740 522 L 751.55 522 Q 761 522 761 512.55 L 761 488.1 Q 761 480 769.1 480 L 770.9 480 Q 779 480 779 471.9 L 779 447.45 Q 779 438 788.45 438 L 800 438"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="95302-04"
+       data-to="4646N-04">
+      <path d="M 740 606 L 800 606"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4646Z-04"
+       data-to="98715-04">
+      <path d="M 940 354 L 951.55 354 Q 961 354 961 344.55 L 961 324 Q 961 312 973 312 L 1367 312 Q 1379 312 1379 300 L 1379 279.45 Q 1379 270 1388.45 270 L 1400 270"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98700-04"
+       data-to="98709-04">
+      <path d="M 940 518 L 951.55 518 Q 961 518 961 508.55 L 961 488.1 Q 961 480 969.1 480 L 970.9 480 Q 979 480 979 471.9 L 979 363.45 Q 979 354 988.45 354 L 1000 354"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98700-04"
+       data-to="4646I-04">
+      <path d="M 940 522 L 1000 522"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98708-04"
+       data-to="98706-04">
+      <path d="M 1140 270 L 1200 270"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98709-04"
+       data-to="4647A-04">
+      <path d="M 1140 354 L 1200 354"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98711-02"
+       data-to="98714-02">
+      <path d="M 1340 102 L 1400 102"
+            stroke-dasharray="none"
+            stroke-width="6"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="95303-04"
+       data-to="46515-04">
+      <path d="M 140 106 L 151.55 106 Q 161 106 161 96.55 L 161 72 Q 161 60 173 60 L 367 60 Q 379 60 379 72 L 379 92.55 Q 379 102 388.45 102 L 400 102"
+            stroke-dasharray="8,4"
+            stroke-width="5"
+            class="arrow-line"/>
+      
+    <text class="arrow-label" x="379" y="56">RE</text>
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="98705-02"
+       data-to="4646B-04">
+      <path d="M 140 438 L 200 438"
+            stroke-dasharray="8,4"
+            stroke-width="5"
+            class="arrow-line"/>
+      
+    <text class="arrow-label" x="200" y="434">RE</text>
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="4611E-04"
+       data-to="98703-02">
+      <path d="M 340 102 L 351.55 102 Q 361 102 361 111.45 L 361 135.5 Q 361 147.5 373 147.5 L 567 147.5 Q 579 147.5 579 159.5 L 579 176.55 Q 579 186 588.45 186 L 600 186"
+            stroke-dasharray="8,4"
+            stroke-width="5"
+            class="arrow-line"/>
+      
+    <text class="arrow-label" x="579" y="143.5">RE</text>
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="95301-04"
+       data-to="4646N-04">
+      <path d="M 340 522 L 351.55 522 Q 361 522 361 531.45 L 361 552 Q 361 564 373 564 L 767 564 Q 779 564 779 576 L 779 592.55 Q 779 602 788.45 602 L 800 602"
+            stroke-dasharray="8,4"
+            stroke-width="5"
+            class="arrow-line"/>
+      
+    <text class="arrow-label" x="779" y="560">RE</text>
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="46515-04"
+       data-to="4647F-04">
+      <path d="M 540 98 L 551.55 98 Q 561 98 561 88.55 L 561 72 Q 561 60 573 60 L 767 60 Q 779 60 779 72 L 779 92.55 Q 779 102 788.45 102 L 800 102"
+            stroke-dasharray="8,4"
+            stroke-width="5"
+            class="arrow-line"/>
+      
+    <text class="arrow-label" x="779" y="56">RE</text>
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="46515-04"
+       data-to="4645K-04">
+      <path d="M 540 106 L 551.55 106 Q 561 106 561 115.45 L 561 132 Q 561 144 573 144 L 1167 144 Q 1179 144 1179 156 L 1179 172.55 Q 1179 182 1188.45 182 L 1200 182"
+            stroke-dasharray="8,4"
+            stroke-width="5"
+            class="arrow-line"/>
+      
+    <text class="arrow-label" x="1179" y="140">RE</text>
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="98G03-04"
+       data-to="98700-04">
+      <path d="M 540 526 L 551.55 526 Q 561 526 561 535.45 L 561 552 Q 561 564 573 564 L 767 564 Q 779 564 779 552 L 779 535.45 Q 779 526 788.45 526 L 800 526"
+            stroke-dasharray="8,4"
+            stroke-width="5"
+            class="arrow-line"/>
+      
+    <text class="arrow-label" x="779" y="560">RE</text>
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="98G03-04"
+       data-to="4645K-04">
+      <path d="M 540 518 L 551.55 518 Q 561 518 561 508.55 L 561 492 Q 561 480 573 480 L 1167 480 Q 1179 480 1179 468 L 1179 199.45 Q 1179 190 1188.45 190 L 1200 190"
+            stroke-dasharray="8,4"
+            stroke-width="5"
+            class="arrow-line"/>
+      
+    <text class="arrow-label" x="1179" y="476">RE</text>
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="98802-02"
+       data-to="98704-04">
+      <path d="M 940 186 L 1000 186"
+            stroke-dasharray="8,4"
+            stroke-width="5"
+            class="arrow-line"/>
+      
+    <text class="arrow-label" x="1000" y="182">RE</text>
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="98713-04"
+       data-to="98700-04">
+      <path d="M 740 102 L 751.55 102 Q 761 102 761 111.45 L 761 135.9 Q 761 144 769.1 144 L 770.9 144 Q 779 144 779 152.1 L 779 508.55 Q 779 518 788.45 518 L 800 518"
+            stroke-dasharray="8,4"
+            stroke-width="5"
+            class="arrow-line"/>
+      
+    <text class="arrow-label" x="779" y="140">RE</text>
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="98709-04"
+       data-to="4647B-04">
+      <path d="M 1140 354 L 1151.55 354 Q 1161 354 1161 344.55 L 1161 324 Q 1161 312 1173 312 L 1367 312 Q 1379 312 1379 324 L 1379 344.55 Q 1379 354 1388.45 354 L 1400 354"
+            stroke-dasharray="8,4"
+            stroke-width="5"
+            class="arrow-line"/>
+      
+    <text class="arrow-label" x="1379" y="308">RE</text>
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="4646I-04"
+       data-to="4645J-04">
+      <path d="M 1140 522 L 1151.55 522 Q 1161 522 1161 512.55 L 1161 492 Q 1161 480 1173 480 L 1367 480 Q 1379 480 1379 468 L 1379 447.45 Q 1379 438 1388.45 438 L 1400 438"
+            stroke-dasharray="8,4"
+            stroke-width="5"
+            class="arrow-line"/>
+      
+    <text class="arrow-label" x="1379" y="476">RE</text>
+    </g>
+    <g class="arrow-group"
+       data-type="corequisite"
+       data-from="4645H-04"
+       data-to="98702-04">
+      <path d="M 470 240 L 470 216"
+            stroke-dasharray="3,3"
+            stroke-width="4"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="corequisite"
+       data-from="4636H-04"
+       data-to="98801-04">
+      <path d="M 670 300 L 670 324"
+            stroke-dasharray="3,3"
+            stroke-width="4"
+            class="arrow-line"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="corequisite"
+       data-from="98709-04"
+       data-to="98710-02">
+      <path d="M 1070 384 L 1070 408"
+            stroke-dasharray="3,3"
+            stroke-width="4"
+            class="arrow-line"/>
+      
+    </g>
+      </svg>
+  <div class="columns-row">
       <div class="level-column" data-level="1">
         <div class="col-header">
           <span class="col-roman">I</span>
@@ -690,20 +1159,6 @@
             </div>
           </div>
           <div class="card-wrapper">
-            <div class="course-card fill-category fill-algo"
-               id="card-4645H-04"
-               data-code="4645H-04"
-               tabindex="0"
-               role="button"
-               aria-label="Algoritmos e Estruturas de Dados II">
-              <div class="card-body">
-                <span class="card-name">Algoritmos e Estruturas de Dados II</span>
-                <span class="card-credits">(4)</span>
-              </div>
-              <div class="card-footer"></div>
-            </div>
-          </div>
-          <div class="card-wrapper">
             <div class="course-card fill-category fill-met"
                id="card-98702-04"
                data-code="98702-04"
@@ -712,6 +1167,20 @@
                aria-label="Prática em Pesquisa">
               <div class="card-body">
                 <span class="card-name">Prática em Pesquisa</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-algo"
+               id="card-4645H-04"
+               data-code="4645H-04"
+               tabindex="0"
+               role="button"
+               aria-label="Algoritmos e Estruturas de Dados II">
+              <div class="card-body">
+                <span class="card-name">Algoritmos e Estruturas de Dados II</span>
                 <span class="card-credits">(4)</span>
               </div>
               <div class="card-footer"></div>
@@ -1236,472 +1705,7 @@
           </div>
         </div>
       </div>
-      </div>
-      <svg class="arrows-layer link-style-paths" width="1540" height="712" aria-hidden="true">
-
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="95303-04"
-       data-to="4611E-04">
-      <path d="M 140 98 L 168.2 98 Q 170 98 170 99.8 L 170 100.2 Q 170 102 171.8 102 L 200 102"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="98707-02"
-       data-to="98702-04">
-      <path d="M 140 186 L 258 186 Q 270 186 270 198 L 270 254 Q 270 266 282 266 L 400 266"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="4611C-06"
-       data-to="4611F-04">
-      <path d="M 140 262 L 158 262 Q 170 262 170 250 L 170 198 Q 170 186 182 186 L 200 186"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="4611C-06"
-       data-to="4645G-04">
-      <path d="M 140 270 L 200 270"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="4611C-06"
-       data-to="98701-04">
-      <path d="M 140 278 L 258 278 Q 270 278 270 290 L 270 422 Q 270 434 282 434 L 400 434"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="95300-04"
-       data-to="95301-04">
-      <path d="M 140 518 L 168.2 518 Q 170 518 170 519.8 L 170 520.2 Q 170 522 171.8 522 L 200 522"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="95300-04"
-       data-to="95304-04">
-      <path d="M 140 526 L 258 526 Q 270 526 270 538 L 270 594 Q 270 606 282 606 L 400 606"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="4611F-04"
-       data-to="4636H-04">
-      <path d="M 340 190 L 458 190 Q 470 190 470 202 L 470 258 Q 470 270 482 270 L 600 270"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="4611F-04"
-       data-to="98713-04">
-      <path d="M 340 182 L 458 182 Q 470 182 470 170 L 470 114 Q 470 102 482 102 L 600 102"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="4645G-04"
-       data-to="4645H-04">
-      <path d="M 340 270 L 358 270 Q 370 270 370 258 L 370 198 Q 370 186 382 186 L 400 186"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="98901-04"
-       data-to="98902-02">
-      <path d="M 340 354 L 400 354"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="4646B-04"
-       data-to="98G03-04">
-      <path d="M 340 442 L 358 442 Q 370 442 370 454 L 370 510 Q 370 522 382 522 L 400 522"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="4646B-04"
-       data-to="98701-04">
-      <path d="M 340 434 L 366.4 434 Q 370 434 370 437.6 L 370 438.4 Q 370 442 373.6 442 L 400 442"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="4611E-04"
-       data-to="4646M-04">
-      <path d="M 340 94 L 666.4 94 Q 670 94 670 97.6 L 670 98.4 Q 670 102 673.6 102 L 1000 102"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="4611E-04"
-       data-to="98708-04">
-      <path d="M 340 110 L 658 110 Q 670 110 670 122 L 670 254 Q 670 266 682 266 L 1000 266"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="4645H-04"
-       data-to="4646Z-04">
-      <path d="M 540 194 L 658 194 Q 670 194 670 206 L 670 342 Q 670 354 682 354 L 800 354"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="4645H-04"
-       data-to="98708-04">
-      <path d="M 540 178 L 758 178 Q 770 178 770 190 L 770 262 Q 770 274 782 274 L 1000 274"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="98902-02"
-       data-to="98H00-04">
-      <path d="M 540 354 L 558 354 Q 570 354 570 366 L 570 426 Q 570 438 582 438 L 600 438"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="98701-04"
-       data-to="98716-04">
-      <path d="M 540 438 L 558 438 Q 570 438 570 450 L 570 510 Q 570 522 582 522 L 600 522"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="95304-04"
-       data-to="4611G-04">
-      <path d="M 540 606 L 858 606 Q 870 606 870 594 L 870 450 Q 870 438 882 438 L 1200 438"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="98801-04"
-       data-to="98802-02">
-      <path d="M 740 350 L 758 350 Q 770 350 770 338 L 770 198 Q 770 186 782 186 L 800 186"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="98801-04"
-       data-to="98905-04">
-      <path d="M 740 358 L 758 358 Q 770 358 770 346 L 770 282 Q 770 270 782 270 L 800 270"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="98716-04"
-       data-to="4646X-04">
-      <path d="M 740 522 L 758 522 Q 770 522 770 510 L 770 450 Q 770 438 782 438 L 800 438"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="95302-04"
-       data-to="4646N-04">
-      <path d="M 740 606 L 768.2 606 Q 770 606 770 607.8 L 770 608.2 Q 770 610 771.8 610 L 800 610"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="4646Z-04"
-       data-to="98715-04">
-      <path d="M 940 354 L 1158 354 Q 1170 354 1170 342 L 1170 282 Q 1170 270 1182 270 L 1400 270"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="98700-04"
-       data-to="98709-04">
-      <path d="M 940 518 L 958 518 Q 970 518 970 506 L 970 366 Q 970 354 982 354 L 1000 354"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="98700-04"
-       data-to="4646I-04">
-      <path d="M 940 526 L 968.2 526 Q 970 526 970 524.2 L 970 523.8 Q 970 522 971.8 522 L 1000 522"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="98708-04"
-       data-to="98706-04">
-      <path d="M 1140 270 L 1200 270"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="98709-04"
-       data-to="4647A-04">
-      <path d="M 1140 346 L 1166.4 346 Q 1170 346 1170 349.6 L 1170 350.4 Q 1170 354 1173.6 354 L 1200 354"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="prerequisite"
-       data-from="98711-02"
-       data-to="98714-02">
-      <path d="M 1340 102 L 1400 102"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="special"
-       data-from="95303-04"
-       data-to="46515-04">
-      <path d="M 140 106 L 268.2 106 Q 270 106 270 104.2 L 270 103.8 Q 270 102 271.8 102 L 400 102"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
-      
-    <text class="arrow-label" x="270" y="98">RE</text>
-    </g>
-    <g class="arrow-group"
-       data-type="special"
-       data-from="98705-02"
-       data-to="4646B-04">
-      <path d="M 140 438 L 200 438"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
-      
-    <text class="arrow-label" x="200" y="434">RE</text>
-    </g>
-    <g class="arrow-group"
-       data-type="special"
-       data-from="4611E-04"
-       data-to="98703-02">
-      <path d="M 340 102 L 458 102 Q 470 102 470 114 L 470 174 Q 470 186 482 186 L 600 186"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
-      
-    <text class="arrow-label" x="470" y="182">RE</text>
-    </g>
-    <g class="arrow-group"
-       data-type="special"
-       data-from="95301-04"
-       data-to="4646N-04">
-      <path d="M 340 522 L 558 522 Q 570 522 570 534 L 570 590 Q 570 602 582 602 L 800 602"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
-      
-    <text class="arrow-label" x="570" y="598">RE</text>
-    </g>
-    <g class="arrow-group"
-       data-type="special"
-       data-from="46515-04"
-       data-to="4647F-04">
-      <path d="M 540 98 L 668.2 98 Q 670 98 670 99.8 L 670 100.2 Q 670 102 671.8 102 L 800 102"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
-      
-    <text class="arrow-label" x="670" y="98">RE</text>
-    </g>
-    <g class="arrow-group"
-       data-type="special"
-       data-from="46515-04"
-       data-to="4645K-04">
-      <path d="M 540 106 L 858 106 Q 870 106 870 118 L 870 170 Q 870 182 882 182 L 1200 182"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
-      
-    <text class="arrow-label" x="870" y="178">RE</text>
-    </g>
-    <g class="arrow-group"
-       data-type="special"
-       data-from="98G03-04"
-       data-to="98700-04">
-      <path d="M 540 526 L 800 526"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
-      
-    <text class="arrow-label" x="800" y="522">RE</text>
-    </g>
-    <g class="arrow-group"
-       data-type="special"
-       data-from="98G03-04"
-       data-to="4645K-04">
-      <path d="M 540 518 L 858 518 Q 870 518 870 506 L 870 202 Q 870 190 882 190 L 1200 190"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
-      
-    <text class="arrow-label" x="870" y="186">RE</text>
-    </g>
-    <g class="arrow-group"
-       data-type="special"
-       data-from="98802-02"
-       data-to="98704-04">
-      <path d="M 940 186 L 1000 186"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
-      
-    <text class="arrow-label" x="1000" y="182">RE</text>
-    </g>
-    <g class="arrow-group"
-       data-type="special"
-       data-from="98713-04"
-       data-to="98700-04">
-      <path d="M 740 102 L 758 102 Q 770 102 770 114 L 770 506 Q 770 518 782 518 L 800 518"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
-      
-    <text class="arrow-label" x="770" y="514">RE</text>
-    </g>
-    <g class="arrow-group"
-       data-type="special"
-       data-from="98709-04"
-       data-to="4647B-04">
-      <path d="M 1140 354 L 1400 354"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
-      
-    <text class="arrow-label" x="1400" y="350">RE</text>
-    </g>
-    <g class="arrow-group"
-       data-type="special"
-       data-from="4646I-04"
-       data-to="4645J-04">
-      <path d="M 1140 522 L 1258 522 Q 1270 522 1270 510 L 1270 450 Q 1270 438 1282 438 L 1400 438"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
-      
-    <text class="arrow-label" x="1270" y="434">RE</text>
-    </g>
-    <g class="arrow-group"
-       data-type="corequisite"
-       data-from="4645H-04"
-       data-to="98702-04">
-      <path d="M 470 216 L 470 224.79999999999998 Q 470 226.6 471.8 226.6 L 472.2 226.6 Q 474 226.6 474 228.4 L 474 240"
-            stroke-dasharray="3,3"
-            stroke-width="4"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="corequisite"
-       data-from="4636H-04"
-       data-to="98801-04">
-      <path d="M 670 300 L 670 324"
-            stroke-dasharray="3,3"
-            stroke-width="4"
-            class="arrow-line"/>
-      
-    </g>
-    <g class="arrow-group"
-       data-type="corequisite"
-       data-from="98709-04"
-       data-to="98710-02">
-      <path d="M 1078 384 L 1078 395.2 Q 1078 398.8 1074.4 398.8 L 1073.6 398.8 Q 1070 398.8 1070 402.40000000000003 L 1070 408"
-            stroke-dasharray="3,3"
-            stroke-width="4"
-            class="arrow-line"/>
-      
-    </g>
-      </svg>
+  </div>
     </div>
   </div>
   <aside class="legend-panel">
@@ -1718,25 +1722,25 @@
     
       <dt class="legend-subtitle">Eixos</dt>
       <dd class="legend-subtitle-spacer"></dd>
-      <dt><span class="category-chip" style="background:#ff000070; border-color:#ff000070;"></span></dt>
+      <dt><span class="category-chip" style="background:#ef8080; border-color:#ef8080;"></span></dt>
       <dd>Matemática na Computação</dd>
-      <dt><span class="category-chip" style="background:#ffff0070; border-color:#ffff0070;"></span></dt>
+      <dt><span class="category-chip" style="background:#dcdc05; border-color:#dcdc05;"></span></dt>
       <dd>Lógica e Estruturas Discretas</dd>
-      <dt><span class="category-chip" style="background:#00408570; border-color:#00408570;"></span></dt>
+      <dt><span class="category-chip" style="background:#88b9ee; border-color:#88b9ee;"></span></dt>
       <dd>Algoritmos e Programação</dd>
-      <dt><span class="category-chip" style="background:#15572470; border-color:#15572470;"></span></dt>
+      <dt><span class="category-chip" style="background:#4ecf6c; border-color:#4ecf6c;"></span></dt>
       <dd>Metodologia e Integração</dd>
-      <dt><span class="category-chip" style="background:#e48822a0; border-color:#e48822a0;"></span></dt>
+      <dt><span class="category-chip" style="background:#f6ac5a; border-color:#f6ac5a;"></span></dt>
       <dd>Infraestrutura de Sistemas</dd>
-      <dt><span class="category-chip" style="background:#721c2470; border-color:#721c2470;"></span></dt>
+      <dt><span class="category-chip" style="background:#d9b8ec; border-color:#d9b8ec;"></span></dt>
       <dd>Aplicações Avançadas</dd>
-      <dt><span class="category-chip" style="background:#533f03a0; border-color:#533f03a0;"></span></dt>
+      <dt><span class="category-chip" style="background:#c3ac68; border-color:#c3ac68;"></span></dt>
       <dd>Espec. e Construção de Sistemas</dd>
-      <dt><span class="category-chip" style="background:#0030f070; border-color:#0030f070;"></span></dt>
+      <dt><span class="category-chip" style="background:#10dec3; border-color:#10dec3;"></span></dt>
       <dd>Contexto Profissional e Social</dd>
-      <dt><span class="category-chip" style="background:#0c546070; border-color:#0c546070;"></span></dt>
+      <dt><span class="category-chip" style="background:#30c1d9; border-color:#30c1d9;"></span></dt>
       <dd>Computação Distribuída e em Rede</dd>
-      <dt><span class="category-chip" style="background:#0000ff70; border-color:#0000ff70;"></span></dt>
+      <dt><span class="category-chip" style="background:#a8e88c; border-color:#a8e88c;"></span></dt>
       <dd>Computação</dd>
 
     </dl>
@@ -1803,10 +1807,16 @@
 (function () {
   'use strict';
 
-  const COURSES = [{"code":"95303-04","name":"Matemática Discreta","hours":60,"credits":4,"syllabus":"Estudo da lógica proposicional e técnicas básicas de demonstração. Estudo da álgebra de conjuntos. Estudo e discussão dos conceitos de relações, funções totais e parciais, relações de ordem parcial e total e relações de equivalência. Análise de definições indutivas, recursão e do princípio de indução. Introdução à álgebra Booleana.","tags":[]},{"code":"98707-02","name":"Metodologia Científica","hours":30,"credits":2,"syllabus":"x","tags":[]},{"code":"4611C-06","name":"Fundamentos de Programação","hours":90,"credits":6,"syllabus":"Discussão sobre algoritmos como ferramenta para a descrição da solução de problemas e os fundamentos necessários para sua implementação usando linguagens de programação. Exame das noções de constantes, variáveis, tipos e expressões. Estudo de programas sequenciais, comandos de entrada e saída e o processo de compilação. Construção de programas com seleção, iterativos e uso do conceito de subprogramas. Estudo e uso de estruturas de dados usando arranjos e matrizes e conceitos básicos de classes e objetos.","tags":[]},{"code":"1501A-04","name":"Ética e Cidadania","hours":60,"credits":4,"syllabus":"Abordagem de problemas e conceitos filosóficos relacionados à moralidade e ao exercício da cidadania. Introdução aos principais temas e problemas de Ética, presentes na História da Filosofia. Reflexão filosófica sobre o ideal democrático, a cidadania e os direitos humanos.","tags":[]},{"code":"98705-02","name":"Introdução à Computação","hours":30,"credits":2,"syllabus":"Apresentação da Computação como área de estudo: suas origens, seu tema de estudo e sua relação com os diversos cursos de computação. Apresentação das grandes camadas de um sistema computacional: informação, hardware, sistema operacional, aplicações. Estudo teórico-prático da representação de informação, com ênfase em sistemas de numeração, em particular o sistema binário. Discussão sobre os grandes desafios da computação.","tags":[]},{"code":"95300-04","name":"Cálculo I","hours":60,"credits":4,"syllabus":"Caracterização de funções de uma variável. Estudo do domínio e representação gráfica dessas funções. Análise de limites e continuidade. Definições e aplicações de derivadas diferenciais.","tags":[]},{"code":"4611E-04","name":"Lógica para Computação","hours":60,"credits":4,"syllabus":"Estudos dos principais conceitos da Lógica Matemática e de sua aplicação na Ciência da Computação. Exame e discussão dos conceitos de sintaxe e semântica, equivalência, relação de consequência lógica, relação de dedutibilidade, cálculo de dedução natural e outros sistemas de dedução tanto para a lógica proposicional como para a lógica de predicados. Aplicação do raciocínio automático na computação.","tags":[]},{"code":"4611F-04","name":"Programação Orientada a Objetos","hours":60,"credits":4,"syllabus":"Desenvolvimento de sistemas de software de complexidade média utilizando o paradigma de orientação a objetos. Estudo e análise dos conceitos de abstração, herança e polimorfismo. Discussão de aspectos avançados sobre classes. Uso de bibliotecas de coleções. Projeto de sistemas orientados a objetos. Manipulação básica de arquivos texto. Noções de programação orientada a eventos.","tags":[]},{"code":"4645G-04","name":"Algoritmos e Estruturas de Dados I","hours":60,"credits":4,"syllabus":"Construção e raciocínio sobre diferentes algoritmos e implementações para estruturas de dados lineares e hierárquicas: listas, filas, pilhas e árvores. Exame da adequação destes algoritmos na solução de diversas classes de problemas. Construção de algoritmos e implementações para problemas de ordenação e pesquisa. Discussão, análise e raciocínio sobre a complexidade de algoritmos e implementações correspondentes.","tags":[]},{"code":"98901-04","name":"Banco de Dados I","hours":60,"credits":4,"syllabus":"Entendimento da arquitetura típica de um banco de dados. Estudo sobre modelos de dados: clássicos, relacional e pós-relacionais. Compreensão dos diferentes formalismos para modelagem conceitual. Solução de projetos de bancos de dados pelo uso de dependências funcionais, formas normais e de restrições de integridade. Solução de implementação de bancos de dados: modelo lógico e físico, e mapeamento do modelo conceitual para o de implementação.","tags":[]},{"code":"4646B-04","name":"Fundamentos de Sistemas Digitais","hours":60,"credits":4,"syllabus":"x","tags":[]},{"code":"95301-04","name":"Cálculo II","hours":60,"credits":4,"syllabus":"x","tags":[]},{"code":"46515-04","name":"Linguagens, Autômatos e Computação","hours":60,"credits":4,"syllabus":"Introdução às linguagens formais: definições, propriedades e operações. Estudo de linguagens na hierarquia de Chomsky: regulares, livres de contexto, sensíveis ao contexto, enumeráveis recursivamente. Estudo de máquinas como reconhecedores de linguagens: autômatos finitos, autômatos de pilha e máquinas de Turing. Estudo teórico prático de expressões regulares. Introdução ao conceito de computabilidade.","tags":[]},{"code":"4645H-04","name":"Algoritmos e Estruturas de Dados II","hours":60,"credits":4,"syllabus":"Construção e raciocínio sobre diferentes algoritmos e implementações para estruturas de dados não lineares: heaps, tabelas de espalhamento e grafos. Apresentação de aplicações avançadas das estruturas de dados: heapsort, conjuntos, tries, árvores B, quadtrees e codificação de Huffman. Exame da adequação destes algoritmos na solução de diversas classes de problemas. Discussão, análise e raciocínio sobre a complexidade de algoritmos e implementações correspondentes.","tags":[]},{"code":"98702-04","name":"Prática em Pesquisa","hours":60,"credits":4,"syllabus":"x","tags":[]},{"code":"98902-02","name":"Banco de Dados II","hours":30,"credits":2,"syllabus":"Visão geral das principais formas de uso de bancos de dados: orientados a transação, orientados ao processamento analítico e orientados a consultas de dados não convencionais. Visão geral da definição de dados na abordagem relacional, em modelos OLAP, bem como nas abordagens sem esquemas prévios (NoSQL). Estudo sobre linguagens de definição e manipulação de banco de dados e, em especial, SQL. Definição e consultas de dados nas principais formas de uso de bancos de dados, com entendimento dos principais fatores envolvidos com desempenho.","tags":[]},{"code":"98701-04","name":"Programação de Baixo Nível","hours":60,"credits":4,"syllabus":"x","tags":[]},{"code":"98G03-04","name":"Organização e Arquitetura de Processadores","hours":60,"credits":4,"syllabus":"x","tags":[]},{"code":"95304-04","name":"Probabilidade e Estatística","hours":60,"credits":4,"syllabus":"Organização, análise, interpretação de dados e estudo de modelos probabilísticas enfatizando o princípio da incerteza. Investigação da relação entre variáveis. Noções de amostragem visando à estimação de parâmetros e o estabelecimento de hipóteses estatísticas.","tags":[]},{"code":"98713-04","name":"Fundamentos de Proc. Paralelo e Distribuído","hours":60,"credits":4,"syllabus":"Introdução à computação concorrente e sua representação com sistemas de transição de estados. Estudo de processos e threads. Estudo sobre memória compartilhada e passagem de mensagem. Descrição da semântica de mecanismos de sincronização e seu uso na programação concorrente. Apresentação de abordagens para modelagem e avaliação de propriedades de sistemas concorrentes. Apresentação dos objetivos e pressupostos ambientais para sistemas paralelos e para sistemas distribuídos. Análise das abordagens para modelagem de aplicações paralelas com memória compartilhada e passagem de mensagem. Estudo das principais abstrações para programação distribuída. Apresentação de estudos de caso de sistemas paralelos e de sistemas distribuídos.","tags":[]},{"code":"98703-02","name":"Programação Funcional","hours":60,"credits":2,"syllabus":"x","tags":[]},{"code":"4636H-04","name":"Fundamentos de Desenvolvimento de Software","hours":60,"credits":4,"syllabus":"x","tags":[]},{"code":"98801-04","name":"Engenharia de Software I","hours":60,"credits":4,"syllabus":"x","tags":[]},{"code":"98H00-04","name":"Infraestrutura para Gestão de Dados","hours":60,"credits":4,"syllabus":"Visão geral de sistemas de bancos de dados, suas principais funcionalidades e formas de uso: orientados a transação, orientados ao processamento analítico e orientados a consultas de dados não convencionais. Entendimento dos modelos de transações de bancos de dados, de gerência de memória principal e secundária, de controle de concorrência e de recuperação após falhas. Estudo sobre a otimização de consultas e de transações em bancos de dados. Visão geral sobre a gestão de bancos de dados sem esquemas prévios.","tags":[]},{"code":"98716-04","name":"Computação Gráfica","hours":60,"credits":4,"syllabus":"x","tags":[]},{"code":"95302-04","name":"Álgebra Linear e Geometria Analítica","hours":60,"credits":4,"syllabus":"x","tags":[]},{"code":"4647F-04","name":"Teoria da Computabilidade e Complexidade","hours":60,"credits":4,"syllabus":"x","tags":[]},{"code":"98802-02","name":"Engenharia de Software II","hours":30,"credits":2,"syllabus":"x","tags":[]},{"code":"98905-04","name":"Experiência do Usuário","hours":60,"credits":4,"syllabus":"Reflexão sobre conceitos e teorias relacionados à qualidade de uso e design de sistemas interativos. Aplicação de técnicas para elicitação e análise de dados sobre usuários e tarefas. Aplicação de fundamentos e técnicas para concepção de interfaces e de interação. Aplicação de métodos de avaliação de sistemas interativos. Investigação de interfaces não-convencionais e seu impacto em sistemas interativos.","tags":[]},{"code":"4646Z-04","name":"Projeto e Otimização de Algoritmos","hours":60,"credits":4,"syllabus":"Estudo teórico e prático das principais técnicas para o projeto de algoritmos, como algoritmos gulosos, divisão e conquista, programação dinâmica, backtracking, branch and bound e algoritmos aproximativos como algoritmos genéticos, gradiente descendente e outros.","tags":[]},{"code":"4646X-04","name":"Projeto de Desenvolvimento de Jogos","hours":60,"credits":4,"syllabus":"x","tags":[]},{"code":"98700-04","name":"Sistemas Operacionais","hours":60,"credits":4,"syllabus":"Apresentação da organização básica de sistemas operacionais. Estudo da evolução da estrutura e funcionamento dos sistemas operacionais. Apresentação do conceito de processos e de mecanismos de sincronização entre processos que compartilham memória e sua implementação em um sistema operacional. Exemplos práticos de criação e sincronização de processos. Introdução e exploração do conceito de algoritmos de escalonamento. Estudo da comunicação inter-processos. Análise e discussão de problemas relacionados à \"deadlock\" e à comunicação entre processos. Estudo sobre gerenciamento de memória, gerenciamento de entrada e saída e gerenciamento de arquivos. Análise e discussão de problemas relacionados ao gerenciamento de memória, gerenciamento de entrada e saída e gerenciamento de arquivos.","tags":[]},{"code":"4646N-04","name":"Métodos Numéricos","hours":60,"credits":4,"syllabus":"x","tags":[]},{"code":"4646M-04","name":"Métodos Formais","hours":60,"credits":4,"syllabus":"Conceitos essenciais de especificação formal, verificação formal e métodos formais. Especificação e verificação de modelos e programas. Estudo da lógica de Hoare. Especificação de assertivas, pré e pós-condições, invariantes e variantes. Aplicação de ferramentas de verificação automática sobre especificações e programas.","tags":[]},{"code":"98704-04","name":"Prática em Engenharia de Software","hours":60,"credits":4,"syllabus":"x","tags":[]},{"code":"98708-04","name":"Inteligência Artificial","hours":60,"credits":4,"syllabus":"Estudo teórico-prático das diversas abordagens de formalização e resolução de problemas utilizando algoritmos de inteligência artificial. Estudo teórico-prático de algoritmos de busca para resolução de problemas em agentes autônomos. Apresentação de abordagens para representação de conhecimento. Apresentação de técnicas de geração automática de planos. Introdução ao Aprendizado de Máquina com ênfase em Aprendizado por reforço.","tags":[]},{"code":"98709-04","name":"Fundamentos de Redes de Computadores","hours":60,"credits":4,"syllabus":"Estudo dos Modelos de referência de interconexão de computadores OSI/ISO e da Arquitetura Internet, apresentando em mais detalhamento os Níveis de Rede, Transporte e Aplicação, com seus conceitos, funções e protocolos. Estudo e análise do impacto das funções dos protocolos de comunicação no desenvolvimento e desempenho das aplicações.","tags":[]},{"code":"98710-02","name":"Laboratório de Redes de Computadores","hours":30,"credits":2,"syllabus":"Desenvolvimento de experimentos que abranjam operação, configuração e análise de protocolos da Arquitetura Internet. Desenvolvimento e análise de comportamento de aplicações distribuídas com diferentes requisitos de qualidade. Simulação e análise de arquiteturas de comunicação variadas.","tags":[]},{"code":"4646I-04","name":"Laboratório de Sistemas Operacionais","hours":60,"credits":4,"syllabus":"x","tags":[]},{"code":"98711-02","name":"Trabalho de Conclusão I","hours":30,"credits":2,"syllabus":"x","tags":[]},{"code":"4645K-04","name":"Construção de Compiladores","hours":60,"credits":4,"syllabus":"x","tags":[]},{"code":"98706-04","name":"Aprendizado de Máquina","hours":60,"credits":4,"syllabus":"x","tags":[]},{"code":"4647A-04","name":"Redes de Computadores Avançadas","hours":60,"credits":4,"syllabus":"x","tags":[]},{"code":"4611G-04","name":"Simulação e Métodos Analíticos","hours":60,"credits":4,"syllabus":"Estudo de técnicas e opções para simulação e análise estocástica através de modelos computacionais. Apresentação de técnicas de representação de estados e de tempo, de aleatoriedade e determinismo em contexto computacional. Estudo de métodos e ferramentas básicas de simulação e métodos analíticos. Apresentação de formalismos clássicos e estruturados para representação de modelos.","tags":[]},{"code":"98714-02","name":"Trabalho de Conclusão II","hours":30,"credits":2,"syllabus":"x","tags":[]},{"code":"11521-04","name":"Humanismo e Cultura Religiosa","hours":60,"credits":4,"syllabus":"A condição humana aberta ao transcendente; Fé cristã e cultura atual; O estudo do fenômeno religioso em suas diferentes Tradições; Elementos da cultura e da religiosidade afro-brasileira e indígena; A relação entre fé e razão, e ciência e religião; Motivação para ações comunitárias, como engajamento consequente de uma consciência social e da fé cristã.","tags":[]},{"code":"98715-04","name":"Segurança de Sistemas","hours":60,"credits":4,"syllabus":"Apresentação e implementação de criptografia clássica; cifras de fluxo (stream ciphers) e cifras de bloco (block ciphers). Entendimento de integridade de mensagens (Message Authentication Codes). Conhecimento de criptografia simétrica, aritmética modular; números primos e fatoração, funções e geradores pseudo-aleatórios, e criptografia assimétrica. Uso de bibliotecas de criptografia. Apresentação do Marco Civil da Internet. Entendimento e como cumprir a Lei de Proteção de Dados.","tags":[]},{"code":"4647B-04","name":"Sistemas Distribuídos","hours":60,"credits":4,"syllabus":"x","tags":[]},{"code":"4645J-04","name":"Computação Paralela","hours":60,"credits":4,"syllabus":"x","tags":[]}];
+  const COURSES = [{"code":"95303-04","name":"Matemática Discreta","hours":60,"credits":4,"syllabus":"Estudo da lógica proposicional e técnicas básicas de demonstração. Estudo da álgebra de conjuntos. Estudo e discussão dos conceitos de relações, funções totais e parciais, relações de ordem parcial e total e relações de equivalência. Análise de definições indutivas, recursão e do princípio de indução. Introdução à álgebra Booleana.","tags":[],"category":"logic"},{"code":"98707-02","name":"Metodologia Científica","hours":30,"credits":2,"syllabus":"x","tags":[],"category":"met"},{"code":"4611C-06","name":"Fundamentos de Programação","hours":90,"credits":6,"syllabus":"Discussão sobre algoritmos como ferramenta para a descrição da solução de problemas e os fundamentos necessários para sua implementação usando linguagens de programação. Exame das noções de constantes, variáveis, tipos e expressões. Estudo de programas sequenciais, comandos de entrada e saída e o processo de compilação. Construção de programas com seleção, iterativos e uso do conceito de subprogramas. Estudo e uso de estruturas de dados usando arranjos e matrizes e conceitos básicos de classes e objetos.","tags":[],"category":"algo"},{"code":"1501A-04","name":"Ética e Cidadania","hours":60,"credits":4,"syllabus":"Abordagem de problemas e conceitos filosóficos relacionados à moralidade e ao exercício da cidadania. Introdução aos principais temas e problemas de Ética, presentes na História da Filosofia. Reflexão filosófica sobre o ideal democrático, a cidadania e os direitos humanos.","tags":[],"category":"social"},{"code":"98705-02","name":"Introdução à Computação","hours":30,"credits":2,"syllabus":"Apresentação da Computação como área de estudo: suas origens, seu tema de estudo e sua relação com os diversos cursos de computação. Apresentação das grandes camadas de um sistema computacional: informação, hardware, sistema operacional, aplicações. Estudo teórico-prático da representação de informação, com ênfase em sistemas de numeração, em particular o sistema binário. Discussão sobre os grandes desafios da computação.","tags":[],"category":"cs"},{"code":"95300-04","name":"Cálculo I","hours":60,"credits":4,"syllabus":"Caracterização de funções de uma variável. Estudo do domínio e representação gráfica dessas funções. Análise de limites e continuidade. Definições e aplicações de derivadas diferenciais.","tags":[],"category":"maths"},{"code":"4611E-04","name":"Lógica para Computação","hours":60,"credits":4,"syllabus":"Estudos dos principais conceitos da Lógica Matemática e de sua aplicação na Ciência da Computação. Exame e discussão dos conceitos de sintaxe e semântica, equivalência, relação de consequência lógica, relação de dedutibilidade, cálculo de dedução natural e outros sistemas de dedução tanto para a lógica proposicional como para a lógica de predicados. Aplicação do raciocínio automático na computação.","tags":[],"category":"logic"},{"code":"4611F-04","name":"Programação Orientada a Objetos","hours":60,"credits":4,"syllabus":"Desenvolvimento de sistemas de software de complexidade média utilizando o paradigma de orientação a objetos. Estudo e análise dos conceitos de abstração, herança e polimorfismo. Discussão de aspectos avançados sobre classes. Uso de bibliotecas de coleções. Projeto de sistemas orientados a objetos. Manipulação básica de arquivos texto. Noções de programação orientada a eventos.","tags":[],"category":"algo"},{"code":"4645G-04","name":"Algoritmos e Estruturas de Dados I","hours":60,"credits":4,"syllabus":"Construção e raciocínio sobre diferentes algoritmos e implementações para estruturas de dados lineares e hierárquicas: listas, filas, pilhas e árvores. Exame da adequação destes algoritmos na solução de diversas classes de problemas. Construção de algoritmos e implementações para problemas de ordenação e pesquisa. Discussão, análise e raciocínio sobre a complexidade de algoritmos e implementações correspondentes.","tags":[],"category":"algo"},{"code":"98901-04","name":"Banco de Dados I","hours":60,"credits":4,"syllabus":"Entendimento da arquitetura típica de um banco de dados. Estudo sobre modelos de dados: clássicos, relacional e pós-relacionais. Compreensão dos diferentes formalismos para modelagem conceitual. Solução de projetos de bancos de dados pelo uso de dependências funcionais, formas normais e de restrições de integridade. Solução de implementação de bancos de dados: modelo lógico e físico, e mapeamento do modelo conceitual para o de implementação.","tags":[],"category":"infra"},{"code":"4646B-04","name":"Fundamentos de Sistemas Digitais","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"infra"},{"code":"95301-04","name":"Cálculo II","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"maths"},{"code":"46515-04","name":"Linguagens, Autômatos e Computação","hours":60,"credits":4,"syllabus":"Introdução às linguagens formais: definições, propriedades e operações. Estudo de linguagens na hierarquia de Chomsky: regulares, livres de contexto, sensíveis ao contexto, enumeráveis recursivamente. Estudo de máquinas como reconhecedores de linguagens: autômatos finitos, autômatos de pilha e máquinas de Turing. Estudo teórico prático de expressões regulares. Introdução ao conceito de computabilidade.","tags":[],"category":"logic"},{"code":"98702-04","name":"Prática em Pesquisa","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"met"},{"code":"4645H-04","name":"Algoritmos e Estruturas de Dados II","hours":60,"credits":4,"syllabus":"Construção e raciocínio sobre diferentes algoritmos e implementações para estruturas de dados não lineares: heaps, tabelas de espalhamento e grafos. Apresentação de aplicações avançadas das estruturas de dados: heapsort, conjuntos, tries, árvores B, quadtrees e codificação de Huffman. Exame da adequação destes algoritmos na solução de diversas classes de problemas. Discussão, análise e raciocínio sobre a complexidade de algoritmos e implementações correspondentes.","tags":[],"category":"algo"},{"code":"98902-02","name":"Banco de Dados II","hours":30,"credits":2,"syllabus":"Visão geral das principais formas de uso de bancos de dados: orientados a transação, orientados ao processamento analítico e orientados a consultas de dados não convencionais. Visão geral da definição de dados na abordagem relacional, em modelos OLAP, bem como nas abordagens sem esquemas prévios (NoSQL). Estudo sobre linguagens de definição e manipulação de banco de dados e, em especial, SQL. Definição e consultas de dados nas principais formas de uso de bancos de dados, com entendimento dos principais fatores envolvidos com desempenho.","tags":[],"category":"infra"},{"code":"98701-04","name":"Programação de Baixo Nível","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"algo"},{"code":"98G03-04","name":"Organização e Arquitetura de Processadores","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"infra"},{"code":"95304-04","name":"Probabilidade e Estatística","hours":60,"credits":4,"syllabus":"Organização, análise, interpretação de dados e estudo de modelos probabilísticas enfatizando o princípio da incerteza. Investigação da relação entre variáveis. Noções de amostragem visando à estimação de parâmetros e o estabelecimento de hipóteses estatísticas.","tags":[],"category":"maths"},{"code":"98713-04","name":"Fundamentos de Proc. Paralelo e Distribuído","hours":60,"credits":4,"syllabus":"Introdução à computação concorrente e sua representação com sistemas de transição de estados. Estudo de processos e threads. Estudo sobre memória compartilhada e passagem de mensagem. Descrição da semântica de mecanismos de sincronização e seu uso na programação concorrente. Apresentação de abordagens para modelagem e avaliação de propriedades de sistemas concorrentes. Apresentação dos objetivos e pressupostos ambientais para sistemas paralelos e para sistemas distribuídos. Análise das abordagens para modelagem de aplicações paralelas com memória compartilhada e passagem de mensagem. Estudo das principais abstrações para programação distribuída. Apresentação de estudos de caso de sistemas paralelos e de sistemas distribuídos.","tags":[],"category":"net"},{"code":"98703-02","name":"Programação Funcional","hours":60,"credits":2,"syllabus":"x","tags":[],"category":"aplic"},{"code":"4636H-04","name":"Fundamentos de Desenvolvimento de Software","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"sist"},{"code":"98801-04","name":"Engenharia de Software I","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"sist"},{"code":"98H00-04","name":"Infraestrutura para Gestão de Dados","hours":60,"credits":4,"syllabus":"Visão geral de sistemas de bancos de dados, suas principais funcionalidades e formas de uso: orientados a transação, orientados ao processamento analítico e orientados a consultas de dados não convencionais. Entendimento dos modelos de transações de bancos de dados, de gerência de memória principal e secundária, de controle de concorrência e de recuperação após falhas. Estudo sobre a otimização de consultas e de transações em bancos de dados. Visão geral sobre a gestão de bancos de dados sem esquemas prévios.","tags":[],"category":"infra"},{"code":"98716-04","name":"Computação Gráfica","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"aplic"},{"code":"95302-04","name":"Álgebra Linear e Geometria Analítica","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"maths"},{"code":"4647F-04","name":"Teoria da Computabilidade e Complexidade","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"logic"},{"code":"98802-02","name":"Engenharia de Software II","hours":30,"credits":2,"syllabus":"x","tags":[],"category":"sist"},{"code":"98905-04","name":"Experiência do Usuário","hours":60,"credits":4,"syllabus":"Reflexão sobre conceitos e teorias relacionados à qualidade de uso e design de sistemas interativos. Aplicação de técnicas para elicitação e análise de dados sobre usuários e tarefas. Aplicação de fundamentos e técnicas para concepção de interfaces e de interação. Aplicação de métodos de avaliação de sistemas interativos. Investigação de interfaces não-convencionais e seu impacto em sistemas interativos.","tags":[],"category":"aplic"},{"code":"4646Z-04","name":"Projeto e Otimização de Algoritmos","hours":60,"credits":4,"syllabus":"Estudo teórico e prático das principais técnicas para o projeto de algoritmos, como algoritmos gulosos, divisão e conquista, programação dinâmica, backtracking, branch and bound e algoritmos aproximativos como algoritmos genéticos, gradiente descendente e outros.","tags":[],"category":"algo"},{"code":"4646X-04","name":"Projeto de Desenvolvimento de Jogos","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"aplic"},{"code":"98700-04","name":"Sistemas Operacionais","hours":60,"credits":4,"syllabus":"Apresentação da organização básica de sistemas operacionais. Estudo da evolução da estrutura e funcionamento dos sistemas operacionais. Apresentação do conceito de processos e de mecanismos de sincronização entre processos que compartilham memória e sua implementação em um sistema operacional. Exemplos práticos de criação e sincronização de processos. Introdução e exploração do conceito de algoritmos de escalonamento. Estudo da comunicação inter-processos. Análise e discussão de problemas relacionados à \"deadlock\" e à comunicação entre processos. Estudo sobre gerenciamento de memória, gerenciamento de entrada e saída e gerenciamento de arquivos. Análise e discussão de problemas relacionados ao gerenciamento de memória, gerenciamento de entrada e saída e gerenciamento de arquivos.","tags":[],"category":"infra"},{"code":"4646N-04","name":"Métodos Numéricos","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"aplic"},{"code":"4646M-04","name":"Métodos Formais","hours":60,"credits":4,"syllabus":"Conceitos essenciais de especificação formal, verificação formal e métodos formais. Especificação e verificação de modelos e programas. Estudo da lógica de Hoare. Especificação de assertivas, pré e pós-condições, invariantes e variantes. Aplicação de ferramentas de verificação automática sobre especificações e programas.","tags":[],"category":"sist"},{"code":"98704-04","name":"Prática em Engenharia de Software","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"met"},{"code":"98708-04","name":"Inteligência Artificial","hours":60,"credits":4,"syllabus":"Estudo teórico-prático das diversas abordagens de formalização e resolução de problemas utilizando algoritmos de inteligência artificial. Estudo teórico-prático de algoritmos de busca para resolução de problemas em agentes autônomos. Apresentação de abordagens para representação de conhecimento. Apresentação de técnicas de geração automática de planos. Introdução ao Aprendizado de Máquina com ênfase em Aprendizado por reforço.","tags":[],"category":"aplic"},{"code":"98709-04","name":"Fundamentos de Redes de Computadores","hours":60,"credits":4,"syllabus":"Estudo dos Modelos de referência de interconexão de computadores OSI/ISO e da Arquitetura Internet, apresentando em mais detalhamento os Níveis de Rede, Transporte e Aplicação, com seus conceitos, funções e protocolos. Estudo e análise do impacto das funções dos protocolos de comunicação no desenvolvimento e desempenho das aplicações.","tags":[],"category":"net"},{"code":"98710-02","name":"Laboratório de Redes de Computadores","hours":30,"credits":2,"syllabus":"Desenvolvimento de experimentos que abranjam operação, configuração e análise de protocolos da Arquitetura Internet. Desenvolvimento e análise de comportamento de aplicações distribuídas com diferentes requisitos de qualidade. Simulação e análise de arquiteturas de comunicação variadas.","tags":[],"category":"net"},{"code":"4646I-04","name":"Laboratório de Sistemas Operacionais","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"infra"},{"code":"98711-02","name":"Trabalho de Conclusão I","hours":30,"credits":2,"syllabus":"x","tags":[],"category":"met"},{"code":"4645K-04","name":"Construção de Compiladores","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"aplic"},{"code":"98706-04","name":"Aprendizado de Máquina","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"aplic"},{"code":"4647A-04","name":"Redes de Computadores Avançadas","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"net"},{"code":"4611G-04","name":"Simulação e Métodos Analíticos","hours":60,"credits":4,"syllabus":"Estudo de técnicas e opções para simulação e análise estocástica através de modelos computacionais. Apresentação de técnicas de representação de estados e de tempo, de aleatoriedade e determinismo em contexto computacional. Estudo de métodos e ferramentas básicas de simulação e métodos analíticos. Apresentação de formalismos clássicos e estruturados para representação de modelos.","tags":[],"category":"aplic"},{"code":"98714-02","name":"Trabalho de Conclusão II","hours":30,"credits":2,"syllabus":"x","tags":[],"category":"met"},{"code":"11521-04","name":"Humanismo e Cultura Religiosa","hours":60,"credits":4,"syllabus":"A condição humana aberta ao transcendente; Fé cristã e cultura atual; O estudo do fenômeno religioso em suas diferentes Tradições; Elementos da cultura e da religiosidade afro-brasileira e indígena; A relação entre fé e razão, e ciência e religião; Motivação para ações comunitárias, como engajamento consequente de uma consciência social e da fé cristã.","tags":[],"category":"social"},{"code":"98715-04","name":"Segurança de Sistemas","hours":60,"credits":4,"syllabus":"Apresentação e implementação de criptografia clássica; cifras de fluxo (stream ciphers) e cifras de bloco (block ciphers). Entendimento de integridade de mensagens (Message Authentication Codes). Conhecimento de criptografia simétrica, aritmética modular; números primos e fatoração, funções e geradores pseudo-aleatórios, e criptografia assimétrica. Uso de bibliotecas de criptografia. Apresentação do Marco Civil da Internet. Entendimento e como cumprir a Lei de Proteção de Dados.","tags":[],"category":"infra"},{"code":"4647B-04","name":"Sistemas Distribuídos","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"net"},{"code":"4645J-04","name":"Computação Paralela","hours":60,"credits":4,"syllabus":"x","tags":[],"category":"net"}];
   const REQUIREMENTS = [{"type":"prerequisite","from":"95303-04","to":"4611E-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98707-02","to":"98702-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4611C-06","to":"4611F-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4611C-06","to":"4645G-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4611C-06","to":"98701-04","description":null,"min_credits":null},{"type":"prerequisite","from":"95300-04","to":"95301-04","description":null,"min_credits":null},{"type":"prerequisite","from":"95300-04","to":"95304-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4611F-04","to":"4636H-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4611F-04","to":"98713-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4645G-04","to":"4645H-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98901-04","to":"98902-02","description":null,"min_credits":null},{"type":"prerequisite","from":"4646B-04","to":"98G03-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4646B-04","to":"98701-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4611E-04","to":"4646M-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4611E-04","to":"98708-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4645H-04","to":"4646Z-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4645H-04","to":"98708-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98902-02","to":"98H00-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98701-04","to":"98716-04","description":null,"min_credits":null},{"type":"prerequisite","from":"95304-04","to":"4611G-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98801-04","to":"98802-02","description":null,"min_credits":null},{"type":"prerequisite","from":"98801-04","to":"98905-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98716-04","to":"4646X-04","description":null,"min_credits":null},{"type":"prerequisite","from":"95302-04","to":"4646N-04","description":null,"min_credits":null},{"type":"prerequisite","from":"4646Z-04","to":"98715-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98700-04","to":"98709-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98700-04","to":"4646I-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98708-04","to":"98706-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98709-04","to":"4647A-04","description":null,"min_credits":null},{"type":"prerequisite","from":"98711-02","to":"98714-02","description":null,"min_credits":null},{"type":"special","from":"95303-04","to":"46515-04","description":null,"min_credits":null},{"type":"special","from":"98705-02","to":"4646B-04","description":null,"min_credits":null},{"type":"special","from":"4611E-04","to":"98703-02","description":null,"min_credits":null},{"type":"special","from":"95301-04","to":"4646N-04","description":null,"min_credits":null},{"type":"special","from":"46515-04","to":"4647F-04","description":null,"min_credits":null},{"type":"special","from":"46515-04","to":"4645K-04","description":null,"min_credits":null},{"type":"special","from":"98G03-04","to":"98700-04","description":null,"min_credits":null},{"type":"special","from":"98G03-04","to":"4645K-04","description":null,"min_credits":null},{"type":"special","from":"98802-02","to":"98704-04","description":null,"min_credits":null},{"type":"special","from":"98713-04","to":"98700-04","description":null,"min_credits":null},{"type":"special","from":"98709-04","to":"4647B-04","description":null,"min_credits":null},{"type":"special","from":"4646I-04","to":"4645J-04","description":null,"min_credits":null},{"type":"corequisite","from":"4645H-04","to":"98702-04","description":null,"min_credits":null},{"type":"corequisite","from":"4636H-04","to":"98801-04","description":null,"min_credits":null},{"type":"corequisite","from":"98709-04","to":"98710-02","description":null,"min_credits":null},{"type":"credit_requirement","from":null,"to":"11521-04","description":null,"min_credits":60}];
+  const CATEGORIES = [{"id":"maths","color":"#ef8080"},{"id":"logic","color":"#dcdc05"},{"id":"algo","color":"#88b9ee"},{"id":"met","color":"#4ecf6c"},{"id":"infra","color":"#f6ac5a"},{"id":"aplic","color":"#d9b8ec"},{"id":"sist","color":"#c3ac68"},{"id":"social","color":"#10dec3"},{"id":"net","color":"#30c1d9"},{"id":"cs","color":"#a8e88c"}];
 
   const courseMap = new Map(COURSES.map(c => [c.code, c]));
+  const categoryColorMap = new Map(
+    CATEGORIES
+      .filter(c => typeof c.color === 'string' && c.color.trim() !== '')
+      .map(c => [c.id, c.color])
+  );
 
   // ── Escala responsiva da matriz ──────────────────────────────────────────────
   function applyMatrixScale() {
@@ -1905,10 +1915,17 @@
   // ── Popup de detalhes ───────────────────────────────────────────────────────
   const popup       = document.getElementById('course-popup');
   const popupClose  = popup.querySelector('.popup-close');
+  const popupHeader = popup.querySelector('.popup-header');
+  const defaultPopupHeaderColor = '#1a3a6b';
 
   function openPopup(code) {
     const course = courseMap.get(code);
     if (!course) return;
+
+    const popupHeaderColor = course.category
+      ? categoryColorMap.get(course.category)
+      : null;
+    popupHeader.style.background = popupHeaderColor || defaultPopupHeaderColor;
 
     document.getElementById('popup-code').textContent     = course.code;
     document.getElementById('popup-name').textContent     = course.name;

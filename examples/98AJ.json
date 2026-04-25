@@ -12,16 +12,16 @@
   },
 
   "categories": [
-    {"id": "maths", "name": "Matemática na Computação", "color": "#ff000070" },
-    {"id": "logic", "name": "Lógica e Estruturas Discretas", "color": "#ffff0070" },
-    {"id": "algo", "name": "Algoritmos e Programação", "color": "#00408570"},
-    {"id": "met", "name": "Metodologia e Integração", "color": "#15572470"},
-    {"id": "infra", "name": "Infraestrutura de Sistemas", "color": "#e48822a0"},
-    {"id": "aplic", "name": "Aplicações Avançadas", "color": "#721c2470"},
-    {"id": "sist", "name": "Espec. e Construção de Sistemas", "color": "#533f03a0"},
-    {"id": "social", "name": "Contexto Profissional e Social", "color": "#0030f070"},
-    {"id": "net", "name": "Computação Distribuída e em Rede", "color": "#0c546070"},
-    {"id": "cs", "name": "Computação", "color": "#0000ff70" }
+    {"id": "maths", "name": "Matemática na Computação", "color": "#ef8080" },
+    {"id": "logic", "name": "Lógica e Estruturas Discretas", "color": "#dcdc05" },
+    {"id": "algo", "name": "Algoritmos e Programação", "color": "#88b9ee"},
+    {"id": "met", "name": "Metodologia e Integração", "color": "#4ecf6c"},
+    {"id": "infra", "name": "Infraestrutura de Sistemas", "color": "#f6ac5a"},
+    {"id": "aplic", "name": "Aplicações Avançadas", "color": "#d9b8ec"},
+    {"id": "sist", "name": "Espec. e Construção de Sistemas", "color": "#c3ac68"},
+    {"id": "social", "name": "Contexto Profissional e Social", "color": "#10dec3"},
+    {"id": "net", "name": "Computação Distribuída e em Rede", "color": "#30c1d9"},
+    {"id": "cs", "name": "Computação", "color": "#a8e88c" }
   ],
 
   "courses": [
@@ -158,16 +158,6 @@
       "category": "logic"
     },
     {
-      "code": "4645H-04",
-      "name": "Algoritmos e Estruturas de Dados II",
-      "hours": 60,
-      "credits": 4,
-      "level": 3,
-      "syllabus": "Construção e raciocínio sobre diferentes algoritmos e implementações para estruturas de dados não lineares: heaps, tabelas de espalhamento e grafos. Apresentação de aplicações avançadas das estruturas de dados: heapsort, conjuntos, tries, árvores B, quadtrees e codificação de Huffman. Exame da adequação destes algoritmos na solução de diversas classes de problemas. Discussão, análise e raciocínio sobre a complexidade de algoritmos e implementações correspondentes.",
-      "tags": [],
-      "category": "algo"
-    },
-    {
       "code": "98702-04",
       "name": "Prática em Pesquisa",
       "hours": 60,
@@ -176,6 +166,16 @@
       "syllabus": "x",
       "tags": [],
       "category": "met"
+    },
+    {
+      "code": "4645H-04",
+      "name": "Algoritmos e Estruturas de Dados II",
+      "hours": 60,
+      "credits": 4,
+      "level": 3,
+      "syllabus": "Construção e raciocínio sobre diferentes algoritmos e implementações para estruturas de dados não lineares: heaps, tabelas de espalhamento e grafos. Apresentação de aplicações avançadas das estruturas de dados: heapsort, conjuntos, tries, árvores B, quadtrees e codificação de Huffman. Exame da adequação destes algoritmos na solução de diversas classes de problemas. Discussão, análise e raciocínio sobre a complexidade de algoritmos e implementações correspondentes.",
+      "tags": [],
+      "category": "algo"
     },
     {
       "code": "98902-02",

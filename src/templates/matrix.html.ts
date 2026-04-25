@@ -37,13 +37,13 @@ ${renderHeader(data)}
 <div class="matrix-wrapper">
   <div class="matrix-area" style="--matrix-base-w:${layout.canvasWidth}px; --matrix-base-h:${layout.canvasHeight}px;">
     <div class="matrix-canvas" style="width:${layout.canvasWidth}px; height:${layout.canvasHeight}px;">
-      <div class="columns-row">
-${layout.columns.map((col: ColumnLayout) => renderColumn(col, courseMap, creditReqMap, categoryMap, useCategoryFill)).join('\n')}
-      </div>
       <svg class="arrows-layer link-style-${linkStyle}" width="${layout.canvasWidth}" height="${layout.canvasHeight}" aria-hidden="true">
 ${renderArrowDefs(linkStyle)}
 ${routes.arrows.map(a => renderArrow(a, reqMap, linkStyle)).join('\n')}
       </svg>
+  <div class="columns-row">
+${layout.columns.map((col: ColumnLayout) => renderColumn(col, courseMap, creditReqMap, categoryMap, useCategoryFill)).join('\n')}
+  </div>
     </div>
   </div>
   <aside class="legend-panel">
@@ -427,6 +427,7 @@ function renderCss(tags: string[], categories: CategoryInput[]): string {
     .matrix-canvas {
       position: relative;
       transform-origin: top left;
+      isolation: isolate;
     }
     @media (max-width: 1200px) {
       .matrix-wrapper {
@@ -446,6 +447,8 @@ function renderCss(tags: string[], categories: CategoryInput[]): string {
       display: flex;
       gap: 60px;
       align-items: flex-start;
+      position: relative;
+      z-index: 1;
     }
     .level-column {
       width: ${CARD_WIDTH}px;
@@ -566,6 +569,7 @@ ${fillRules}
       top: 0;
       left: 0;
       pointer-events: none;
+      z-index: 0;
     }
     .arrow-line {
       fill: none;
