@@ -7,7 +7,34 @@
     "levels": 8
   },
 
+  "display": {
+    "card_fill_style": "category"
+  },
+
+  "categories": [
+    {"id": "maths", "name": "Matemática na Computação", "color": "#ff000070" },
+    {"id": "logic", "name": "Lógica e Estruturas Discretas", "color": "#ffff0070" },
+    {"id": "algo", "name": "Algoritmos e Programação", "color": "#00408570"},
+    {"id": "met", "name": "Metodologia e Integração", "color": "#15572470"},
+    {"id": "infra", "name": "Infraestrutura de Sistemas", "color": "#e48822a0"},
+    {"id": "aplic", "name": "Aplicações Avançadas", "color": "#721c2470"},
+    {"id": "sist", "name": "Espec. e Construção de Sistemas", "color": "#533f03a0"},
+    {"id": "social", "name": "Contexto Profissional e Social", "color": "#0030f070"},
+    {"id": "net", "name": "Computação Distribuída e em Rede", "color": "#0c546070"},
+    {"id": "cs", "name": "Computação", "color": "#0000ff70" }
+  ],
+
   "courses": [
+    {
+      "code": "95303-04",
+      "name": "Matemática Discreta",
+      "hours": 60,
+      "credits": 4,
+      "level": 1,
+      "syllabus": "Estudo da lógica proposicional e técnicas básicas de demonstração. Estudo da álgebra de conjuntos. Estudo e discussão dos conceitos de relações, funções totais e parciais, relações de ordem parcial e total e relações de equivalência. Análise de definições indutivas, recursão e do princípio de indução. Introdução à álgebra Booleana.",
+      "tags": [],
+      "category": "logic"
+    },
     {
       "code": "98707-02",
       "name": "Metodologia Científica",
@@ -15,7 +42,8 @@
       "credits": 2,
       "level": 1,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "met"
     },
     {
       "code": "4611C-06",
@@ -24,34 +52,8 @@
       "credits": 6,
       "level": 1,
       "syllabus": "Discussão sobre algoritmos como ferramenta para a descrição da solução de problemas e os fundamentos necessários para sua implementação usando linguagens de programação. Exame das noções de constantes, variáveis, tipos e expressões. Estudo de programas sequenciais, comandos de entrada e saída e o processo de compilação. Construção de programas com seleção, iterativos e uso do conceito de subprogramas. Estudo e uso de estruturas de dados usando arranjos e matrizes e conceitos básicos de classes e objetos.",
-      "tags": []
-    },
-    {
-      "code": "95300-04",
-      "name": "Cálculo I",
-      "hours": 60,
-      "credits": 4,
-      "level": 1,
-      "syllabus": "Caracterização de funções de uma variável. Estudo do domínio e representação gráfica dessas funções. Análise de limites e continuidade. Definições e aplicações de derivadas diferenciais.",
-      "tags": []
-    },
-    {
-      "code": "95303-04",
-      "name": "Matemática Discreta",
-      "hours": 60,
-      "credits": 4,
-      "level": 1,
-      "syllabus": "Estudo da lógica proposicional e técnicas básicas de demonstração. Estudo da álgebra de conjuntos. Estudo e discussão dos conceitos de relações, funções totais e parciais, relações de ordem parcial e total e relações de equivalência. Análise de definições indutivas, recursão e do princípio de indução. Introdução à álgebra Booleana.",
-      "tags": []
-    },
-    {
-      "code": "98705-02",
-      "name": "Introdução à Computação",
-      "hours": 30,
-      "credits": 2,
-      "level": 1,
-      "syllabus": "Apresentação da Computação como área de estudo: suas origens, seu tema de estudo e sua relação com os diversos cursos de computação. Apresentação das grandes camadas de um sistema computacional: informação, hardware, sistema operacional, aplicações. Estudo teórico-prático da representação de informação, com ênfase em sistemas de numeração, em particular o sistema binário. Discussão sobre os grandes desafios da computação.",
-      "tags": []
+      "tags": [],
+      "category": "algo"
     },
     {
       "code": "1501A-04",
@@ -60,7 +62,28 @@
       "credits": 4,
       "level": 1,
       "syllabus": "Abordagem de problemas e conceitos filosóficos relacionados à moralidade e ao exercício da cidadania. Introdução aos principais temas e problemas de Ética, presentes na História da Filosofia. Reflexão filosófica sobre o ideal democrático, a cidadania e os direitos humanos.",
-      "tags": []
+      "tags": [],
+      "category": "social"
+    },
+    {
+      "code": "98705-02",
+      "name": "Introdução à Computação",
+      "hours": 30,
+      "credits": 2,
+      "level": 1,
+      "syllabus": "Apresentação da Computação como área de estudo: suas origens, seu tema de estudo e sua relação com os diversos cursos de computação. Apresentação das grandes camadas de um sistema computacional: informação, hardware, sistema operacional, aplicações. Estudo teórico-prático da representação de informação, com ênfase em sistemas de numeração, em particular o sistema binário. Discussão sobre os grandes desafios da computação.",
+      "tags": [],
+      "category": "cs"
+    },
+    {
+      "code": "95300-04",
+      "name": "Cálculo I",
+      "hours": 60,
+      "credits": 4,
+      "level": 1,
+      "syllabus": "Caracterização de funções de uma variável. Estudo do domínio e representação gráfica dessas funções. Análise de limites e continuidade. Definições e aplicações de derivadas diferenciais.",
+      "tags": [],
+      "category": "maths"
     },
 
     {
@@ -70,7 +93,8 @@
       "credits": 4,
       "level": 2,
       "syllabus": "Estudos dos principais conceitos da Lógica Matemática e de sua aplicação na Ciência da Computação. Exame e discussão dos conceitos de sintaxe e semântica, equivalência, relação de consequência lógica, relação de dedutibilidade, cálculo de dedução natural e outros sistemas de dedução tanto para a lógica proposicional como para a lógica de predicados. Aplicação do raciocínio automático na computação.",
-      "tags": []
+      "tags": [],
+      "category": "logic"
     },
     {
       "code": "4611F-04",
@@ -79,7 +103,8 @@
       "credits": 4,
       "level": 2,
       "syllabus": "Desenvolvimento de sistemas de software de complexidade média utilizando o paradigma de orientação a objetos. Estudo e análise dos conceitos de abstração, herança e polimorfismo. Discussão de aspectos avançados sobre classes. Uso de bibliotecas de coleções. Projeto de sistemas orientados a objetos. Manipulação básica de arquivos texto. Noções de programação orientada a eventos.",
-      "tags": []
+      "tags": [],
+      "category": "algo"
     },
     {
       "code": "4645G-04",
@@ -88,16 +113,8 @@
       "credits": 4,
       "level": 2,
       "syllabus": "Construção e raciocínio sobre diferentes algoritmos e implementações para estruturas de dados lineares e hierárquicas: listas, filas, pilhas e árvores. Exame da adequação destes algoritmos na solução de diversas classes de problemas. Construção de algoritmos e implementações para problemas de ordenação e pesquisa. Discussão, análise e raciocínio sobre a complexidade de algoritmos e implementações correspondentes.",
-      "tags": []
-    },
-    {
-      "code": "4646B-04",
-      "name": "Fundamentos de Sistemas Digitais",
-      "hours": 60,
-      "credits": 4,
-      "level": 2,
-      "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "algo"
     },
     {
       "code": "98901-04",
@@ -106,7 +123,18 @@
       "credits": 4,
       "level": 2,
       "syllabus": "Entendimento da arquitetura típica de um banco de dados. Estudo sobre modelos de dados: clássicos, relacional e pós-relacionais. Compreensão dos diferentes formalismos para modelagem conceitual. Solução de projetos de bancos de dados pelo uso de dependências funcionais, formas normais e de restrições de integridade. Solução de implementação de bancos de dados: modelo lógico e físico, e mapeamento do modelo conceitual para o de implementação.",
-      "tags": []
+      "tags": [],
+      "category": "infra"
+    },
+    {
+      "code": "4646B-04",
+      "name": "Fundamentos de Sistemas Digitais",
+      "hours": 60,
+      "credits": 4,
+      "level": 2,
+      "syllabus": "x",
+      "tags": [],
+      "category": "infra"
     },
     {
       "code": "95301-04",
@@ -115,18 +143,10 @@
       "credits": 4,
       "level": 2,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "maths"
     },
 
-    {
-      "code": "4645H-04",
-      "name": "Algoritmos e Estruturas de Dados II",
-      "hours": 60,
-      "credits": 4,
-      "level": 3,
-      "syllabus": "Construção e raciocínio sobre diferentes algoritmos e implementações para estruturas de dados não lineares: heaps, tabelas de espalhamento e grafos. Apresentação de aplicações avançadas das estruturas de dados: heapsort, conjuntos, tries, árvores B, quadtrees e codificação de Huffman. Exame da adequação destes algoritmos na solução de diversas classes de problemas. Discussão, análise e raciocínio sobre a complexidade de algoritmos e implementações correspondentes.",
-      "tags": []
-    },
     {
       "code": "46515-04",
       "name": "Linguagens, Autômatos e Computação",
@@ -134,43 +154,18 @@
       "credits": 4,
       "level": 3,
       "syllabus": "Introdução às linguagens formais: definições, propriedades e operações. Estudo de linguagens na hierarquia de Chomsky: regulares, livres de contexto, sensíveis ao contexto, enumeráveis recursivamente. Estudo de máquinas como reconhecedores de linguagens: autômatos finitos, autômatos de pilha e máquinas de Turing. Estudo teórico prático de expressões regulares. Introdução ao conceito de computabilidade.",
-      "tags": []
+      "tags": [],
+      "category": "logic"
     },
     {
-      "code": "98701-04",
-      "name": "Programação de Baixo Nível",
+      "code": "4645H-04",
+      "name": "Algoritmos e Estruturas de Dados II",
       "hours": 60,
       "credits": 4,
       "level": 3,
-      "syllabus": "x",
-      "tags": []
-    },
-    {
-      "code": "95304-04",
-      "name": "Probabilidade e Estatística",
-      "hours": 60,
-      "credits": 4,
-      "level": 3,
-      "syllabus": "Organização, análise, interpretação de dados e estudo de modelos probabilísticas enfatizando o princípio da incerteza. Investigação da relação entre variáveis. Noções de amostragem visando à estimação de parâmetros e o estabelecimento de hipóteses estatísticas.",
-      "tags": []
-    },
-    {
-      "code": "98902-02",
-      "name": "Banco de Dados II",
-      "hours": 30,
-      "credits": 2,
-      "level": 3,
-      "syllabus": "Visão geral das principais formas de uso de bancos de dados: orientados a transação, orientados ao processamento analítico e orientados a consultas de dados não convencionais. Visão geral da definição de dados na abordagem relacional, em modelos OLAP, bem como nas abordagens sem esquemas prévios (NoSQL). Estudo sobre linguagens de definição e manipulação de banco de dados e, em especial, SQL. Definição e consultas de dados nas principais formas de uso de bancos de dados, com entendimento dos principais fatores envolvidos com desempenho.",
-      "tags": []
-    },
-    {
-      "code": "98G03-04",
-      "name": "Organização e Arquitetura de Processadores",
-      "hours": 60,
-      "credits": 4,
-      "level": 3,
-      "syllabus": "x",
-      "tags": []
+      "syllabus": "Construção e raciocínio sobre diferentes algoritmos e implementações para estruturas de dados não lineares: heaps, tabelas de espalhamento e grafos. Apresentação de aplicações avançadas das estruturas de dados: heapsort, conjuntos, tries, árvores B, quadtrees e codificação de Huffman. Exame da adequação destes algoritmos na solução de diversas classes de problemas. Discussão, análise e raciocínio sobre a complexidade de algoritmos e implementações correspondentes.",
+      "tags": [],
+      "category": "algo"
     },
     {
       "code": "98702-04",
@@ -179,7 +174,48 @@
       "credits": 4,
       "level": 3,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "met"
+    },
+    {
+      "code": "98902-02",
+      "name": "Banco de Dados II",
+      "hours": 30,
+      "credits": 2,
+      "level": 3,
+      "syllabus": "Visão geral das principais formas de uso de bancos de dados: orientados a transação, orientados ao processamento analítico e orientados a consultas de dados não convencionais. Visão geral da definição de dados na abordagem relacional, em modelos OLAP, bem como nas abordagens sem esquemas prévios (NoSQL). Estudo sobre linguagens de definição e manipulação de banco de dados e, em especial, SQL. Definição e consultas de dados nas principais formas de uso de bancos de dados, com entendimento dos principais fatores envolvidos com desempenho.",
+      "tags": [],
+      "category": "infra"
+    },
+    {
+      "code": "98701-04",
+      "name": "Programação de Baixo Nível",
+      "hours": 60,
+      "credits": 4,
+      "level": 3,
+      "syllabus": "x",
+      "tags": [],
+      "category": "algo"
+    },
+    {
+      "code": "98G03-04",
+      "name": "Organização e Arquitetura de Processadores",
+      "hours": 60,
+      "credits": 4,
+      "level": 3,
+      "syllabus": "x",
+      "tags": [],
+      "category": "infra"
+    },
+    {
+      "code": "95304-04",
+      "name": "Probabilidade e Estatística",
+      "hours": 60,
+      "credits": 4,
+      "level": 3,
+      "syllabus": "Organização, análise, interpretação de dados e estudo de modelos probabilísticas enfatizando o princípio da incerteza. Investigação da relação entre variáveis. Noções de amostragem visando à estimação de parâmetros e o estabelecimento de hipóteses estatísticas.",
+      "tags": [],
+      "category": "maths"
     },
 
     {
@@ -189,7 +225,8 @@
       "credits": 4,
       "level": 4,
       "syllabus": "Introdução à computação concorrente e sua representação com sistemas de transição de estados. Estudo de processos e threads. Estudo sobre memória compartilhada e passagem de mensagem. Descrição da semântica de mecanismos de sincronização e seu uso na programação concorrente. Apresentação de abordagens para modelagem e avaliação de propriedades de sistemas concorrentes. Apresentação dos objetivos e pressupostos ambientais para sistemas paralelos e para sistemas distribuídos. Análise das abordagens para modelagem de aplicações paralelas com memória compartilhada e passagem de mensagem. Estudo das principais abstrações para programação distribuída. Apresentação de estudos de caso de sistemas paralelos e de sistemas distribuídos.",
-      "tags": []
+      "tags": [],
+      "category": "net"
     },
     {
       "code": "98703-02",
@@ -198,7 +235,8 @@
       "credits": 2,
       "level": 4,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "aplic"
     },
     {
       "code": "4636H-04",
@@ -207,7 +245,8 @@
       "credits": 4,
       "level": 4,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "sist"
     },
     {
       "code": "98801-04",
@@ -216,7 +255,8 @@
       "credits": 4,
       "level": 4,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "sist"
     },
     {
       "code": "98H00-04",
@@ -225,7 +265,8 @@
       "credits": 4,
       "level": 4,
       "syllabus": "Visão geral de sistemas de bancos de dados, suas principais funcionalidades e formas de uso: orientados a transação, orientados ao processamento analítico e orientados a consultas de dados não convencionais. Entendimento dos modelos de transações de bancos de dados, de gerência de memória principal e secundária, de controle de concorrência e de recuperação após falhas. Estudo sobre a otimização de consultas e de transações em bancos de dados. Visão geral sobre a gestão de bancos de dados sem esquemas prévios.",
-      "tags": []
+      "tags": [],
+      "category": "infra"
     },
     {
       "code": "98716-04",
@@ -234,7 +275,8 @@
       "credits": 4,
       "level": 4,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "aplic"
     },
     {
       "code": "95302-04",
@@ -243,7 +285,8 @@
       "credits": 4,
       "level": 4,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "maths"
     },
 
     {
@@ -253,7 +296,8 @@
       "credits": 4,
       "level": 5,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "logic"
     },
     {
       "code": "98802-02",
@@ -262,7 +306,8 @@
       "credits": 2,
       "level": 5,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "sist"
     },
     {
       "code": "98905-04",
@@ -271,7 +316,8 @@
       "credits": 4,
       "level": 5,
       "syllabus": "Reflexão sobre conceitos e teorias relacionados à qualidade de uso e design de sistemas interativos. Aplicação de técnicas para elicitação e análise de dados sobre usuários e tarefas. Aplicação de fundamentos e técnicas para concepção de interfaces e de interação. Aplicação de métodos de avaliação de sistemas interativos. Investigação de interfaces não-convencionais e seu impacto em sistemas interativos.",
-      "tags": []
+      "tags": [],
+      "category": "aplic"
     },
     {
       "code": "4646Z-04",
@@ -280,7 +326,8 @@
       "credits": 4,
       "level": 5,
       "syllabus": "Estudo teórico e prático das principais técnicas para o projeto de algoritmos, como algoritmos gulosos, divisão e conquista, programação dinâmica, backtracking, branch and bound e algoritmos aproximativos como algoritmos genéticos, gradiente descendente e outros.",
-      "tags": []
+      "tags": [],
+      "category": "algo"
     },
     {
       "code": "4646X-04",
@@ -289,7 +336,8 @@
       "credits": 4,
       "level": 5,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "aplic"
     },
     {
       "code": "98700-04",
@@ -298,7 +346,8 @@
       "credits": 4,
       "level": 5,
       "syllabus": "Apresentação da organização básica de sistemas operacionais. Estudo da evolução da estrutura e funcionamento dos sistemas operacionais. Apresentação do conceito de processos e de mecanismos de sincronização entre processos que compartilham memória e sua implementação em um sistema operacional. Exemplos práticos de criação e sincronização de processos. Introdução e exploração do conceito de algoritmos de escalonamento. Estudo da comunicação inter-processos. Análise e discussão de problemas relacionados à \"deadlock\" e à comunicação entre processos. Estudo sobre gerenciamento de memória, gerenciamento de entrada e saída e gerenciamento de arquivos. Análise e discussão de problemas relacionados ao gerenciamento de memória, gerenciamento de entrada e saída e gerenciamento de arquivos.",
-      "tags": []
+      "tags": [],
+      "category": "infra"
     },
     {
       "code": "4646N-04",
@@ -307,7 +356,8 @@
       "credits": 4,
       "level": 5,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "aplic"
     },
 
     {
@@ -317,7 +367,8 @@
       "credits": 4,
       "level": 6,
       "syllabus": "Conceitos essenciais de especificação formal, verificação formal e métodos formais. Especificação e verificação de modelos e programas. Estudo da lógica de Hoare. Especificação de assertivas, pré e pós-condições, invariantes e variantes. Aplicação de ferramentas de verificação automática sobre especificações e programas.",
-      "tags": []
+      "tags": [],
+      "category": "sist"
     },
     {
       "code": "98704-04",
@@ -326,7 +377,8 @@
       "credits": 4,
       "level": 6,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "met"
     },
     {
       "code": "98708-04",
@@ -335,7 +387,8 @@
       "credits": 4,
       "level": 6,
       "syllabus": "Estudo teórico-prático das diversas abordagens de formalização e resolução de problemas utilizando algoritmos de inteligência artificial. Estudo teórico-prático de algoritmos de busca para resolução de problemas em agentes autônomos. Apresentação de abordagens para representação de conhecimento. Apresentação de técnicas de geração automática de planos. Introdução ao Aprendizado de Máquina com ênfase em Aprendizado por reforço.",
-      "tags": []
+      "tags": [],
+      "category": "aplic"
     },
     {
       "code": "98709-04",
@@ -344,7 +397,8 @@
       "credits": 4,
       "level": 6,
       "syllabus": "Estudo dos Modelos de referência de interconexão de computadores OSI/ISO e da Arquitetura Internet, apresentando em mais detalhamento os Níveis de Rede, Transporte e Aplicação, com seus conceitos, funções e protocolos. Estudo e análise do impacto das funções dos protocolos de comunicação no desenvolvimento e desempenho das aplicações.",
-      "tags": []
+      "tags": [],
+      "category": "net"
     },
     {
       "code": "98710-02",
@@ -353,7 +407,8 @@
       "credits": 2,
       "level": 6,
       "syllabus": "Desenvolvimento de experimentos que abranjam operação, configuração e análise de protocolos da Arquitetura Internet. Desenvolvimento e análise de comportamento de aplicações distribuídas com diferentes requisitos de qualidade. Simulação e análise de arquiteturas de comunicação variadas.",
-      "tags": []
+      "tags": [],
+      "category": "net"
     },
     {
       "code": "4646I-04",
@@ -362,7 +417,8 @@
       "credits": 4,
       "level": 6,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "infra"
     },
 
     {
@@ -372,7 +428,8 @@
       "credits": 2,
       "level": 7,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "met"
     },
     {
       "code": "4645K-04",
@@ -381,7 +438,8 @@
       "credits": 4,
       "level": 7,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "aplic"
     },
     {
       "code": "98706-04",
@@ -390,7 +448,8 @@
       "credits": 4,
       "level": 7,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "aplic"
     },
     {
       "code": "4647A-04",
@@ -399,7 +458,8 @@
       "credits": 4,
       "level": 7,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "net"
     },
     {
       "code": "4611G-04",
@@ -408,7 +468,8 @@
       "credits": 4,
       "level": 7,
       "syllabus": "Estudo de técnicas e opções para simulação e análise estocástica através de modelos computacionais. Apresentação de técnicas de representação de estados e de tempo, de aleatoriedade e determinismo em contexto computacional. Estudo de métodos e ferramentas básicas de simulação e métodos analíticos. Apresentação de formalismos clássicos e estruturados para representação de modelos.",
-      "tags": []
+      "tags": [],
+      "category": "aplic"
     },
 
     {
@@ -418,7 +479,8 @@
       "credits": 2,
       "level": 8,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "met"
     },
     {
       "code": "11521-04",
@@ -427,7 +489,8 @@
       "credits": 4,
       "level": 8,
       "syllabus": "A condição humana aberta ao transcendente; Fé cristã e cultura atual; O estudo do fenômeno religioso em suas diferentes Tradições; Elementos da cultura e da religiosidade afro-brasileira e indígena; A relação entre fé e razão, e ciência e religião; Motivação para ações comunitárias, como engajamento consequente de uma consciência social e da fé cristã.",
-      "tags": []
+      "tags": [],
+      "category": "social"
     },
     {
       "code": "98715-04",
@@ -436,7 +499,8 @@
       "credits": 4,
       "level": 8,
       "syllabus": "Apresentação e implementação de criptografia clássica; cifras de fluxo (stream ciphers) e cifras de bloco (block ciphers). Entendimento de integridade de mensagens (Message Authentication Codes). Conhecimento de criptografia simétrica, aritmética modular; números primos e fatoração, funções e geradores pseudo-aleatórios, e criptografia assimétrica. Uso de bibliotecas de criptografia. Apresentação do Marco Civil da Internet. Entendimento e como cumprir a Lei de Proteção de Dados.",
-      "tags": []
+      "tags": [],
+      "category": "infra"
     },
     {
       "code": "4647B-04",
@@ -445,7 +509,8 @@
       "credits": 4,
       "level": 8,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "net"
     },
     {
       "code": "4645J-04",
@@ -454,7 +519,8 @@
       "credits": 4,
       "level": 8,
       "syllabus": "x",
-      "tags": []
+      "tags": [],
+      "category": "net"
     }
   ],
   "requirements": [
@@ -472,6 +538,8 @@
     { "type": "prerequisite", "from": "98901-04", "to": "98902-02" },
     { "type": "prerequisite", "from": "4646B-04", "to": "98G03-04" },
     { "type": "prerequisite", "from": "4646B-04", "to": "98701-04" },
+    { "type": "prerequisite", "from": "4611E-04", "to": "4646M-04" },
+    { "type": "prerequisite", "from": "4611E-04", "to": "98708-04" },
 
     { "type": "prerequisite", "from": "4645H-04", "to": "4646Z-04" },
     { "type": "prerequisite", "from": "4645H-04", "to": "98708-04" },

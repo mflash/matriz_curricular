@@ -16,6 +16,19 @@ export interface CourseInput {
   level: number;
   syllabus: string;
   tags: string[];
+  category?: string;
+}
+
+export interface CategoryInput {
+  id: string;
+  name: string;
+  color?: string;
+}
+
+export type CardFillStyle = 'category';
+
+export interface DisplayInput {
+  card_fill_style?: CardFillStyle;
 }
 
 export type RequirementType = 'prerequisite' | 'special' | 'corequisite' | 'credit_requirement';
@@ -32,6 +45,8 @@ export interface CurriculumFile {
   curriculum: CurriculumInput;
   courses: CourseInput[];
   requirements: RequirementInput[];
+  categories?: CategoryInput[];
+  display?: DisplayInput;
 }
 
 // ─── Estruturas internas de layout ───────────────────────────────────────────

@@ -36,6 +36,8 @@ function assertCurriculumFile(data: unknown): asserts data is CurriculumFile {
   assertCurriculum(d['curriculum']);
   assertCourses(d['courses']);
   assertRequirements(d['requirements']);
+  assertCategories(d['categories']);
+  assertDisplay(d['display']);
 }
 
 function assertCurriculum(value: unknown): void {
@@ -72,7 +74,54 @@ function assertCourses(value: unknown): void {
     if (!Array.isArray(c['tags'])) {
       throw new ParseError(`courses[${i}].tags: deve ser um array.`);
     }
+    (c['tags'] as unknown[]).forEach((tag, j) => {
+      if (typeof tag !== 'string' || tag.trim() === '') {
+        throw new ParseError(`courses[${i}].tags[${j}]: deve ser string não vazia.`);
+      }
+    });
+
+    if (c['category'] !== undefined) {
+      if (typeof c['category'] !== 'string' || (c['category'] as string).trim() === '') {
+        throw new ParseError(`courses[${i}].category: deve ser string não vazia, quando informado.`);
+      }
+    }
   });
+}
+
+function assertCategories(value: unknown): void {
+  if (value === undefined) return;
+  if (!Array.isArray(value)) {
+    throw new ParseError('Campo "categories" deve ser um array, quando informado.');
+  }
+
+  value.forEach((item, i) => {
+    if (typeof item !== 'object' || item === null) {
+      throw new ParseError(`categories[${i}]: item inválido.`);
+    }
+    const c = item as Record<string, unknown>;
+    if (typeof c['id'] !== 'string' || (c['id'] as string).trim() === '') {
+      throw new ParseError(`categories[${i}].id: ausente ou vazio.`);
+    }
+    if (typeof c['name'] !== 'string' || (c['name'] as string).trim() === '') {
+      throw new ParseError(`categories[${i}].name: ausente ou vazio.`);
+    }
+    if (c['color'] !== undefined && (typeof c['color'] !== 'string' || (c['color'] as string).trim() === '')) {
+      throw new ParseError(`categories[${i}].color: deve ser string não vazia, quando informado.`);
+    }
+  });
+}
+
+function assertDisplay(value: unknown): void {
+  if (value === undefined) return;
+  if (typeof value !== 'object' || value === null) {
+    throw new ParseError('Campo "display" deve ser um objeto, quando informado.');
+  }
+
+  const d = value as Record<string, unknown>;
+  const fillStyle = d['card_fill_style'];
+  if (fillStyle !== undefined && fillStyle !== 'category') {
+    throw new ParseError('Campo "display.card_fill_style" deve ser "category" quando informado.');
+  }
 }
 
 function assertRequirements(value: unknown): void {
@@ -105,8 +154,11 @@ function assertRequirements(value: unknown): void {
 
 function validate(data: CurriculumFile): void {
   const courseMap = buildCourseMap(data.courses);
+  const categoryIdSet = new Set((data.categories ?? []).map(c => c.id));
 
   checkDuplicateCodes(data.courses);
+  checkDuplicateCategoryIds(data.categories ?? []);
+  checkCourseCategoryReferences(data.courses, categoryIdSet);
   checkRequirementReferences(data.requirements, courseMap);
   checkPrerequisiteLevels(data.requirements, courseMap);
 }
@@ -126,6 +178,27 @@ function checkDuplicateCodes(courses: CourseInput[]): void {
       throw new ParseError(`Código de disciplina duplicado: "${course.code}".`);
     }
     seen.add(course.code);
+  }
+}
+
+function checkDuplicateCategoryIds(categories: Array<{ id: string }>): void {
+  const seen = new Set<string>();
+  for (const category of categories) {
+    if (seen.has(category.id)) {
+      throw new ParseError(`Categoria duplicada em "categories": "${category.id}".`);
+    }
+    seen.add(category.id);
+  }
+}
+
+function checkCourseCategoryReferences(courses: CourseInput[], categoryIds: Set<string>): void {
+  for (const course of courses) {
+    if (!course.category) continue;
+    if (!categoryIds.has(course.category)) {
+      throw new ParseError(
+        `Disciplina "${course.code}": category "${course.category}" não existe em "categories".`
+      );
+    }
   }
 }
 

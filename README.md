@@ -28,6 +28,7 @@ Veja aqui um exemplo de resultado do utilitário (criado a partir do exemplo [99
 - Ligações de pré-requisito com dois estilos selecionáveis por flag:
   - **`arrows`**: setas clássicas com ponta
   - **`paths`**: caminhos espessos estilo Sankey
+- Opção de preenchimento dos cartões por categoria definida no JSON de entrada
 - Três tipos de setas visuais:
   - **Linha sólida** — pré-requisito comum
   - **Linha tracejada** — pré-requisito especial
@@ -107,9 +108,18 @@ matriz_curricular/
       "credits": 4,
       "level": 1,
       "syllabus": "Limites, derivadas e aplicações.",
-      "tags": []
+      "tags": [],
+      "category": "MAT"
     }
   ],
+  "categories": [
+    { "id": "MAT", "color": "#1d4ed8" },
+    { "id": "COMP", "color": "#166534" },
+    { "id": "HUM", "color": "#b45309" }
+  ],
+  "display": {
+    "card_fill_style": "category"
+  },
   "requirements": [
     {
       "type": "prerequisite",
@@ -144,6 +154,15 @@ matriz_curricular/
 | `special` | Disciplina de nível anterior com descrição | Seta com linha tracejada |
 | `corequisite` | Disciplina do mesmo nível | Seta com linha pontilhada |
 | `credit_requirement` | Mínimo de créditos já cursados | Indicado no popup da disciplina |
+
+### Categorias e preenchimento dos cartões
+
+- `categories` é opcional e permite mapear `category -> cor`.
+- Cada disciplina pode informar `course.category` para definir sua categoria visual.
+- `display.card_fill_style` controla o estilo de preenchimento dos cartões:
+  - `category`: preenche o cartão com a cor definida para `course.category` em `categories`
+- O preenchimento só é aplicado quando `display.card_fill_style` estiver definido.
+- Se não houver categoria mapeada para a disciplina, o cartão mantém o estilo padrão.
 
 ---
 
