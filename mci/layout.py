@@ -9,7 +9,7 @@ from .types import CardRect, ColumnLayout, CurriculumFile, LayoutData
 # ─────────────────────────────────────────────────────────────────────────────
 
 CARD_WIDTH = 140
-CARD_HEIGHT = 60
+CARD_HEIGHT = 72
 COL_GAP = 60  # espaço horizontal entre colunas (canal para setas)
 ROW_GAP = 24  # espaço vertical entre cartões (canal para setas)
 COL_PADDING = 10  # margem interna horizontal da coluna
@@ -23,20 +23,20 @@ COL_FOOTER_H = 32  # altura do rodapé de cada coluna (total créditos)
 # ─────────────────────────────────────────────────────────────────────────────
 
 
-def compute_layout(data: CurriculumFile) -> LayoutData:
+def compute_layout(data: CurriculumFile, row_gap: int = ROW_GAP) -> LayoutData:
     columns: List[ColumnLayout] = []
 
     for level in range(1, data.curriculum.levels + 1):
         level_courses = [c for c in data.courses if c.level == level]
         total_credits = sum(c.credits for c in level_courses)
         col_x = (level - 1) * (CARD_WIDTH + COL_GAP)
-        cards_start_y = COL_HEADER_H + ROW_GAP
+        cards_start_y = COL_HEADER_H + row_gap
 
         cards = [
             CardRect(
                 course_code=course.code,
                 x=col_x,
-                y=cards_start_y + i * (CARD_HEIGHT + ROW_GAP),
+                y=cards_start_y + i * (CARD_HEIGHT + row_gap),
                 width=CARD_WIDTH,
                 height=CARD_HEIGHT,
             )
@@ -54,8 +54,8 @@ def compute_layout(data: CurriculumFile) -> LayoutData:
     max_cards = max((len(col.cards) for col in columns), default=0)
     canvas_height = (
         COL_HEADER_H
-        + ROW_GAP
-        + max_cards * (CARD_HEIGHT + ROW_GAP)
+        + row_gap
+        + max_cards * (CARD_HEIGHT + row_gap)
         + COL_FOOTER_H
         + PAGE_MARGIN
     )

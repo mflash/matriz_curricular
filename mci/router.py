@@ -19,15 +19,21 @@ from .types import (
 # ─────────────────────────────────────────────────────────────────────────────
 
 TURN_PENALTY = 14
-CONGESTION_PENALTY = 18
+CONGESTION_PENALTY = 50
+LANE_SPACING = 6.0
+MIN_VERTICAL_CLEARANCE = 6.0
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Roteamento ortogonal com busca em grafo de corredores
 # ─────────────────────────────────────────────────────────────────────────────
 
 
-def compute_routes(data: CurriculumFile, layout: LayoutData) -> RouteData:
-    arrows: List[ArrowRoute] = []
+def compute_routes(
+    data: CurriculumFile,
+    layout: LayoutData,
+    row_gap: int = ROW_GAP,
+    vertical_clearance: float = MIN_VERTICAL_CLEARANCE,
+) -> RouteData:
     segment_usage: Dict[str, int] = {}
 
     outgoing_by_from: Dict[str, List[int]] = {}
@@ -55,6 +61,8 @@ def compute_routes(data: CurriculumFile, layout: LayoutData) -> RouteData:
 
         siblings.sort(key=_key_incoming)
 
+    # Pass 1: compute base paths and build complete segment usage / user lists
+    base_paths: List[Tuple[int, RequirementInput, List[Point]]] = []
     for index, req in enumerate(data.requirements):
         if req.type == "credit_requirement":
             continue
@@ -73,18 +81,29 @@ def compute_routes(data: CurriculumFile, layout: LayoutData) -> RouteData:
             "target": _lane_offset(index, sibs_in),
         }
 
-        points = _route_arrow(
-            from_card, to_card, req, layout, lane_offsets, segment_usage
+        base_path = _route_arrow(
+            from_card, to_card, req, layout, lane_offsets, segment_usage, row_gap
         )
-        _register_segment_usage(points, segment_usage)
+        _register_segment_usage(base_path, segment_usage)
+        base_paths.append((index, req, base_path))
+
+    # Pass 2: apply occupancy-based lane offsets (horizontal + vertical)
+    h_occupancy, v_occupancy = _build_lane_occupancy(base_paths)
+    arrows: List[ArrowRoute] = []
+    for index, req, base_path in base_paths:
+        final_path = _apply_lane_offsets(
+            base_path, index, h_occupancy, v_occupancy, LANE_SPACING
+        )
         arrows.append(
             ArrowRoute(
                 requirement_index=index,
                 type=req.type,
-                points=points,
+                points=final_path,
                 label=req.description if req.type == "special" else None,
             )
         )
+
+    _apply_global_vertical_clearance(arrows, max(0.0, vertical_clearance))
 
     return RouteData(arrows=arrows)
 
@@ -96,10 +115,13 @@ def _route_arrow(
     layout: LayoutData,
     lane_offsets: dict,
     segment_usage: Dict[str, int],
+    row_gap: int,
 ) -> List[Point]:
     if req.type == "corequisite":
-        return _route_corequisite(from_card, to_card, lane_offsets)
-    return _route_forward_arrow(from_card, to_card, layout, lane_offsets, segment_usage)
+        return _route_corequisite(from_card, to_card, lane_offsets, row_gap)
+    return _route_forward_arrow(
+        from_card, to_card, layout, lane_offsets, segment_usage, row_gap
+    )
 
 
 def _route_forward_arrow(
@@ -108,6 +130,7 @@ def _route_forward_arrow(
     layout: LayoutData,
     lane_offsets: dict,
     segment_usage: Dict[str, int],
+    row_gap: int,
 ) -> List[Point]:
     start_x = from_card.x + from_card.width
     start_y = _clamp(
@@ -155,7 +178,7 @@ def _route_forward_arrow(
         )
 
     lane_xs = _build_lane_xs(layout, from_card, to_card, source_lane_x, target_lane_x)
-    corridor_ys = _build_horizontal_corridors(layout)
+    corridor_ys = _build_horizontal_corridors(layout, row_gap)
 
     graph_path = _find_best_corridor_path(
         lane_xs=lane_xs,
@@ -174,7 +197,7 @@ def _route_forward_arrow(
             start_x, start_y, end_x, end_y, from_card, to_card, layout
         )
 
-    base_path = _simplify_orthogonal_path(
+    return _simplify_orthogonal_path(
         [
             Point(start_x, start_y),
             Point(source_lane_x, start_y),
@@ -183,8 +206,6 @@ def _route_forward_arrow(
             Point(end_x, end_y),
         ]
     )
-
-    return _apply_segment_lane_offsets(base_path, segment_usage)
 
 
 def _legacy_forward_route(
@@ -207,7 +228,7 @@ def _legacy_forward_route(
     ]
 
 
-def _build_horizontal_corridors(layout: LayoutData) -> List[float]:
+def _build_horizontal_corridors(layout: LayoutData, row_gap: int) -> List[float]:
     all_cards = [card for col in layout.columns for card in col.cards]
     if not all_cards:
         return []
@@ -215,7 +236,7 @@ def _build_horizontal_corridors(layout: LayoutData) -> List[float]:
     card_h = all_cards[0].height
     max_rows = max(len(col.cards) for col in layout.columns)
     return [
-        first_y - ROW_GAP / 2 + row * (card_h + ROW_GAP) for row in range(max_rows + 1)
+        first_y - row_gap / 2 + row * (card_h + row_gap) for row in range(max_rows + 1)
     ]
 
 
@@ -288,8 +309,8 @@ def _find_best_corridor_path(
         return None
 
     INF = math.inf
-    dist: Dict[Tuple, float] = {}
-    prev: Dict[Tuple, Optional[Tuple]] = {}
+    dist: Dict[Tuple[int, int, str], float] = {}
+    prev: Dict[Tuple[int, int, str], Optional[Tuple[int, int, str]]] = {}
 
     # Initialise source column
     for yi, y in enumerate(ys):
@@ -343,7 +364,7 @@ def _find_best_corridor_path(
                 prev[next_state] = current
 
     # Find best goal on target column
-    best_goal: Optional[Tuple] = None
+    best_goal: Optional[Tuple[int, int, str]] = None
     best_goal_dist = INF
 
     for state, cost in dist.items():
@@ -366,11 +387,11 @@ def _find_best_corridor_path(
 
     # Reconstruct path
     reversed_pts: List[Point] = []
-    state = best_goal
-    while state is not None:
-        xi, yi, _ = state
+    path_state: Optional[Tuple[int, int, str]] = best_goal
+    while path_state is not None:
+        xi, yi, _ = path_state
         reversed_pts.append(Point(xs[xi], ys[yi]))
-        state = prev.get(state)
+        path_state = prev.get(path_state)
 
     return list(reversed(reversed_pts))
 
@@ -433,60 +454,133 @@ def _simplify_orthogonal_path(points: List[Point]) -> List[Point]:
     return simplified
 
 
-def _apply_segment_lane_offsets(
-    points: List[Point], segment_usage: Dict[str, int]
+def _build_lane_occupancy(
+    base_paths: List[Tuple[int, RequirementInput, List[Point]]],
+) -> Tuple[
+    Dict[float, List[Tuple[int, float, float]]],
+    Dict[float, List[Tuple[int, float, float]]],
+]:
+    """Builds occupancy maps for interior lane segments.
+
+    Returns:
+    - horizontal occupancy: y -> list of (arrow_index, x_min, x_max)
+    - vertical occupancy: x -> list of (arrow_index, y_min, y_max)
+
+    Only interior segments (excluding exit stub at index 0 and entry stub at index N-2)
+    are registered, matching exactly what _apply_lane_offsets processes.
+    """
+    h_occupancy: Dict[float, List[Tuple[int, float, float]]] = {}
+    v_occupancy: Dict[float, List[Tuple[int, float, float]]] = {}
+    for index, _req, path in base_paths:
+        # range(1, N-2): segments at indices 1..N-3, i.e. pairs (path[i], path[i+1])
+        for i in range(1, len(path) - 2):
+            a, b = path[i], path[i + 1]
+            if _is_horizontal_segment(a, b):
+                y = a.y
+                x_min = min(a.x, b.x)
+                x_max = max(a.x, b.x)
+                h_occupancy.setdefault(y, []).append((index, x_min, x_max))
+            elif _is_vertical_segment(a, b):
+                x = a.x
+                y_min = min(a.y, b.y)
+                y_max = max(a.y, b.y)
+                v_occupancy.setdefault(x, []).append((index, y_min, y_max))
+    return h_occupancy, v_occupancy
+
+
+def _apply_lane_offsets(
+    points: List[Point],
+    arrow_index: int,
+    h_occupancy: Dict[float, List[Tuple[int, float, float]]],
+    v_occupancy: Dict[float, List[Tuple[int, float, float]]],
+    spacing: float = LANE_SPACING,
 ) -> List[Point]:
-    if len(points) < 5:
+    """Evenly distribute arrows whose interior lane segments overlap.
+
+    Approach:
+    - horizontal overlap groups define y-shifts
+    - vertical overlap groups define x-shifts
+    Then apply both to interior points and restore orthogonality.
+    """
+    if len(points) < 4:
         return points
 
-    first_seg = 1
-    last_seg = len(points) - 3
-    if last_seg < first_seg:
-        return points
-
-    seg_offset: Dict[int, float] = {}
-    for i in range(first_seg, last_seg + 1):
+    # Build per-segment shifts from INTERIOR segments (same range as build func)
+    # Interior segment index i covers the pair (points[i], points[i+1])
+    # range(1, N-2) excludes exit stub (i=0) and entry stub (i=N-2)
+    seg_y_shift: Dict[int, float] = {}
+    seg_x_shift: Dict[int, float] = {}
+    for i in range(1, len(points) - 2):
         a, b = points[i], points[i + 1]
-        if not _is_orthogonal_segment(a, b):
-            continue
-        usage = segment_usage.get(_segment_key(a, b), 0)
-        seg_offset[i] = _alternating_lane_offset(usage, 3.5)
+        if _is_horizontal_segment(a, b):
+            y = a.y
+            x_min = min(a.x, b.x)
+            x_max = max(a.x, b.x)
+            overlapping = sorted(
+                {
+                    idx
+                    for idx, ox_min, ox_max in h_occupancy.get(y, [])
+                    if ox_min < x_max and ox_max > x_min
+                }
+            )
+            n = len(overlapping)
+            if n > 1:
+                try:
+                    pos = overlapping.index(arrow_index)
+                except ValueError:
+                    continue
+                center = (n - 1) / 2.0
+                seg_y_shift[i] = (pos - center) * spacing
+        elif _is_vertical_segment(a, b):
+            x = a.x
+            y_min = min(a.y, b.y)
+            y_max = max(a.y, b.y)
+            overlapping = sorted(
+                {
+                    idx
+                    for idx, oy_min, oy_max in v_occupancy.get(x, [])
+                    if oy_min < y_max and oy_max > y_min
+                }
+            )
+            n = len(overlapping)
+            if n > 1:
+                try:
+                    pos = overlapping.index(arrow_index)
+                except ValueError:
+                    continue
+                center = (n - 1) / 2.0
+                seg_x_shift[i] = (pos - center) * spacing
 
+    if not seg_y_shift and not seg_x_shift:
+        return points
+
+    # Shift ALL interior points (i=1..N-2) matching shifted lane axes.
+    # Points 0 and N-1 (card exit/entry) are never touched.
+    # Any introduced diagonals are fixed by _ensure_orthogonal.
     shifted = [Point(p.x, p.y) for p in points]
-
-    for i in range(2, len(shifted) - 2):
+    for i in range(1, len(shifted) - 1):
         left_idx = i - 1
         right_idx = i
 
-        left_off = seg_offset.get(left_idx, 0.0)
-        right_off = seg_offset.get(right_idx, 0.0)
+        left_x = seg_x_shift.get(left_idx)
+        right_x = seg_x_shift.get(right_idx)
+        if left_x is not None and right_x is not None:
+            shifted[i].x += (left_x + right_x) / 2.0
+        elif left_x is not None:
+            shifted[i].x += left_x
+        elif right_x is not None:
+            shifted[i].x += right_x
 
-        left_seg_a = points[left_idx]
-        left_seg_b = points[left_idx + 1]
-        right_seg_a = points[right_idx]
-        right_seg_b = points[right_idx + 1]
-
-        left_vertical = _is_vertical_segment(left_seg_a, left_seg_b)
-        right_vertical = _is_vertical_segment(right_seg_a, right_seg_b)
-        left_horizontal = _is_horizontal_segment(left_seg_a, left_seg_b)
-        right_horizontal = _is_horizontal_segment(right_seg_a, right_seg_b)
-
-        x_shift = right_off if right_vertical else (left_off if left_vertical else 0.0)
-        y_shift = (
-            right_off if right_horizontal else (left_off if left_horizontal else 0.0)
-        )
-
-        shifted[i].x += x_shift
-        shifted[i].y += y_shift
+        left_y = seg_y_shift.get(left_idx)
+        right_y = seg_y_shift.get(right_idx)
+        if left_y is not None and right_y is not None:
+            shifted[i].y += (left_y + right_y) / 2.0
+        elif left_y is not None:
+            shifted[i].y += left_y
+        elif right_y is not None:
+            shifted[i].y += right_y
 
     return _ensure_orthogonal(shifted)
-
-
-def _alternating_lane_offset(usage: int, spacing: float) -> float:
-    if usage <= 0:
-        return 0.0
-    step = math.ceil(usage / 2)
-    return (1 if usage % 2 == 1 else -1) * step * spacing
 
 
 def _ensure_orthogonal(points: List[Point]) -> List[Point]:
@@ -500,6 +594,84 @@ def _ensure_orthogonal(points: List[Point]) -> List[Point]:
             out.append(Point(curr.x, prev.y))
         out.append(curr)
     return _simplify_orthogonal_path(out)
+
+
+def _apply_global_vertical_clearance(arrows: List[ArrowRoute], spacing: float) -> None:
+    """Enforce minimum spacing between overlapping interior vertical segments."""
+    segments_by_x: Dict[float, List[Tuple[int, int, float, float]]] = {}
+
+    # Collect interior vertical segments by x lane.
+    for arrow_idx, arrow in enumerate(arrows):
+        pts = arrow.points
+        for seg_idx in range(1, len(pts) - 2):
+            a = pts[seg_idx]
+            b = pts[seg_idx + 1]
+            if not _is_vertical_segment(a, b):
+                continue
+            y_min = min(a.y, b.y)
+            y_max = max(a.y, b.y)
+            segments_by_x.setdefault(a.x, []).append((arrow_idx, seg_idx, y_min, y_max))
+
+    # Compute per-point x adjustments for each arrow.
+    point_dx: Dict[Tuple[int, int], List[float]] = {}
+
+    for x_lane, segments in segments_by_x.items():
+        if len(segments) <= 1:
+            continue
+
+        # Build connected overlap components on this x lane.
+        clusters: List[List[int]] = []
+        visited: set = set()
+        for i in range(len(segments)):
+            if i in visited:
+                continue
+            stack = [i]
+            visited.add(i)
+            cluster: List[int] = []
+            while stack:
+                cur = stack.pop()
+                cluster.append(cur)
+                _, _, c_min, c_max = segments[cur]
+                for j in range(len(segments)):
+                    if j in visited:
+                        continue
+                    _, _, o_min, o_max = segments[j]
+                    if o_min < c_max and o_max > c_min:
+                        visited.add(j)
+                        stack.append(j)
+            clusters.append(cluster)
+
+        for cluster in clusters:
+            if len(cluster) <= 1:
+                continue
+
+            # Stable ordering keeps output deterministic.
+            ordered = sorted(
+                (segments[idx] for idx in cluster), key=lambda item: (item[0], item[1])
+            )
+            center = (len(ordered) - 1) / 2.0
+
+            for pos, (arrow_idx, seg_idx, _y_min, _y_max) in enumerate(ordered):
+                dx = (pos - center) * spacing
+                if dx == 0.0:
+                    continue
+                p1 = (arrow_idx, seg_idx)
+                p2 = (arrow_idx, seg_idx + 1)
+                point_dx.setdefault(p1, []).append(dx)
+                point_dx.setdefault(p2, []).append(dx)
+
+    # Apply averaged per-point adjustments to interior points only.
+    for (arrow_idx, point_idx), deltas in point_dx.items():
+        if not deltas:
+            continue
+        arrow = arrows[arrow_idx]
+        if point_idx <= 0 or point_idx >= len(arrow.points) - 1:
+            continue
+        arrow.points[point_idx].x += sum(deltas) / len(deltas)
+
+    # Re-orthogonalise after global adjustments.
+    for arrow in arrows:
+        arrow.points = _ensure_orthogonal(arrow.points)
 
 
 def _is_orthogonal_segment(a: Point, b: Point) -> bool:
@@ -518,6 +690,7 @@ def _route_corequisite(
     from_card: CardRect,
     to_card: CardRect,
     lane_offsets: dict,
+    row_gap: int,
 ) -> List[Point]:
     from_center_x = from_card.x + from_card.width / 2
     to_center_x = to_card.x + to_card.width / 2
@@ -525,7 +698,7 @@ def _route_corequisite(
 
     gap_down = abs(to_card.y - (from_card.y + from_card.height))
     gap_up = abs(from_card.y - (to_card.y + to_card.height))
-    is_adjacent_vertical = abs(gap_down - ROW_GAP) <= 1 or abs(gap_up - ROW_GAP) <= 1
+    is_adjacent_vertical = abs(gap_down - row_gap) <= 1 or abs(gap_up - row_gap) <= 1
 
     overlap_left = max(from_card.x + 8, to_card.x + 8)
     overlap_right = min(
@@ -556,7 +729,7 @@ def _route_corequisite(
     end_y = to_card.y
 
     mid_y = (
-        start_y + ROW_GAP / 2 + (lane_offsets["source"] - lane_offsets["target"]) * 0.35
+        start_y + row_gap / 2 + (lane_offsets["source"] - lane_offsets["target"]) * 0.35
     )
 
     return [

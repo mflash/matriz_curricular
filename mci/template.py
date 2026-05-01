@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-from .layout import CARD_WIDTH, COL_HEADER_H
+from .layout import CARD_HEIGHT, CARD_WIDTH, COL_HEADER_H, ROW_GAP
 from .types import (
     ArrowRoute,
     CardRect,
@@ -97,6 +97,7 @@ def render_html(
     layout: LayoutData,
     routes: RouteData,
     link_style: str = "paths",
+    row_gap: int = ROW_GAP,
 ) -> str:
     course_map = {c.code: c for c in data.courses}
     category_map = {c.id: c for c in data.categories}
@@ -108,7 +109,7 @@ def render_html(
 
     use_category_fill = data.card_fill_style == "category"
 
-    css_block = _render_css(unique_tags, data.categories)
+    css_block = _render_css(unique_tags, data.categories, row_gap)
     header_block = _render_header(data)
     columns_html = "\n".join(
         _render_column(col, course_map, credit_req_map, category_map, use_category_fill)
@@ -430,7 +431,7 @@ def _render_legend(
     tags: List[str], link_style: str, categories: List[CategoryInput]
 ) -> str:
     tag_items = "\n".join(
-        f'      <dt><span class="tag tag-{_esc(t)}">{_esc(t)}</span></dt>\n      <dd>Disciplina {_esc(t)}</dd>'
+        f'      <dt><span class="tag tag-{_esc(t)}">{_esc(t)}</span></dt>\n      <dd>Disciplinas {_esc(t)}</dd>'
         for t in tags
     )
 
@@ -525,7 +526,7 @@ def _render_credit_summary(courses: List[CourseInput], unique_tags: List[str]) -
 # ─── CSS ─────────────────────────────────────────────────────────────────────
 
 
-def _render_css(tags: List[str], categories: List[CategoryInput]) -> str:
+def _render_css(tags: List[str], categories: List[CategoryInput], row_gap: int) -> str:
     tag_rules = "\n".join(
         f"    .tag-{_esc(t)} {{ background: {bg}; color: {fg}; }}"
         for i, t in enumerate(tags)
@@ -541,7 +542,9 @@ def _render_css(tags: List[str], categories: List[CategoryInput]) -> str:
     css_template = _load_asset_template("template.css")
     return (
         css_template.replace("{{CARD_WIDTH}}", str(CARD_WIDTH))
+        .replace("{{CARD_HEIGHT}}", str(CARD_HEIGHT))
         .replace("{{COL_HEADER_H}}", str(COL_HEADER_H))
+        .replace("{{ROW_GAP}}", str(row_gap))
         .replace("{{TAG_RULES}}", tag_rules)
         .replace("{{FILL_RULES}}", fill_rules)
     )

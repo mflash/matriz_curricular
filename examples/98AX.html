@@ -1,0 +1,2153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ciência da Computação</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    /* Cabecalho */
+    .course-header {
+      background: #1a3a6b;
+      color: #fff;
+      padding: 16px 24px;
+      text-align: left;
+    }
+    .course-title { font-size: 1.4rem; font-weight: bold; }
+    .course-meta  { font-size: 0.85rem; opacity: 0.8; margin-top: 4px; }
+
+    /* Layout geral */
+    .matrix-wrapper {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px;
+    }
+    .matrix-area {
+      width: var(--matrix-base-w);
+      height: var(--matrix-base-h);
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .matrix-canvas {
+      position: relative;
+      transform-origin: top left;
+      isolation: isolate;
+    }
+    @media (max-width: 1200px) {
+      .matrix-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        padding: 12px;
+      }
+      .legend-panel {
+        width: fit-content;
+        max-width: 100%;
+      }
+    }
+
+    /* Colunas */
+    .columns-row {
+      display: flex;
+      gap: 60px;
+      align-items: flex-start;
+      position: relative;
+      z-index: 1;
+    }
+    .level-column {
+      width: 140px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .col-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 48px;
+      justify-content: center;
+      background: #e8ecf5;
+      border-bottom: 2px solid #1a3a6b;
+      border-radius: 4px 4px 0 0;
+    }
+    .col-roman   { font-size: 1.1rem; font-weight: bold; color: #1a3a6b; }
+    .col-credits { font-size: 0.75rem; color: #555; }
+
+    .cards-area {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 40px 0;
+    }
+
+    /* Wrapper do cartao */
+    .card-wrapper {
+      position: relative;
+      width: 100%;
+      height: 72px;
+    }
+
+    /* Badge de requisito de creditos minimos */
+    .credit-req-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      background: #f0f0f0;
+      color: #555;
+      border: 1px solid #aaa;
+      border-radius: 3px;
+      padding: 1px 5px;
+      white-space: nowrap;
+    }
+    .card-wrapper .credit-req-badge {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    /* Cartoes de disciplina */
+    .course-card {
+      width: 100%;
+      height: 72px;
+      background: #fff;
+      border: 1.5px solid #aaa;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: box-shadow 0.15s, opacity 0.15s;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+    .course-card:hover,
+    .course-card:focus {
+      box-shadow: 0 0 0 3px #1a3a6b55;
+      outline: none;
+    }
+    .course-card.highlighted {
+      border-color: #1a3a6b;
+      box-shadow: 0 0 0 3px #1a3a6b99;
+    }
+    .course-card.faded {
+      opacity: 0.25;
+    }
+    .card-body {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 6px 8px 2px;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+    .card-name    { font-size: 0.78rem; line-height: 1.3; }
+    .card-credits { font-size: 0.75rem; color: #555; white-space: nowrap; margin-left: 4px; }
+    .card-footer  { margin-top: auto; padding: 2px 6px 4px; display: flex; gap: 4px; flex-wrap: wrap; min-height: 16px; }
+    .card-footer:not(:empty) { background: rgba(255,255,255,0.85); }
+    .course-card.fill-category .card-name,
+    .course-card.fill-category .card-credits {
+      color: #222;
+    }
+    .course-card.fill-category .card-footer:not(:empty) {
+      background: rgba(255, 255, 255, 0.45);
+    }
+    .course-card.fill-category .tag {
+      background: rgba(0,0,0,0.12);
+      color: #222;
+      border: 1px solid rgba(0,0,0,0.2);
+    }
+
+    /* Tags */
+    .tag {
+      font-size: 0.65rem;
+      border-radius: 10px;
+      padding: 1px 6px;
+      font-weight: 600;
+    }
+    .tag-online { background: #cce5ff; color: #004085; }
+    .tag-eletivas { background: #f8d7da; color: #721c24; }
+    .tag-extensionista { background: #d4edda; color: #155724; }
+    .course-card.fill-maths { background: #ef8080; border-color: #ef8080; }
+    .course-card.fill-logic { background: #dcdc05; border-color: #dcdc05; }
+    .course-card.fill-algo { background: #88b9ee; border-color: #88b9ee; }
+    .course-card.fill-met { background: #4ecf6c; border-color: #4ecf6c; }
+    .course-card.fill-infra { background: #f6ac5a; border-color: #f6ac5a; }
+    .course-card.fill-aplic { background: #d9b8ec; border-color: #d9b8ec; }
+    .course-card.fill-sist { background: #c3ac68; border-color: #c3ac68; }
+    .course-card.fill-social { background: #10dec3; border-color: #10dec3; }
+    .course-card.fill-net { background: #30c1d9; border-color: #30c1d9; }
+
+    /* Setas SVG */
+    .arrows-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .arrow-line {
+      fill: none;
+      stroke: #1a3a6b;
+    }
+    .arrows-layer.link-style-paths .arrow-line {
+      opacity: 0.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .arrows-layer.link-style-arrows .arrow-line {
+      opacity: 0.9;
+      stroke-linecap: butt;
+      stroke-linejoin: miter;
+    }
+    .arrow-group[data-type="special"] .arrow-line {
+      stroke: #b45309;
+    }
+    .arrow-group[data-type="corequisite"] .arrow-line {
+      stroke: #475569;
+    }
+    .arrows-layer.hidden .arrow-group { display: none; }
+    .arrow-label {
+      font-size: 0.65rem;
+      fill: #555;
+    }
+
+    /* Legenda */
+    .legend-panel {
+      min-width: 180px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 12px;
+      flex-shrink: 0;
+    }
+    .legend-title {
+      font-size: 0.9rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 6px;
+    }
+    .legend-list {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 6px 10px;
+      align-items: center;
+      font-size: 0.78rem;
+    }
+    .legend-list dt { display: flex; align-items: center; }
+    .legend-subtitle {
+      grid-column: 1 / -1;
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px solid #e5e7eb;
+      font-weight: 700;
+      color: #374151;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .legend-subtitle-spacer { display: none; }
+    .category-chip {
+      display: inline-block;
+      width: 24px;
+      height: 12px;
+      border-radius: 999px;
+      border: 1px solid #9ca3af;
+      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+    }
+    .legend-toggle {
+      margin-top: 20px;
+      padding-top: 12px;
+      border-top: 1px solid #ddd;
+      font-size: 0.8rem;
+    }
+    .legend-toggle label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #1a3a6b;
+    }
+    .legend-toggle input[type="checkbox"] {
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+      accent-color: #1a3a6b;
+    }
+
+    /* Popup */
+    .popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 16px;
+      animation: popup-backdrop-in 0.18s ease;
+    }
+    .popup[hidden] { display: none; }
+    @keyframes popup-backdrop-in {
+      from { background: rgba(0,0,0,0); }
+      to   { background: rgba(0,0,0,0.5); }
+    }
+    .popup-content {
+      background: #fff;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+      max-height: 88vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.28);
+      animation: popup-slide-in 0.18s ease;
+    }
+    @keyframes popup-slide-in {
+      from { opacity: 0; transform: translateY(-12px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0)    scale(1); }
+    }
+    .popup-close {
+      position: absolute;
+      top: 12px; right: 12px;
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,0.18);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      transition: background 0.15s;
+    }
+    .popup-close:hover { background: rgba(255,255,255,0.32); }
+    .popup-close svg   { width: 15px; height: 15px; }
+    .popup-header {
+      background: #1a3a6b;
+      color: #fff;
+      padding: 22px 52px 18px 22px;
+      border-radius: 12px 12px 0 0;
+    }
+    .popup-code {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 4px;
+    }
+    .popup-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+    .popup-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .popup-header .tag {
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .popup-body {
+      padding: 18px 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .popup-stats {
+      display: flex;
+      gap: 10px;
+    }
+    .popup-stat {
+      flex: 1;
+      background: #f2f5fb;
+      border: 1px solid #dde3f0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .popup-stat-value {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1a3a6b;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .popup-stat-label {
+      font-size: 0.7rem;
+      color: #777;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+    .popup-section-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #1a3a6b;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 8px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid #e8ecf5;
+    }
+    .popup-syllabus-text {
+      font-size: 0.84rem;
+      color: #444;
+      line-height: 1.65;
+    }
+    .popup-req-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .popup-req-item {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: #333;
+    }
+    .popup-req-item::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #1a3a6b;
+      flex-shrink: 0;
+      position: relative;
+      top: -1px;
+    }
+    .popup-req-code {
+      font-weight: 700;
+      color: #1a3a6b;
+      font-size: 0.77rem;
+      white-space: nowrap;
+    }
+    .popup-req-name   { color: #555; }
+    .popup-empty {
+      font-size: 0.82rem;
+      color: #aaa;
+      font-style: italic;
+    }
+
+    /* Totalizador de creditos */
+    .credits-summary {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid #ddd;
+    }
+    .credits-summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
+    }
+    .credits-summary-table td {
+      padding: 3px 4px;
+      vertical-align: middle;
+    }
+    .credits-total-row td {
+      font-weight: 700;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #eee;
+    }
+    .credits-value {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .credits-summary-table tr:not(.credits-total-row) td:first-child {
+      padding-top: 4px;
+    }
+
+  </style>
+</head>
+<body>
+<header class="course-header">
+  <div class="course-title">Ciência da Computação</div>
+  <div class="course-meta">98AX &bull; desde 2027/1</div>
+</header>
+<div class="matrix-wrapper">
+  <div class="matrix-area" style="--matrix-base-w:1540px; --matrix-base-h:1036px;">
+    <div class="matrix-canvas" style="width:1540px; height:1036px;">
+      <svg class="arrows-layer link-style-arrows" width="1540" height="1036" aria-hidden="true">
+      <defs>
+        <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6 Z" fill="#333"/>
+        </marker>
+      </defs>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="95303-04"
+       data-to="4611E-04">
+      <polyline points="140,124.0 200,124.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98707-02"
+       data-to="98702-04">
+      <polyline points="140,236.0 161.0,236.0 161.0,177.0 379.0,177.0 379.0,232.0 400,232.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4611C-06"
+       data-to="4611F-04">
+      <polyline points="140,348.0 158.0,348.0 158.0,401.0 179.0,401.0 179.0,460.0 200,460.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4611C-06"
+       data-to="4645G-04">
+      <polyline points="140,340.0 161.0,340.0 161.0,292.0 179.0,292.0 179.0,236.0 200,236.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4611C-06"
+       data-to="98701-04">
+      <polyline points="140,356.0 164.0,356.0 164.0,401.0 370.0,401.0 370.0,792.0 400,792.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="95300-04"
+       data-to="95301-04">
+      <polyline points="140,680.0 158.0,680.0 158.0,737.0 179.0,737.0 179.0,796.0 200,796.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4611F-04"
+       data-to="98906-04">
+      <polyline points="340,460.0 358.0,460.0 358.0,513.0 579.0,513.0 579.0,464.0 600,464.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4611F-04"
+       data-to="TMP_0006220">
+      <polyline points="340,468.0 364.0,468.0 364.0,519.0 382.0,519.0 382.0,572.0 400,572.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4645G-04"
+       data-to="4645H-04">
+      <polyline points="340,236.0 361.0,236.0 361.0,289.0 379.0,289.0 379.0,348.0 400,348.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98901-04"
+       data-to="98902-02">
+      <polyline points="340,344.0 361.0,344.0 361.0,292.0 779.0,292.0 779.0,236.0 800,236.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TMP_0006195"
+       data-to="TMP_0006218">
+      <polyline points="340,568.0 358.0,568.0 358.0,628.0 382.0,628.0 382.0,684.0 400,684.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4611E-04"
+       data-to="4646M-04">
+      <polyline points="340,116.0 358.0,116.0 358.0,59.0 1179.0,59.0 1179.0,124.0 1200,124.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4611E-04"
+       data-to="TMP_0006219">
+      <polyline points="340,132.0 361.0,132.0 361.0,180.0 579.0,180.0 579.0,232.0 600,232.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="4645H-04"
+       data-to="4646Z-04">
+      <polyline points="540,348.0 600,348.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TMP_0006199"
+       data-to="TMP_0006222">
+      <polyline points="540,460.0 561.0,460.0 561.0,398.0 976.0,398.0 976.0,456.0 1000,456.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="TMP_0006219"
+       data-to="98706-04">
+      <polyline points="740,236.0 761.0,236.0 761.0,177.0 779.0,177.0 779.0,124.0 800,124.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98906-04"
+       data-to="TMP_0006222">
+      <polyline points="740,460.0 761.0,460.0 761.0,507.0 976.0,507.0 976.0,464.0 1000,464.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98700-04"
+       data-to="98709-04">
+      <polyline points="740,568.0 761.0,568.0 761.0,519.0 779.0,519.0 779.0,460.0 800,460.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98700-04"
+       data-to="4646I-04">
+      <polyline points="740,576.0 761.0,576.0 761.0,625.0 779.0,625.0 779.0,684.0 800,684.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="95304-04"
+       data-to="4611G-04">
+      <polyline points="740,796.0 758.0,796.0 758.0,731.0 1376.0,731.0 1376.0,348.0 1400,348.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98706-04"
+       data-to="TMP_0006254">
+      <polyline points="940,124.0 961.0,124.0 961.0,174.0 973.0,174.0 973.0,344.0 1000,344.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="95302-04"
+       data-to="4646N-04">
+      <polyline points="940,796.0 961.0,796.0 961.0,737.0 1176.0,737.0 1176.0,680.0 1200,680.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98716-04"
+       data-to="4646X-04">
+      <polyline points="940,344.0 961.0,344.0 961.0,292.0 1179.0,292.0 1179.0,348.0 1200,348.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98709-04"
+       data-to="TMP_0006223">
+      <polyline points="940,468.0 958.0,468.0 958.0,516.0 973.0,516.0 973.0,684.0 1000,684.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="prerequisite"
+       data-from="98711-02"
+       data-to="98714-02">
+      <polyline points="1340,460.0 1361.0,460.0 1361.0,404.0 1382.0,404.0 1382.0,236.0 1400,236.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="95303-04"
+       data-to="TMP_0006217">
+      <polyline points="140,128.0 161.0,128.0 161.0,68.0 379.0,68.0 379.0,124.0 400,124.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="98705-02"
+       data-to="TMP_0006195">
+      <polyline points="140,572.0 200,572.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="95300-04"
+       data-to="95304-04">
+      <polyline points="140,688.0 164.0,688.0 164.0,737.0 579.0,737.0 579.0,796.0 600,796.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="4611E-04"
+       data-to="TMP_0006205">
+      <polyline points="340,124.0 364.0,124.0 364.0,71.0 579.0,71.0 579.0,124.0 600,124.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="95301-04"
+       data-to="4646N-04">
+      <polyline points="340,796.0 361.0,796.0 361.0,743.0 1182.0,743.0 1182.0,688.0 1200,688.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="98901-04"
+       data-to="98906-04">
+      <polyline points="340,352.0 361.0,352.0 361.0,407.0 579.0,407.0 579.0,456.0 600,456.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="4611F-04"
+       data-to="98716-04">
+      <polyline points="340,452.0 361.0,452.0 361.0,413.0 779.0,413.0 779.0,348.0 800,348.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="TMP_0006195"
+       data-to="98701-04">
+      <polyline points="340,576.0 364.0,576.0 364.0,746.0 382.0,746.0 382.0,800.0 400,800.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="4645H-04"
+       data-to="TMP_0006219">
+      <polyline points="540,340.0 561.0,340.0 561.0,295.0 579.0,295.0 579.0,240.0 600,240.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="TMP_0006217"
+       data-to="4647F-04">
+      <polyline points="540,120.0 561.0,120.0 561.0,74.0 979.0,74.0 979.0,124.0 1000,124.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="TMP_0006217"
+       data-to="4645K-04">
+      <polyline points="540,128.0 561.0,128.0 561.0,186.0 982.0,186.0 982.0,232.0 1000,232.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="TMP_0006220"
+       data-to="98700-04">
+      <polyline points="540,572.0 600,572.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="TMP_0006218"
+       data-to="98700-04">
+      <polyline points="540,688.0 558.0,688.0 558.0,625.0 579.0,625.0 579.0,576.0 600,576.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="TMP_0006218"
+       data-to="4645K-04">
+      <polyline points="540,680.0 564.0,680.0 564.0,631.0 988.0,631.0 988.0,240.0 1000,240.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="TMP_0006221"
+       data-to="TMP_0006224">
+      <polyline points="740,684.0 764.0,684.0 764.0,749.0 979.0,749.0 979.0,796.0 1000,796.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="98902-02"
+       data-to="98H00-04">
+      <polyline points="940,236.0 961.0,236.0 961.0,186.0 1179.0,186.0 1179.0,236.0 1200,236.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="98709-04"
+       data-to="4647B-04">
+      <polyline points="940,452.0 964.0,452.0 964.0,522.0 985.0,522.0 985.0,572.0 1000,572.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="98716-04"
+       data-to="TMP_0006254">
+      <polyline points="940,348.0 1000,348.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="special"
+       data-from="4646I-04"
+       data-to="4645J-04">
+      <polyline points="940,684.0 961.0,684.0 961.0,631.0 1179.0,631.0 1179.0,572.0 1200,572.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="corequisite"
+       data-from="4645H-04"
+       data-to="98702-04">
+      <polyline points="470.0,312 470.0,272"
+      stroke-dasharray="3,3"
+      stroke-width="1.4"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+    <g class="arrow-group"
+       data-type="corequisite"
+       data-from="98709-04"
+       data-to="98710-02">
+      <polyline points="870.0,496 870.0,536"
+      stroke-dasharray="3,3"
+      stroke-width="1.4"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
+      
+    </g>
+      </svg>
+  <div class="columns-row">
+      <div class="level-column" data-level="1">
+        <div class="col-header">
+          <span class="col-roman">I</span>
+          <span class="col-credits">22 créditos</span>
+        </div>
+        <div class="cards-area">
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-logic"
+               id="card-95303-04"
+               data-code="95303-04"
+               tabindex="0"
+               role="button"
+               aria-label="Matemática Discreta">
+              <div class="card-body">
+                <span class="card-name">Matemática Discreta</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-met"
+               id="card-98707-02"
+               data-code="98707-02"
+               tabindex="0"
+               role="button"
+               aria-label="Metodologia Científica">
+              <div class="card-body">
+                <span class="card-name">Metodologia Científica</span>
+                <span class="card-credits">(2)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-algo"
+               id="card-4611C-06"
+               data-code="4611C-06"
+               tabindex="0"
+               role="button"
+               aria-label="Fundamentos de Programação">
+              <div class="card-body">
+                <span class="card-name">Fundamentos de Programação</span>
+                <span class="card-credits">(6)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-social"
+               id="card-1501A-04"
+               data-code="1501A-04"
+               tabindex="0"
+               role="button"
+               aria-label="Ética e Cidadania">
+              <div class="card-body">
+                <span class="card-name">Ética e Cidadania</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-infra"
+               id="card-98705-02"
+               data-code="98705-02"
+               tabindex="0"
+               role="button"
+               aria-label="Introdução à Computação">
+              <div class="card-body">
+                <span class="card-name">Introdução à Computação</span>
+                <span class="card-credits">(2)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-maths"
+               id="card-95300-04"
+               data-code="95300-04"
+               tabindex="0"
+               role="button"
+               aria-label="Cálculo I">
+              <div class="card-body">
+                <span class="card-name">Cálculo I</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="level-column" data-level="2">
+        <div class="col-header">
+          <span class="col-roman">II</span>
+          <span class="col-credits">50 créditos</span>
+        </div>
+        <div class="cards-area">
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-logic"
+               id="card-4611E-04"
+               data-code="4611E-04"
+               tabindex="0"
+               role="button"
+               aria-label="Lógica para Computação">
+              <div class="card-body">
+                <span class="card-name">Lógica para Computação</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-algo"
+               id="card-4645G-04"
+               data-code="4645G-04"
+               tabindex="0"
+               role="button"
+               aria-label="Algoritmos e Estruturas de Dados I">
+              <div class="card-body">
+                <span class="card-name">Algoritmos e Estruturas de Dados I</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-infra"
+               id="card-98901-04"
+               data-code="98901-04"
+               tabindex="0"
+               role="button"
+               aria-label="Banco de Dados I">
+              <div class="card-body">
+                <span class="card-name">Banco de Dados I</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-algo"
+               id="card-4611F-04"
+               data-code="4611F-04"
+               tabindex="0"
+               role="button"
+               aria-label="Programação Orientada a Objetos">
+              <div class="card-body">
+                <span class="card-name">Programação Orientada a Objetos</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-infra"
+               id="card-TMP_0006195"
+               data-code="TMP_0006195"
+               tabindex="0"
+               role="button"
+               aria-label="Organização e Arquitetura de Computadores I">
+              <div class="card-body">
+                <span class="card-name">Organização e Arquitetura de Computadores I</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-maths"
+               id="card-TMP_0006253"
+               data-code="TMP_0006253"
+               tabindex="0"
+               role="button"
+               aria-label="Empreendedorismo">
+              <div class="card-body">
+                <span class="card-name">Empreendedorismo</span>
+                <span class="card-credits">(2)</span>
+              </div>
+              <div class="card-footer"><span class="tag tag-online">online</span></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-maths"
+               id="card-95301-04"
+               data-code="95301-04"
+               tabindex="0"
+               role="button"
+               aria-label="Cálculo II">
+              <div class="card-body">
+                <span class="card-name">Cálculo II</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card"
+               id="card-980E8-24"
+               data-code="980E8-24"
+               tabindex="0"
+               role="button"
+               aria-label="Disciplinas Eletivas">
+              <div class="card-body">
+                <span class="card-name">Disciplinas Eletivas</span>
+                <span class="card-credits">(24)</span>
+              </div>
+              <div class="card-footer"><span class="tag tag-eletivas">eletivas</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="level-column" data-level="3">
+        <div class="col-header">
+          <span class="col-roman">III</span>
+          <span class="col-credits">26 créditos</span>
+        </div>
+        <div class="cards-area">
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-logic"
+               id="card-TMP_0006217"
+               data-code="TMP_0006217"
+               tabindex="0"
+               role="button"
+               aria-label="Linguagens, Autômatos e Computação">
+              <div class="card-body">
+                <span class="card-name">Linguagens, Autômatos e Computação</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-met"
+               id="card-98702-04"
+               data-code="98702-04"
+               tabindex="0"
+               role="button"
+               aria-label="Prática em Pesquisa">
+              <div class="card-body">
+                <span class="card-name">Prática em Pesquisa</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"><span class="tag tag-extensionista">extensionista</span></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-algo"
+               id="card-4645H-04"
+               data-code="4645H-04"
+               tabindex="0"
+               role="button"
+               aria-label="Algoritmos e Estruturas de Dados II">
+              <div class="card-body">
+                <span class="card-name">Algoritmos e Estruturas de Dados II</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+          <div class="credit-req-badge">40 CR</div>
+            <div class="course-card fill-category fill-sist"
+               id="card-TMP_0006199"
+               data-code="TMP_0006199"
+               tabindex="0"
+               role="button"
+               aria-label="Engenharia de Software">
+              <div class="card-body">
+                <span class="card-name">Engenharia de Software</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"><span class="tag tag-extensionista">extensionista</span></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-infra"
+               id="card-TMP_0006220"
+               data-code="TMP_0006220"
+               tabindex="0"
+               role="button"
+               aria-label="Programação Concorrente">
+              <div class="card-body">
+                <span class="card-name">Programação Concorrente</span>
+                <span class="card-credits">(2)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-infra"
+               id="card-TMP_0006218"
+               data-code="TMP_0006218"
+               tabindex="0"
+               role="button"
+               aria-label="Organização e Arquitetura de Computadores II">
+              <div class="card-body">
+                <span class="card-name">Organização e Arquitetura de Computadores II</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-algo"
+               id="card-98701-04"
+               data-code="98701-04"
+               tabindex="0"
+               role="button"
+               aria-label="Programação de Baixo Nível">
+              <div class="card-body">
+                <span class="card-name">Programação de Baixo Nível</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="level-column" data-level="4">
+        <div class="col-header">
+          <span class="col-roman">IV</span>
+          <span class="col-credits">26 créditos</span>
+        </div>
+        <div class="cards-area">
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-aplic"
+               id="card-TMP_0006205"
+               data-code="TMP_0006205"
+               tabindex="0"
+               role="button"
+               aria-label="Programação Funcional">
+              <div class="card-body">
+                <span class="card-name">Programação Funcional</span>
+                <span class="card-credits">(2)</span>
+              </div>
+              <div class="card-footer"><span class="tag tag-online">online</span></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-sist"
+               id="card-TMP_0006219"
+               data-code="TMP_0006219"
+               tabindex="0"
+               role="button"
+               aria-label="Fundamentos de Inteligência Artificial">
+              <div class="card-body">
+                <span class="card-name">Fundamentos de Inteligência Artificial</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"><span class="tag tag-online">online</span></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-algo"
+               id="card-4646Z-04"
+               data-code="4646Z-04"
+               tabindex="0"
+               role="button"
+               aria-label="Projeto e Otimização de Algoritmos">
+              <div class="card-body">
+                <span class="card-name">Projeto e Otimização de Algoritmos</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-sist"
+               id="card-98906-04"
+               data-code="98906-04"
+               tabindex="0"
+               role="button"
+               aria-label="Projeto e Arquitetura de Software">
+              <div class="card-body">
+                <span class="card-name">Projeto e Arquitetura de Software</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-infra"
+               id="card-98700-04"
+               data-code="98700-04"
+               tabindex="0"
+               role="button"
+               aria-label="Sistemas Operacionais">
+              <div class="card-body">
+                <span class="card-name">Sistemas Operacionais</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+          <div class="credit-req-badge">60 CR</div>
+            <div class="course-card fill-category fill-infra"
+               id="card-TMP_0006221"
+               data-code="TMP_0006221"
+               tabindex="0"
+               role="button"
+               aria-label="Princípios de Segurança em Computação">
+              <div class="card-body">
+                <span class="card-name">Princípios de Segurança em Computação</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-maths"
+               id="card-95304-04"
+               data-code="95304-04"
+               tabindex="0"
+               role="button"
+               aria-label="Probabilidade e Estatística">
+              <div class="card-body">
+                <span class="card-name">Probabilidade e Estatística</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="level-column" data-level="5">
+        <div class="col-header">
+          <span class="col-roman">V</span>
+          <span class="col-credits">24 créditos</span>
+        </div>
+        <div class="cards-area">
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-aplic"
+               id="card-98706-04"
+               data-code="98706-04"
+               tabindex="0"
+               role="button"
+               aria-label="Aprendizado de Máquina">
+              <div class="card-body">
+                <span class="card-name">Aprendizado de Máquina</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"><span class="tag tag-extensionista">extensionista</span></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-infra"
+               id="card-98902-02"
+               data-code="98902-02"
+               tabindex="0"
+               role="button"
+               aria-label="Banco de Dados II">
+              <div class="card-body">
+                <span class="card-name">Banco de Dados II</span>
+                <span class="card-credits">(2)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-aplic"
+               id="card-98716-04"
+               data-code="98716-04"
+               tabindex="0"
+               role="button"
+               aria-label="Computação Gráfica">
+              <div class="card-body">
+                <span class="card-name">Computação Gráfica</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-net"
+               id="card-98709-04"
+               data-code="98709-04"
+               tabindex="0"
+               role="button"
+               aria-label="Fundamentos de Redes de Computadores">
+              <div class="card-body">
+                <span class="card-name">Fundamentos de Redes de Computadores</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-net"
+               id="card-98710-02"
+               data-code="98710-02"
+               tabindex="0"
+               role="button"
+               aria-label="Laboratório de Redes de Computadores">
+              <div class="card-body">
+                <span class="card-name">Laboratório de Redes de Computadores</span>
+                <span class="card-credits">(2)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-infra"
+               id="card-4646I-04"
+               data-code="4646I-04"
+               tabindex="0"
+               role="button"
+               aria-label="Laboratório de Sistemas Operacionais">
+              <div class="card-body">
+                <span class="card-name">Laboratório de Sistemas Operacionais</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-maths"
+               id="card-95302-04"
+               data-code="95302-04"
+               tabindex="0"
+               role="button"
+               aria-label="Álgebra Linear e Geometria Analítica">
+              <div class="card-body">
+                <span class="card-name">Álgebra Linear e Geometria Analítica</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="level-column" data-level="6">
+        <div class="col-header">
+          <span class="col-roman">VI</span>
+          <span class="col-credits">26 créditos</span>
+        </div>
+        <div class="cards-area">
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-logic"
+               id="card-4647F-04"
+               data-code="4647F-04"
+               tabindex="0"
+               role="button"
+               aria-label="Teoria da Computabilidade e Complexidade">
+              <div class="card-body">
+                <span class="card-name">Teoria da Computabilidade e Complexidade</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"><span class="tag tag-online">online</span></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-aplic"
+               id="card-4645K-04"
+               data-code="4645K-04"
+               tabindex="0"
+               role="button"
+               aria-label="Construção de Compiladores">
+              <div class="card-body">
+                <span class="card-name">Construção de Compiladores</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-sist"
+               id="card-TMP_0006254"
+               data-code="TMP_0006254"
+               tabindex="0"
+               role="button"
+               aria-label="Projeto de Interfaces Inteligentes">
+              <div class="card-body">
+                <span class="card-name">Projeto de Interfaces Inteligentes</span>
+                <span class="card-credits">(2)</span>
+              </div>
+              <div class="card-footer"><span class="tag tag-extensionista">extensionista</span></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-met"
+               id="card-TMP_0006222"
+               data-code="TMP_0006222"
+               tabindex="0"
+               role="button"
+               aria-label="Prática em Engenharia de Software">
+              <div class="card-body">
+                <span class="card-name">Prática em Engenharia de Software</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"><span class="tag tag-extensionista">extensionista</span></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-net"
+               id="card-4647B-04"
+               data-code="4647B-04"
+               tabindex="0"
+               role="button"
+               aria-label="Sistemas Distribuídos">
+              <div class="card-body">
+                <span class="card-name">Sistemas Distribuídos</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-net"
+               id="card-TMP_0006223"
+               data-code="TMP_0006223"
+               tabindex="0"
+               role="button"
+               aria-label="Redes Avançadas e Segurança">
+              <div class="card-body">
+                <span class="card-name">Redes Avançadas e Segurança</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-infra"
+               id="card-TMP_0006224"
+               data-code="TMP_0006224"
+               tabindex="0"
+               role="button"
+               aria-label="Segurança de Sistemas">
+              <div class="card-body">
+                <span class="card-name">Segurança de Sistemas</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"><span class="tag tag-extensionista">extensionista</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="level-column" data-level="7">
+        <div class="col-header">
+          <span class="col-roman">VII</span>
+          <span class="col-credits">22 créditos</span>
+        </div>
+        <div class="cards-area">
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-sist"
+               id="card-4646M-04"
+               data-code="4646M-04"
+               tabindex="0"
+               role="button"
+               aria-label="Métodos Formais para Computação">
+              <div class="card-body">
+                <span class="card-name">Métodos Formais para Computação</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-infra"
+               id="card-98H00-04"
+               data-code="98H00-04"
+               tabindex="0"
+               role="button"
+               aria-label="Infraestrutura para Gestão de Dados">
+              <div class="card-body">
+                <span class="card-name">Infraestrutura para Gestão de Dados</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-aplic"
+               id="card-4646X-04"
+               data-code="4646X-04"
+               tabindex="0"
+               role="button"
+               aria-label="Projeto de Desenvolvimento de Jogos">
+              <div class="card-body">
+                <span class="card-name">Projeto de Desenvolvimento de Jogos</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-met"
+               id="card-98711-02"
+               data-code="98711-02"
+               tabindex="0"
+               role="button"
+               aria-label="Trabalho de Conclusão I">
+              <div class="card-body">
+                <span class="card-name">Trabalho de Conclusão I</span>
+                <span class="card-credits">(2)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-net"
+               id="card-4645J-04"
+               data-code="4645J-04"
+               tabindex="0"
+               role="button"
+               aria-label="Computação Paralela">
+              <div class="card-body">
+                <span class="card-name">Computação Paralela</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-aplic"
+               id="card-4646N-04"
+               data-code="4646N-04"
+               tabindex="0"
+               role="button"
+               aria-label="Métodos Numéricos">
+              <div class="card-body">
+                <span class="card-name">Métodos Numéricos</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="level-column" data-level="8">
+        <div class="col-header">
+          <span class="col-roman">VIII</span>
+          <span class="col-credits">18 créditos</span>
+        </div>
+        <div class="cards-area">
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-social"
+               id="card-11521-04"
+               data-code="11521-04"
+               tabindex="0"
+               role="button"
+               aria-label="Humanismo e Cultura Religiosa">
+              <div class="card-body">
+                <span class="card-name">Humanismo e Cultura Religiosa</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"><span class="tag tag-online">online</span></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-met"
+               id="card-98714-02"
+               data-code="98714-02"
+               tabindex="0"
+               role="button"
+               aria-label="Trabalho de Conclusão II">
+              <div class="card-body">
+                <span class="card-name">Trabalho de Conclusão II</span>
+                <span class="card-credits">(2)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-aplic"
+               id="card-4611G-04"
+               data-code="4611G-04"
+               tabindex="0"
+               role="button"
+               aria-label="Simulação e Métodos Analíticos">
+              <div class="card-body">
+                <span class="card-name">Simulação e Métodos Analíticos</span>
+                <span class="card-credits">(4)</span>
+              </div>
+              <div class="card-footer"><span class="tag tag-online">online</span></div>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="course-card fill-category fill-aplic"
+               id="card-98P0-00"
+               data-code="98P0-00"
+               tabindex="0"
+               role="button"
+               aria-label="Atividades Complementares">
+              <div class="card-body">
+                <span class="card-name">Atividades Complementares</span>
+                <span class="card-credits">(8)</span>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+    </div>
+  </div>
+  <aside class="legend-panel">
+    <h2 class="legend-title">Legenda</h2>
+    <dl class="legend-list">
+      <dt><svg width="60" height="14"><defs><marker id="arrowhead-legend-1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#333"/></marker></defs><line x1="2" y1="7" x2="58" y2="7" stroke="#1a3a6b" stroke-width="1.6" marker-end="url(#arrowhead-legend-1)"/></svg></dt>
+      <dd>Pr&#233;-requisito</dd>
+      <dt><svg width="60" height="14"><defs><marker id="arrowhead-legend-2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#333"/></marker></defs><line x1="2" y1="7" x2="58" y2="7" stroke="#b45309" stroke-width="1.6" stroke-dasharray="8,4" marker-end="url(#arrowhead-legend-2)"/></svg></dt>
+      <dd>Pr&#233;-requisito especial (RE)</dd>
+      <dt><svg width="60" height="14"><defs><marker id="arrowhead-legend-3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#333"/></marker></defs><line x1="2" y1="7" x2="58" y2="7" stroke="#475569" stroke-width="1.4" stroke-dasharray="3,3" marker-end="url(#arrowhead-legend-3)"/></svg></dt>
+      <dd>Co-requisito</dd>
+      <dt><span class="credit-req-badge">XX CR</span></dt>
+      <dd>Requisito de cr&#233;ditos m&#237;nimos</dd>
+    
+      <dt class="legend-subtitle">Eixos</dt>
+      <dd class="legend-subtitle-spacer"></dd>
+      <dt><span class="category-chip" style="background:#ef8080; border-color:#ef8080;"></span></dt>
+      <dd>Matemática na Computação</dd>
+      <dt><span class="category-chip" style="background:#dcdc05; border-color:#dcdc05;"></span></dt>
+      <dd>Lógica e Estruturas Discretas</dd>
+      <dt><span class="category-chip" style="background:#88b9ee; border-color:#88b9ee;"></span></dt>
+      <dd>Algoritmos e Programação</dd>
+      <dt><span class="category-chip" style="background:#4ecf6c; border-color:#4ecf6c;"></span></dt>
+      <dd>Metodologia e Integração</dd>
+      <dt><span class="category-chip" style="background:#f6ac5a; border-color:#f6ac5a;"></span></dt>
+      <dd>Infraestrutura de Sistemas</dd>
+      <dt><span class="category-chip" style="background:#d9b8ec; border-color:#d9b8ec;"></span></dt>
+      <dd>Aplicações Avançadas</dd>
+      <dt><span class="category-chip" style="background:#c3ac68; border-color:#c3ac68;"></span></dt>
+      <dd>Espec. e Construção de Sistemas</dd>
+      <dt><span class="category-chip" style="background:#10dec3; border-color:#10dec3;"></span></dt>
+      <dd>Contexto Profissional e Social</dd>
+      <dt><span class="category-chip" style="background:#30c1d9; border-color:#30c1d9;"></span></dt>
+      <dd>Computação Distribuída e em Rede</dd>
+      <dt><span class="tag tag-online">online</span></dt>
+      <dd>Disciplinas online</dd>
+      <dt><span class="tag tag-eletivas">eletivas</span></dt>
+      <dd>Disciplinas eletivas</dd>
+      <dt><span class="tag tag-extensionista">extensionista</span></dt>
+      <dd>Disciplinas extensionista</dd>
+    </dl>
+    <div class="legend-toggle">
+      <label>
+        <input type="checkbox" id="toggle-arrows">
+        Exibir setas de pr&#233;-requisito
+      </label>
+    </div>
+    
+    <div class="credits-summary">
+    <h2 class="legend-title">Cr&#233;ditos</h2>
+    <table class="credits-summary-table">
+      <tbody>
+        <tr class="credits-total-row">
+          <td>Total geral</td>
+          <td class="credits-value">214</td>
+        </tr>
+      <tr>
+        <td><span class="tag tag-online">online</span></td>
+        <td class="credits-value">20</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-eletivas">eletivas</span></td>
+        <td class="credits-value">24</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-extensionista">extensionista</span></td>
+        <td class="credits-value">22</td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+  </aside>
+</div>
+<div id="course-popup" class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-name" hidden>
+  <div class="popup-content">
+    <button class="popup-close" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="popup-header">
+      <span id="popup-code" class="popup-code"></span>
+      <h2 id="popup-name" class="popup-name"></h2>
+      <div id="popup-tags" class="popup-tags"></div>
+    </div>
+    <div class="popup-body">
+      <div class="popup-stats">
+        <div class="popup-stat">
+          <span class="popup-stat-value" id="popup-hours"></span>
+          <span class="popup-stat-label">Carga hor&#225;ria</span>
+        </div>
+        <div class="popup-stat">
+          <span class="popup-stat-value" id="popup-credits"></span>
+          <span class="popup-stat-label">Cr&#233;ditos</span>
+        </div>
+      </div>
+      <section class="popup-section">
+        <h3 class="popup-section-title">Ementa</h3>
+        <p id="popup-syllabus" class="popup-syllabus-text"></p>
+      </section>
+      <section class="popup-section">
+        <h3 class="popup-section-title">Pr&#233;-requisitos</h3>
+        <div id="popup-prereqs"></div>
+      </section>
+      <section class="popup-section">
+        <h3 class="popup-section-title">Dependentes</h3>
+        <div id="popup-dependents"></div>
+      </section>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  const COURSES = [{"code": "95303-04", "name": "Matemática Discreta", "hours": 60, "credits": 4, "syllabus": "Estudo da lógica proposicional e técnicas básicas de demonstração. Estudo da álgebra de conjuntos. Estudo e discussão dos conceitos de relações, funções totais e parciais, relações de ordem parcial e total e relações de equivalência. Análise de definições indutivas, recursão e do princípio de indução. Introdução à álgebra Booleana.", "tags": [], "category": "logic"}, {"code": "98707-02", "name": "Metodologia Científica", "hours": 30, "credits": 2, "syllabus": "x", "tags": [], "category": "met"}, {"code": "4611C-06", "name": "Fundamentos de Programação", "hours": 90, "credits": 6, "syllabus": "Discussão sobre algoritmos como ferramenta para a descrição da solução de problemas e os fundamentos necessários para sua implementação usando linguagens de programação. Exame das noções de constantes, variáveis, tipos e expressões. Estudo de programas sequenciais, comandos de entrada e saída e o processo de compilação. Construção de programas com seleção, iterativos e uso do conceito de subprogramas. Estudo e uso de estruturas de dados usando arranjos e matrizes e conceitos básicos de classes e objetos.", "tags": [], "category": "algo"}, {"code": "1501A-04", "name": "Ética e Cidadania", "hours": 60, "credits": 4, "syllabus": "Abordagem de problemas e conceitos filosóficos relacionados à moralidade e ao exercício da cidadania. Introdução aos principais temas e problemas de Ética, presentes na História da Filosofia. Reflexão filosófica sobre o ideal democrático, a cidadania e os direitos humanos.", "tags": [], "category": "social"}, {"code": "98705-02", "name": "Introdução à Computação", "hours": 30, "credits": 2, "syllabus": "Apresentação da Computação como área de estudo: suas origens, seu tema de estudo e sua relação com os diversos cursos de computação. Apresentação das grandes camadas de um sistema computacional: informação, hardware, sistema operacional, aplicações. Estudo teórico-prático da representação de informação, com ênfase em sistemas de numeração, em particular o sistema binário. Discussão sobre os grandes desafios da computação.", "tags": [], "category": "infra"}, {"code": "95300-04", "name": "Cálculo I", "hours": 60, "credits": 4, "syllabus": "Caracterização de funções de uma variável. Estudo do domínio e representação gráfica dessas funções. Análise de limites e continuidade. Definições e aplicações de derivadas diferenciais.", "tags": [], "category": "maths"}, {"code": "4611E-04", "name": "Lógica para Computação", "hours": 60, "credits": 4, "syllabus": "Estudos dos principais conceitos da Lógica Matemática e de sua aplicação na Ciência da Computação. Exame e discussão dos conceitos de sintaxe e semântica, equivalência, relação de consequência lógica, relação de dedutibilidade, cálculo de dedução natural e outros sistemas de dedução tanto para a lógica proposicional como para a lógica de predicados. Aplicação do raciocínio automático na computação.", "tags": [], "category": "logic"}, {"code": "4645G-04", "name": "Algoritmos e Estruturas de Dados I", "hours": 60, "credits": 4, "syllabus": "Construção e raciocínio sobre diferentes algoritmos e implementações para estruturas de dados lineares e hierárquicas: listas, filas, pilhas e árvores. Exame da adequação destes algoritmos na solução de diversas classes de problemas. Construção de algoritmos e implementações para problemas de ordenação e pesquisa. Discussão, análise e raciocínio sobre a complexidade de algoritmos e implementações correspondentes.", "tags": [], "category": "algo"}, {"code": "98901-04", "name": "Banco de Dados I", "hours": 60, "credits": 4, "syllabus": "Entendimento da arquitetura típica de um banco de dados. Estudo sobre modelos de dados: clássicos, relacional e pós-relacionais. Compreensão dos diferentes formalismos para modelagem conceitual. Solução de projetos de bancos de dados pelo uso de dependências funcionais, formas normais e de restrições de integridade. Solução de implementação de bancos de dados: modelo lógico e físico, e mapeamento do modelo conceitual para o de implementação.", "tags": [], "category": "infra"}, {"code": "4611F-04", "name": "Programação Orientada a Objetos", "hours": 60, "credits": 4, "syllabus": "Desenvolvimento de sistemas de software de complexidade média utilizando o paradigma de orientação a objetos. Estudo e análise dos conceitos de abstração, herança e polimorfismo. Discussão de aspectos avançados sobre classes. Uso de bibliotecas de coleções. Projeto de sistemas orientados a objetos. Manipulação básica de arquivos texto. Noções de programação orientada a eventos.", "tags": [], "category": "algo"}, {"code": "TMP_0006195", "name": "Organização e Arquitetura de Computadores I", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "infra"}, {"code": "TMP_0006253", "name": "Empreendedorismo", "hours": 30, "credits": 2, "syllabus": "x", "tags": ["online"], "category": "maths"}, {"code": "95301-04", "name": "Cálculo II", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "maths"}, {"code": "980E8-24", "name": "Disciplinas Eletivas", "hours": 360, "credits": 24, "syllabus": "Disciplinas eletivas a serem escolhidas pelo estudante, de acordo com seus interesses e objetivos de formação. As disciplinas eletivas podem ser escolhidas entre as disciplinas ofertadas pela Universidade, respeitando os pré-requisitos estabelecidos para cada disciplina. O aluno deve completar 24 créditos em disciplinas eletivas.", "tags": ["eletivas"], "category": null}, {"code": "TMP_0006217", "name": "Linguagens, Autômatos e Computação", "hours": 60, "credits": 4, "syllabus": "Introdução às linguagens formais: definições, propriedades e operações. Estudo de linguagens na hierarquia de Chomsky: regulares, livres de contexto, sensíveis ao contexto, enumeráveis recursivamente. Estudo de máquinas como reconhecedores de linguagens: autômatos finitos, autômatos de pilha e máquinas de Turing. Estudo teórico prático de expressões regulares. Introdução ao conceito de computabilidade.", "tags": [], "category": "logic"}, {"code": "98702-04", "name": "Prática em Pesquisa", "hours": 60, "credits": 4, "syllabus": "x", "tags": ["extensionista"], "category": "met"}, {"code": "4645H-04", "name": "Algoritmos e Estruturas de Dados II", "hours": 60, "credits": 4, "syllabus": "Construção e raciocínio sobre diferentes algoritmos e implementações para estruturas de dados não lineares: heaps, tabelas de espalhamento e grafos. Apresentação de aplicações avançadas das estruturas de dados: heapsort, conjuntos, tries, árvores B, quadtrees e codificação de Huffman. Exame da adequação destes algoritmos na solução de diversas classes de problemas. Discussão, análise e raciocínio sobre a complexidade de algoritmos e implementações correspondentes.", "tags": [], "category": "algo"}, {"code": "TMP_0006199", "name": "Engenharia de Software", "hours": 60, "credits": 4, "syllabus": "x", "tags": ["extensionista"], "category": "sist"}, {"code": "TMP_0006220", "name": "Programação Concorrente", "hours": 30, "credits": 2, "syllabus": "x", "tags": [], "category": "infra"}, {"code": "TMP_0006218", "name": "Organização e Arquitetura de Computadores II", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "infra"}, {"code": "98701-04", "name": "Programação de Baixo Nível", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "algo"}, {"code": "TMP_0006205", "name": "Programação Funcional", "hours": 60, "credits": 2, "syllabus": "x", "tags": ["online"], "category": "aplic"}, {"code": "TMP_0006219", "name": "Fundamentos de Inteligência Artificial", "hours": 60, "credits": 4, "syllabus": "x", "tags": ["online"], "category": "sist"}, {"code": "4646Z-04", "name": "Projeto e Otimização de Algoritmos", "hours": 60, "credits": 4, "syllabus": "Estudo teórico e prático das principais técnicas para o projeto de algoritmos, como algoritmos gulosos, divisão e conquista, programação dinâmica, backtracking, branch and bound e algoritmos aproximativos como algoritmos genéticos, gradiente descendente e outros.", "tags": [], "category": "algo"}, {"code": "98906-04", "name": "Projeto e Arquitetura de Software", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "sist"}, {"code": "98700-04", "name": "Sistemas Operacionais", "hours": 60, "credits": 4, "syllabus": "Apresentação da organização básica de sistemas operacionais. Estudo da evolução da estrutura e funcionamento dos sistemas operacionais. Apresentação do conceito de processos e de mecanismos de sincronização entre processos que compartilham memória e sua implementação em um sistema operacional. Exemplos práticos de criação e sincronização de processos. Introdução e exploração do conceito de algoritmos de escalonamento. Estudo da comunicação inter-processos. Análise e discussão de problemas relacionados à \"deadlock\" e à comunicação entre processos. Estudo sobre gerenciamento de memória, gerenciamento de entrada e saída e gerenciamento de arquivos. Análise e discussão de problemas relacionados ao gerenciamento de memória, gerenciamento de entrada e saída e gerenciamento de arquivos.", "tags": [], "category": "infra"}, {"code": "TMP_0006221", "name": "Princípios de Segurança em Computação", "hours": 60, "credits": 4, "syllabus": "Apresentação da organização básica de sistemas operacionais. Estudo da evolução da estrutura e funcionamento dos sistemas operacionais. Apresentação do conceito de processos e de mecanismos de sincronização entre processos que compartilham memória e sua implementação em um sistema operacional. Exemplos práticos de criação e sincronização de processos. Introdução e exploração do conceito de algoritmos de escalonamento. Estudo da comunicação inter-processos. Análise e discussão de problemas relacionados à \"deadlock\" e à comunicação entre processos. Estudo sobre gerenciamento de memória, gerenciamento de entrada e saída e gerenciamento de arquivos. Análise e discussão de problemas relacionados ao gerenciamento de memória, gerenciamento de entrada e saída e gerenciamento de arquivos.", "tags": [], "category": "infra"}, {"code": "95304-04", "name": "Probabilidade e Estatística", "hours": 60, "credits": 4, "syllabus": "Organização, análise, interpretação de dados e estudo de modelos probabilísticas enfatizando o princípio da incerteza. Investigação da relação entre variáveis. Noções de amostragem visando à estimação de parâmetros e o estabelecimento de hipóteses estatísticas.", "tags": [], "category": "maths"}, {"code": "98706-04", "name": "Aprendizado de Máquina", "hours": 60, "credits": 4, "syllabus": "x", "tags": ["extensionista"], "category": "aplic"}, {"code": "98902-02", "name": "Banco de Dados II", "hours": 30, "credits": 2, "syllabus": "Visão geral das principais formas de uso de bancos de dados: orientados a transação, orientados ao processamento analítico e orientados a consultas de dados não convencionais. Visão geral da definição de dados na abordagem relacional, em modelos OLAP, bem como nas abordagens sem esquemas prévios (NoSQL). Estudo sobre linguagens de definição e manipulação de banco de dados e, em especial, SQL. Definição e consultas de dados nas principais formas de uso de bancos de dados, com entendimento dos principais fatores envolvidos com desempenho.", "tags": [], "category": "infra"}, {"code": "98716-04", "name": "Computação Gráfica", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "aplic"}, {"code": "98709-04", "name": "Fundamentos de Redes de Computadores", "hours": 60, "credits": 4, "syllabus": "Estudo dos Modelos de referência de interconexão de computadores OSI/ISO e da Arquitetura Internet, apresentando em mais detalhamento os Níveis de Rede, Transporte e Aplicação, com seus conceitos, funções e protocolos. Estudo e análise do impacto das funções dos protocolos de comunicação no desenvolvimento e desempenho das aplicações.", "tags": [], "category": "net"}, {"code": "98710-02", "name": "Laboratório de Redes de Computadores", "hours": 30, "credits": 2, "syllabus": "Desenvolvimento de experimentos que abranjam operação, configuração e análise de protocolos da Arquitetura Internet. Desenvolvimento e análise de comportamento de aplicações distribuídas com diferentes requisitos de qualidade. Simulação e análise de arquiteturas de comunicação variadas.", "tags": [], "category": "net"}, {"code": "4646I-04", "name": "Laboratório de Sistemas Operacionais", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "infra"}, {"code": "95302-04", "name": "Álgebra Linear e Geometria Analítica", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "maths"}, {"code": "4647F-04", "name": "Teoria da Computabilidade e Complexidade", "hours": 60, "credits": 4, "syllabus": "x", "tags": ["online"], "category": "logic"}, {"code": "4645K-04", "name": "Construção de Compiladores", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "aplic"}, {"code": "TMP_0006254", "name": "Projeto de Interfaces Inteligentes", "hours": 30, "credits": 2, "syllabus": "x", "tags": ["extensionista"], "category": "sist"}, {"code": "TMP_0006222", "name": "Prática em Engenharia de Software", "hours": 60, "credits": 4, "syllabus": "x", "tags": ["extensionista"], "category": "met"}, {"code": "4647B-04", "name": "Sistemas Distribuídos", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "net"}, {"code": "TMP_0006223", "name": "Redes Avançadas e Segurança", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "net"}, {"code": "TMP_0006224", "name": "Segurança de Sistemas", "hours": 60, "credits": 4, "syllabus": "Apresentação e implementação de criptografia clássica; cifras de fluxo (stream ciphers) e cifras de bloco (block ciphers). Entendimento de integridade de mensagens (Message Authentication Codes). Conhecimento de criptografia simétrica, aritmética modular; números primos e fatoração, funções e geradores pseudo-aleatórios, e criptografia assimétrica. Uso de bibliotecas de criptografia. Apresentação do Marco Civil da Internet. Entendimento e como cumprir a Lei de Proteção de Dados.", "tags": ["extensionista"], "category": "infra"}, {"code": "4646M-04", "name": "Métodos Formais para Computação", "hours": 60, "credits": 4, "syllabus": "Conceitos essenciais de especificação formal, verificação formal e métodos formais. Especificação e verificação de modelos e programas. Estudo da lógica de Hoare. Especificação de assertivas, pré e pós-condições, invariantes e variantes. Aplicação de ferramentas de verificação automática sobre especificações e programas.", "tags": [], "category": "sist"}, {"code": "98H00-04", "name": "Infraestrutura para Gestão de Dados", "hours": 60, "credits": 4, "syllabus": "Visão geral de sistemas de bancos de dados, suas principais funcionalidades e formas de uso: orientados a transação, orientados ao processamento analítico e orientados a consultas de dados não convencionais. Entendimento dos modelos de transações de bancos de dados, de gerência de memória principal e secundária, de controle de concorrência e de recuperação após falhas. Estudo sobre a otimização de consultas e de transações em bancos de dados. Visão geral sobre a gestão de bancos de dados sem esquemas prévios.", "tags": [], "category": "infra"}, {"code": "4646X-04", "name": "Projeto de Desenvolvimento de Jogos", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "aplic"}, {"code": "98711-02", "name": "Trabalho de Conclusão I", "hours": 30, "credits": 2, "syllabus": "x", "tags": [], "category": "met"}, {"code": "4645J-04", "name": "Computação Paralela", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "net"}, {"code": "4646N-04", "name": "Métodos Numéricos", "hours": 60, "credits": 4, "syllabus": "x", "tags": [], "category": "aplic"}, {"code": "11521-04", "name": "Humanismo e Cultura Religiosa", "hours": 60, "credits": 4, "syllabus": "A condição humana aberta ao transcendente; Fé cristã e cultura atual; O estudo do fenômeno religioso em suas diferentes Tradições; Elementos da cultura e da religiosidade afro-brasileira e indígena; A relação entre fé e razão, e ciência e religião; Motivação para ações comunitárias, como engajamento consequente de uma consciência social e da fé cristã.", "tags": ["online"], "category": "social"}, {"code": "98714-02", "name": "Trabalho de Conclusão II", "hours": 30, "credits": 2, "syllabus": "x", "tags": [], "category": "met"}, {"code": "4611G-04", "name": "Simulação e Métodos Analíticos", "hours": 60, "credits": 4, "syllabus": "Estudo de técnicas e opções para simulação e análise estocástica através de modelos computacionais. Apresentação de técnicas de representação de estados e de tempo, de aleatoriedade e determinismo em contexto computacional. Estudo de métodos e ferramentas básicas de simulação e métodos analíticos. Apresentação de formalismos clássicos e estruturados para representação de modelos.", "tags": ["online"], "category": "aplic"}, {"code": "98P0-00", "name": "Atividades Complementares", "hours": 120, "credits": 8, "syllabus": "x", "tags": [], "category": "aplic"}];
+  const REQUIREMENTS = [{"type": "prerequisite", "from": "95303-04", "to": "4611E-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98707-02", "to": "98702-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4611C-06", "to": "4611F-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4611C-06", "to": "4645G-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4611C-06", "to": "98701-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "95300-04", "to": "95301-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4611F-04", "to": "98906-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4611F-04", "to": "TMP_0006220", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4645G-04", "to": "4645H-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98901-04", "to": "98902-02", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TMP_0006195", "to": "TMP_0006218", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4611E-04", "to": "4646M-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4611E-04", "to": "TMP_0006219", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "4645H-04", "to": "4646Z-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TMP_0006199", "to": "TMP_0006222", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "TMP_0006219", "to": "98706-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98906-04", "to": "TMP_0006222", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98700-04", "to": "98709-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98700-04", "to": "4646I-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "95304-04", "to": "4611G-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98706-04", "to": "TMP_0006254", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "95302-04", "to": "4646N-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98716-04", "to": "4646X-04", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98709-04", "to": "TMP_0006223", "description": null, "min_credits": null}, {"type": "prerequisite", "from": "98711-02", "to": "98714-02", "description": null, "min_credits": null}, {"type": "special", "from": "95303-04", "to": "TMP_0006217", "description": null, "min_credits": null}, {"type": "special", "from": "98705-02", "to": "TMP_0006195", "description": null, "min_credits": null}, {"type": "special", "from": "95300-04", "to": "95304-04", "description": null, "min_credits": null}, {"type": "special", "from": "4611E-04", "to": "TMP_0006205", "description": null, "min_credits": null}, {"type": "special", "from": "95301-04", "to": "4646N-04", "description": null, "min_credits": null}, {"type": "special", "from": "98901-04", "to": "98906-04", "description": null, "min_credits": null}, {"type": "special", "from": "4611F-04", "to": "98716-04", "description": null, "min_credits": null}, {"type": "special", "from": "TMP_0006195", "to": "98701-04", "description": null, "min_credits": null}, {"type": "special", "from": "4645H-04", "to": "TMP_0006219", "description": null, "min_credits": null}, {"type": "special", "from": "TMP_0006217", "to": "4647F-04", "description": null, "min_credits": null}, {"type": "special", "from": "TMP_0006217", "to": "4645K-04", "description": null, "min_credits": null}, {"type": "special", "from": "TMP_0006220", "to": "98700-04", "description": null, "min_credits": null}, {"type": "special", "from": "TMP_0006218", "to": "98700-04", "description": null, "min_credits": null}, {"type": "special", "from": "TMP_0006218", "to": "4645K-04", "description": null, "min_credits": null}, {"type": "special", "from": "TMP_0006221", "to": "TMP_0006224", "description": null, "min_credits": null}, {"type": "special", "from": "98902-02", "to": "98H00-04", "description": null, "min_credits": null}, {"type": "special", "from": "98709-04", "to": "4647B-04", "description": null, "min_credits": null}, {"type": "special", "from": "98716-04", "to": "TMP_0006254", "description": null, "min_credits": null}, {"type": "special", "from": "4646I-04", "to": "4645J-04", "description": null, "min_credits": null}, {"type": "corequisite", "from": "4645H-04", "to": "98702-04", "description": null, "min_credits": null}, {"type": "corequisite", "from": "98709-04", "to": "98710-02", "description": null, "min_credits": null}, {"type": "credit_requirement", "from": null, "to": "TMP_0006199", "description": null, "min_credits": 40}, {"type": "credit_requirement", "from": null, "to": "TMP_0006221", "description": null, "min_credits": 60}];
+  const CATEGORIES = [{"id": "maths", "color": "#ef8080"}, {"id": "logic", "color": "#dcdc05"}, {"id": "algo", "color": "#88b9ee"}, {"id": "met", "color": "#4ecf6c"}, {"id": "infra", "color": "#f6ac5a"}, {"id": "aplic", "color": "#d9b8ec"}, {"id": "sist", "color": "#c3ac68"}, {"id": "social", "color": "#10dec3"}, {"id": "net", "color": "#30c1d9"}];
+
+  const courseMap = new Map(COURSES.map(c => [c.code, c]));
+  const categoryColorMap = new Map(
+    CATEGORIES
+      .filter(c => typeof c.color === 'string' && c.color.trim() !== '')
+      .map(c => [c.id, c.color])
+  );
+
+  // Responsive matrix scale
+  function applyMatrixScale() {
+    var matrixArea = document.querySelector('.matrix-area');
+    var matrixCanvas = document.querySelector('.matrix-canvas');
+    var legendPanel = document.querySelector('.legend-panel');
+    if (!matrixArea || !matrixCanvas) return;
+
+    var baseWidth = parseFloat(matrixArea.style.getPropertyValue('--matrix-base-w'));
+    var baseHeight = parseFloat(matrixArea.style.getPropertyValue('--matrix-base-h'));
+    if (!baseWidth || !baseHeight) return;
+
+    var padding = 24;
+    var isStacked = window.innerWidth <= 1200;
+    var legendW = (!isStacked && legendPanel) ? (legendPanel.offsetWidth + 16) : 0;
+    var availWidth = window.innerWidth - padding * 2 - legendW;
+    var scale = Math.min(1, availWidth / baseWidth);
+    var scaledW = baseWidth * scale;
+    var scaledH = baseHeight * scale;
+
+    matrixArea.style.width = scaledW + 'px';
+    matrixArea.style.height = scaledH + 'px';
+    matrixCanvas.style.transform = scale < 1 ? 'scale(' + scale + ')' : '';
+
+    if (legendPanel) legendPanel.style.width = isStacked ? scaledW + 'px' : '';
+  }
+
+  applyMatrixScale();
+  window.addEventListener('resize', applyMatrixScale);
+
+  // Arrow visibility toggle
+  const toggleArrows = document.getElementById('toggle-arrows');
+  const arrowsLayer = document.querySelector('.arrows-layer');
+
+  arrowsLayer.classList.add('hidden');
+
+  toggleArrows.addEventListener('change', () => {
+    arrowsLayer.classList.toggle('hidden', !toggleArrows.checked);
+  });
+
+  // Hover over cards
+  const allCards = Array.from(document.querySelectorAll('.course-card'));
+  const allArrows = Array.from(document.querySelectorAll('.arrow-group'));
+
+  function getRelated(code) {
+    const prereqs = new Set();
+    const dependents = new Set();
+    for (const req of REQUIREMENTS) {
+      if (req.type === 'credit_requirement') continue;
+      if (req.to === code && req.from) prereqs.add(req.from);
+      if (req.from === code) dependents.add(req.to);
+    }
+    return { prereqs, dependents };
+  }
+
+  function onCardEnter(code) {
+    const { prereqs, dependents } = getRelated(code);
+    const related = new Set([code, ...prereqs, ...dependents]);
+
+    allCards.forEach(card => {
+      const c = card.dataset.code;
+      card.classList.toggle('highlighted', related.has(c));
+      card.classList.toggle('faded', !related.has(c));
+    });
+
+    arrowsLayer.classList.remove('hidden');
+
+    allArrows.forEach(arrow => {
+      const from = arrow.dataset.from;
+      const to = arrow.dataset.to;
+      const active = (from === code || to === code);
+      arrow.style.display = active ? '' : 'none';
+    });
+  }
+
+  function onCardLeave() {
+    allCards.forEach(card => {
+      card.classList.remove('highlighted', 'faded');
+    });
+    allArrows.forEach(arrow => {
+      arrow.style.display = '';
+    });
+    arrowsLayer.classList.toggle('hidden', !toggleArrows.checked);
+  }
+
+  allCards.forEach(card => {
+    card.addEventListener('mouseenter', () => onCardEnter(card.dataset.code));
+    card.addEventListener('mouseleave', onCardLeave);
+    card.addEventListener('focusin', () => onCardEnter(card.dataset.code));
+    card.addEventListener('focusout', onCardLeave);
+  });
+
+  // Details popup
+  const popup = document.getElementById('course-popup');
+  const popupClose = popup.querySelector('.popup-close');
+  const popupHeader = popup.querySelector('.popup-header');
+  const defaultPopupHeaderColor = '#1a3a6b';
+
+  function openPopup(code) {
+    const course = courseMap.get(code);
+    if (!course) return;
+
+    const popupHeaderColor = course.category
+      ? categoryColorMap.get(course.category)
+      : null;
+    popupHeader.style.background = popupHeaderColor || defaultPopupHeaderColor;
+
+    document.getElementById('popup-code').textContent = course.code;
+    document.getElementById('popup-name').textContent = course.name;
+    document.getElementById('popup-hours').textContent = course.hours + ' h';
+    document.getElementById('popup-credits').textContent = course.credits + ' cr';
+    document.getElementById('popup-syllabus').textContent = course.syllabus || '—';
+
+    const tagsEl = document.getElementById('popup-tags');
+    tagsEl.innerHTML = '';
+    course.tags.forEach(function (tag) {
+      const span = document.createElement('span');
+      span.className = 'tag tag-' + tag;
+      span.textContent = tag;
+      tagsEl.appendChild(span);
+    });
+
+    const prereqs = REQUIREMENTS
+      .filter(function (r) { return r.to === code && r.from; })
+      .map(function (r) {
+        const c = courseMap.get(r.from);
+        return { code: r.from, name: c ? c.name : '', desc: r.description };
+      });
+    const creditReq = REQUIREMENTS.find(function (r) {
+      return r.type === 'credit_requirement' && r.to === code;
+    });
+
+    const prereqEl = document.getElementById('popup-prereqs');
+    prereqEl.innerHTML = '';
+    if (prereqs.length === 0 && !creditReq) {
+      const none = document.createElement('span');
+      none.className = 'popup-empty';
+      none.textContent = 'Nenhum pré-requisito';
+      prereqEl.appendChild(none);
+    } else {
+      const ul = document.createElement('ul');
+      ul.className = 'popup-req-list';
+      prereqs.forEach(function (p) {
+        const li = document.createElement('li');
+        li.className = 'popup-req-item';
+        const codeSpan = document.createElement('span');
+        codeSpan.className = 'popup-req-code';
+        codeSpan.textContent = p.code;
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'popup-req-name';
+        nameSpan.textContent = p.name + (p.desc ? ' (' + p.desc + ')' : '');
+        li.appendChild(codeSpan);
+        li.appendChild(nameSpan);
+        ul.appendChild(li);
+      });
+      if (creditReq) {
+        const li = document.createElement('li');
+        li.className = 'popup-req-item';
+        const span = document.createElement('span');
+        span.className = 'popup-req-name';
+        span.textContent = 'Mín. ' + creditReq.min_credits + ' créditos cursados';
+        li.appendChild(span);
+        ul.appendChild(li);
+      }
+      prereqEl.appendChild(ul);
+    }
+
+    const dependents = REQUIREMENTS
+      .filter(function (r) { return r.from === code && r.to; })
+      .map(function (r) {
+        const c = courseMap.get(r.to);
+        return { code: r.to, name: c ? c.name : '' };
+      });
+
+    const depsEl = document.getElementById('popup-dependents');
+    depsEl.innerHTML = '';
+    if (dependents.length === 0) {
+      const none = document.createElement('span');
+      none.className = 'popup-empty';
+      none.textContent = 'Nenhuma dependência';
+      depsEl.appendChild(none);
+    } else {
+      const ul = document.createElement('ul');
+      ul.className = 'popup-req-list';
+      dependents.forEach(function (d) {
+        const li = document.createElement('li');
+        li.className = 'popup-req-item';
+        const codeSpan = document.createElement('span');
+        codeSpan.className = 'popup-req-code';
+        codeSpan.textContent = d.code;
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'popup-req-name';
+        nameSpan.textContent = d.name;
+        li.appendChild(codeSpan);
+        li.appendChild(nameSpan);
+        ul.appendChild(li);
+      });
+      depsEl.appendChild(ul);
+    }
+
+    popup.hidden = false;
+    popupClose.focus();
+  }
+
+  function closePopup() {
+    popup.hidden = true;
+  }
+
+  allCards.forEach(card => {
+    card.addEventListener('click', () => openPopup(card.dataset.code));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openPopup(card.dataset.code);
+      }
+    });
+  });
+
+  popupClose.addEventListener('click', closePopup);
+  popup.addEventListener('click', e => { if (e.target === popup) closePopup(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+})();
+
+</script>
+</body>
+</html>
