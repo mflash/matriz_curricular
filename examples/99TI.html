@@ -86,15 +86,15 @@
     .cards-area {
       display: flex;
       flex-direction: column;
-      gap: 24px;
-      padding: 24px 0;
+      gap: 40px;
+      padding: 40px 0;
     }
 
     /* Wrapper do cartao */
     .card-wrapper {
       position: relative;
       width: 100%;
-      height: 60px;
+      height: 90px;
     }
 
     /* Badge de requisito de creditos minimos */
@@ -119,7 +119,7 @@
     /* Cartoes de disciplina */
     .course-card {
       width: 100%;
-      height: 60px;
+      height: 90px;
       background: #fff;
       border: 1.5px solid #aaa;
       border-radius: 4px;
@@ -144,15 +144,39 @@
     }
     .card-body {
       display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+    .card-code {
+      padding: 4px 8px 3px;
+      font-size: 0.62rem;
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #1a3a6b;
+      border-bottom: 1px solid rgba(26, 58, 107, 0.2);
+      background: rgba(255,255,255,0.35);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .card-main {
+      display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      padding: 6px 8px 4px;
-      flex: 1;
+      gap: 4px;
+      padding: 2px 8px 2px;
+      flex: 1 1 auto;
+      min-height: 0;
     }
-    .card-name    { font-size: 0.78rem; line-height: 1.3; }
+    .card-name    { font-size: 0.78rem; line-height: 1.18; }
     .card-credits { font-size: 0.75rem; color: #555; white-space: nowrap; margin-left: 4px; }
-    .card-footer  { position: absolute; bottom: 0; left: 0; right: 0; padding: 2px 6px 4px; display: flex; gap: 4px; flex-wrap: wrap; min-height: 16px; }
+    .card-footer  { margin-top: auto; padding: 4px 6px 4px; display: flex; gap: 4px; flex-wrap: wrap; min-height: 16px; }
     .card-footer:not(:empty) { background: rgba(255,255,255,0.85); }
+    .course-card.fill-category .card-code {
+      color: #16324f;
+      border-bottom-color: rgba(0,0,0,0.18);
+      background: rgba(255,255,255,0.2);
+    }
     .course-card.fill-category .card-name,
     .course-card.fill-category .card-credits {
       color: #222;
@@ -480,218 +504,243 @@
   <div class="course-meta">99TI &bull; desde 2024/1</div>
 </header>
 <div class="matrix-wrapper">
-  <div class="matrix-area" style="--matrix-base-w:940px; --matrix-base-h:544px;">
-    <div class="matrix-canvas" style="width:940px; height:544px;">
-      <svg class="arrows-layer link-style-paths" width="940" height="544" aria-hidden="true">
-
+  <div class="matrix-area" style="--matrix-base-w:940px; --matrix-base-h:790px;">
+    <div class="matrix-canvas" style="width:940px; height:790px;">
+      <svg class="arrows-layer link-style-arrows" width="940" height="790" aria-hidden="true">
+      <defs>
+        <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6 Z" fill="#333"/>
+        </marker>
+      </defs>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="TI102-04"
        data-to="TI201-04">
-      <path d="M 140 182 L 146.6 182 Q 152 182 152 176.6 L 152 153 Q 152 141 164 141 L 167 141 Q 179 141 179 129 L 179 111.45 Q 179 102 188.45 102 L 200 102"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="140,259.0 155.0,259.0 155.0,195.0 179.0,195.0 179.0,133.0 200,133.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="TI102-04"
        data-to="TI202-04">
-      <path d="M 140 186 L 200 186"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="140,263.0 200,263.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="TI103-04"
        data-to="TI202-04">
-      <path d="M 140 270 L 149.9 270 Q 158 270 158 261.9 L 158 236.1 Q 158 228 166.1 228 L 167.9 228 Q 176 228 176 219.9 L 176 200.8 Q 176 190 186.8 190 L 200 190"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="140,393.0 158.0,393.0 158.0,328.0 176.0,328.0 176.0,267.0 200,267.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="TI101-04"
        data-to="TI203-04">
-      <path d="M 140 98 L 153.2 98 Q 164 98 164 108.8 L 164 138.9 Q 164 147 172.1 147 L 173.9 147 Q 182 147 182 155.1 L 182 257.9 Q 182 266 190.1 266 L 200 266"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="140,129.0 161.0,129.0 161.0,201.0 182.0,201.0 182.0,389.0 200,389.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="TI101-04"
        data-to="TI204-04">
-      <path d="M 140 106 L 158 106 Q 170 106 170 118 L 170 307.65 Q 170 309 171.35 309 L 171.65 309 Q 173 309 173 310.35 L 173 342 Q 173 354 185 354 L 200 354"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="140,137.0 170.0,137.0 170.0,455.0 176.0,455.0 176.0,523.0 200,523.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="TI203-04"
        data-to="TI301-04">
-      <path d="M 340 270 L 348.25 270 Q 355 270 355 263.25 L 355 231.75 Q 355 225 361.75 225 L 363.25 225 Q 370 225 370 218.25 L 370 114 Q 370 102 382 102 L 400 102"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="340,393.0 358.0,393.0 358.0,325.0 370.0,325.0 370.0,133.0 400,133.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="TI201-04"
        data-to="TI302-04">
-      <path d="M 340 98 L 349.9 98 Q 358 98 358 106.1 L 358 131.55 Q 358 141 367.45 141 L 369.55 141 Q 379 141 379 150.45 L 379 172.55 Q 379 182 388.45 182 L 400 182"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="340,129.0 358.0,129.0 358.0,195.0 379.0,195.0 379.0,259.0 400,259.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="TI204-04"
        data-to="TI302-04">
-      <path d="M 340 354 L 351.55 354 Q 361 354 361 344.55 L 361 318.75 Q 361 312 367.75 312 L 369.25 312 Q 376 312 376 305.25 L 376 200.8 Q 376 190 386.8 190 L 400 190"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="340,523.0 361.0,523.0 361.0,458.0 376.0,458.0 376.0,267.0 400,267.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="TI201-04"
        data-to="TI303-04">
-      <path d="M 340 106 L 353.2 106 Q 364 106 364 116.8 L 364 140.25 Q 364 147 370.75 147 L 372.25 147 Q 379 147 379 153.75 L 379 260.55 Q 379 270 388.45 270 L 400 270"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="340,137.0 364.0,137.0 364.0,201.0 382.0,201.0 382.0,393.0 400,393.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="TI202-04"
        data-to="TI304-02">
-      <path d="M 340 186 L 355 186 Q 367 186 367 198 L 367 220.2 Q 367 231 377.8 231 L 380.2 231 Q 391 231 391 241.8 L 391 345.95 Q 391 350 395.05 350 L 400 350"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="340,263.0 364.0,263.0 364.0,331.0 388.0,331.0 388.0,519.0 400,519.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="TI301-04"
        data-to="TI401-04">
-      <path d="M 540 102 L 600 102"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="540,133.0 600,133.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="TI303-04"
        data-to="TI402-04">
-      <path d="M 540 270 L 551.55 270 Q 561 270 561 260.55 L 561 234.75 Q 561 228 567.75 228 L 569.25 228 Q 576 228 576 221.25 L 576 196.8 Q 576 186 586.8 186 L 600 186"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="540,393.0 561.0,393.0 561.0,328.0 576.0,328.0 576.0,263.0 600,263.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="TI301-04"
        data-to="TI403-04">
-      <path d="M 540 106 L 551.55 106 Q 561 106 561 115.45 L 561 131.55 Q 561 141 570.45 141 L 572.55 141 Q 582 141 582 150.45 L 582 261.9 Q 582 270 590.1 270 L 600 270"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="540,137.0 561.0,137.0 561.0,195.0 582.0,195.0 582.0,393.0 600,393.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="TI302-04"
        data-to="TI501-04">
-      <path d="M 540 182 L 551.55 182 Q 561 182 561 172.55 L 561 156 Q 561 144 573 144 L 767 144 Q 779 144 779 132 L 779 111.45 Q 779 102 788.45 102 L 800 102"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="540,259.0 561.0,259.0 561.0,198.0 779.0,198.0 779.0,133.0 800,133.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="TI304-02"
        data-to="TI503-04">
-      <path d="M 540 354 L 551.55 354 Q 561 354 561 344.55 L 561 321 Q 561 309 573 309 L 764 309 Q 776 309 776 297 L 776 280.8 Q 776 270 786.8 270 L 800 270"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="540,523.0 561.0,523.0 561.0,455.0 776.0,455.0 776.0,393.0 800,393.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="TI403-04"
        data-to="TI502-04">
-      <path d="M 740 270 L 748.25 270 Q 755 270 755 263.25 L 755 235.8 Q 755 225 765.8 225 L 768.2 225 Q 779 225 779 214.2 L 779 199.45 Q 779 190 788.45 190 L 800 190"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="740,393.0 758.0,393.0 758.0,325.0 779.0,325.0 779.0,267.0 800,267.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="TI401-04"
        data-to="TI502-04">
-      <path d="M 740 102 L 751.55 102 Q 761 102 761 111.45 L 761 138.9 Q 761 147 769.1 147 L 770.9 147 Q 779 147 779 155.1 L 779 172.55 Q 779 182 788.45 182 L 800 182"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="740,133.0 761.0,133.0 761.0,201.0 779.0,201.0 779.0,259.0 800,259.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="TI402-04"
        data-to="TI503-04">
-      <path d="M 740 186 L 755 186 Q 767 186 767 198 L 767 225.6 Q 767 231 772.4 231 L 773.6 231 Q 779 231 779 236.4 L 779 252.55 Q 779 262 788.45 262 L 800 262"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="740,263.0 764.0,263.0 764.0,331.0 779.0,331.0 779.0,385.0 800,385.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="special"
        data-from="TI104-02"
        data-to="TI203-04">
-      <path d="M 140 354 L 151.55 354 Q 161 354 161 344.55 L 161 325.8 Q 161 315 171.8 315 L 174.2 315 Q 185 315 185 304.2 L 185 280.75 Q 185 274 191.75 274 L 200 274"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
+      <polyline points="140,523.0 161.0,523.0 161.0,461.0 182.0,461.0 182.0,397.0 200,397.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="special"
        data-from="TI404-02"
        data-to="TI503-04">
-      <path d="M 740 354 L 751.55 354 Q 761 354 761 344.55 L 761 324.45 Q 761 315 770.45 315 L 772.55 315 Q 782 315 782 305.55 L 782 286.1 Q 782 278 790.1 278 L 800 278"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
+      <polyline points="740,523.0 761.0,523.0 761.0,461.0 782.0,461.0 782.0,401.0 800,401.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="corequisite"
        data-from="TI302-04"
        data-to="TI304-02">
-      <path d="M 474 216 L 474 324"
-            stroke-dasharray="3,3"
-            stroke-width="4"
-            class="arrow-line"/>
+      <polyline points="474.0,308 474.0,478"
+      stroke-dasharray="3,3"
+      stroke-width="1.4"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
       </svg>
@@ -710,8 +759,11 @@
                role="button"
                aria-label="Introdução à Computação">
               <div class="card-body">
-                <span class="card-name">Introdução à Computação</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TI101-04</div>
+                <div class="card-main">
+                  <span class="card-name">Introdução à Computação</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -724,8 +776,11 @@
                role="button"
                aria-label="Algoritmos e Programação">
               <div class="card-body">
-                <span class="card-name">Algoritmos e Programação</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TI102-04</div>
+                <div class="card-main">
+                  <span class="card-name">Algoritmos e Programação</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -738,8 +793,11 @@
                role="button"
                aria-label="Matemática Discreta">
               <div class="card-body">
-                <span class="card-name">Matemática Discreta</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TI103-04</div>
+                <div class="card-main">
+                  <span class="card-name">Matemática Discreta</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -752,8 +810,11 @@
                role="button"
                aria-label="Laboratório de Hardware">
               <div class="card-body">
-                <span class="card-name">Laboratório de Hardware</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">TI104-02</div>
+                <div class="card-main">
+                  <span class="card-name">Laboratório de Hardware</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-lab">lab</span></div>
             </div>
@@ -774,8 +835,11 @@
                role="button"
                aria-label="Programação Orientada a Objetos">
               <div class="card-body">
-                <span class="card-name">Programação Orientada a Objetos</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TI201-04</div>
+                <div class="card-main">
+                  <span class="card-name">Programação Orientada a Objetos</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -788,8 +852,11 @@
                role="button"
                aria-label="Estruturas de Dados">
               <div class="card-body">
-                <span class="card-name">Estruturas de Dados</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TI202-04</div>
+                <div class="card-main">
+                  <span class="card-name">Estruturas de Dados</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -802,8 +869,11 @@
                role="button"
                aria-label="Sistemas Operacionais">
               <div class="card-body">
-                <span class="card-name">Sistemas Operacionais</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TI203-04</div>
+                <div class="card-main">
+                  <span class="card-name">Sistemas Operacionais</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -816,8 +886,11 @@
                role="button"
                aria-label="Banco de Dados">
               <div class="card-body">
-                <span class="card-name">Banco de Dados</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TI204-04</div>
+                <div class="card-main">
+                  <span class="card-name">Banco de Dados</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -830,8 +903,11 @@
                role="button"
                aria-label="Comunicação Técnica">
               <div class="card-body">
-                <span class="card-name">Comunicação Técnica</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">TI205-02</div>
+                <div class="card-main">
+                  <span class="card-name">Comunicação Técnica</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-online">online</span></div>
             </div>
@@ -852,8 +928,11 @@
                role="button"
                aria-label="Redes de Computadores">
               <div class="card-body">
-                <span class="card-name">Redes de Computadores</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TI301-04</div>
+                <div class="card-main">
+                  <span class="card-name">Redes de Computadores</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -866,8 +945,11 @@
                role="button"
                aria-label="Engenharia de Software">
               <div class="card-body">
-                <span class="card-name">Engenharia de Software</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TI302-04</div>
+                <div class="card-main">
+                  <span class="card-name">Engenharia de Software</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-extensionista">extensionista</span></div>
             </div>
@@ -880,8 +962,11 @@
                role="button"
                aria-label="Desenvolvimento Web">
               <div class="card-body">
-                <span class="card-name">Desenvolvimento Web</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TI303-04</div>
+                <div class="card-main">
+                  <span class="card-name">Desenvolvimento Web</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-extensionista">extensionista</span></div>
             </div>
@@ -894,8 +979,11 @@
                role="button"
                aria-label="Projeto Integrador I">
               <div class="card-body">
-                <span class="card-name">Projeto Integrador I</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">TI304-02</div>
+                <div class="card-main">
+                  <span class="card-name">Projeto Integrador I</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-extensionista">extensionista</span></div>
             </div>
@@ -916,8 +1004,11 @@
                role="button"
                aria-label="Segurança da Informação">
               <div class="card-body">
-                <span class="card-name">Segurança da Informação</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TI401-04</div>
+                <div class="card-main">
+                  <span class="card-name">Segurança da Informação</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -930,8 +1021,11 @@
                role="button"
                aria-label="Desenvolvimento Mobile">
               <div class="card-body">
-                <span class="card-name">Desenvolvimento Mobile</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TI402-04</div>
+                <div class="card-main">
+                  <span class="card-name">Desenvolvimento Mobile</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -944,8 +1038,11 @@
                role="button"
                aria-label="Infraestrutura em Nuvem">
               <div class="card-body">
-                <span class="card-name">Infraestrutura em Nuvem</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TI403-04</div>
+                <div class="card-main">
+                  <span class="card-name">Infraestrutura em Nuvem</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -958,8 +1055,11 @@
                role="button"
                aria-label="Introdução à Inteligência Artificial">
               <div class="card-body">
-                <span class="card-name">Introdução à Inteligência Artificial</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">TI404-02</div>
+                <div class="card-main">
+                  <span class="card-name">Introdução à Inteligência Artificial</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -972,8 +1072,11 @@
                role="button"
                aria-label="Ética em Tecnologia">
               <div class="card-body">
-                <span class="card-name">Ética em Tecnologia</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">TI405-02</div>
+                <div class="card-main">
+                  <span class="card-name">Ética em Tecnologia</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-online">online</span></div>
             </div>
@@ -995,8 +1098,11 @@
                role="button"
                aria-label="Gestão de Projetos de TI">
               <div class="card-body">
-                <span class="card-name">Gestão de Projetos de TI</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TI501-04</div>
+                <div class="card-main">
+                  <span class="card-name">Gestão de Projetos de TI</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-extensionista">extensionista</span></div>
             </div>
@@ -1009,8 +1115,11 @@
                role="button"
                aria-label="Sistemas Distribuídos">
               <div class="card-body">
-                <span class="card-name">Sistemas Distribuídos</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TI502-04</div>
+                <div class="card-main">
+                  <span class="card-name">Sistemas Distribuídos</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1024,8 +1133,11 @@
                role="button"
                aria-label="Projeto de Conclusão de Curso">
               <div class="card-body">
-                <span class="card-name">Projeto de Conclusão de Curso</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TI503-04</div>
+                <div class="card-main">
+                  <span class="card-name">Projeto de Conclusão de Curso</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-extensionista">extensionista</span></div>
             </div>
@@ -1038,21 +1150,21 @@
   <aside class="legend-panel">
     <h2 class="legend-title">Legenda</h2>
     <dl class="legend-list">
-      <dt><svg width="60" height="14"><path d="M2 7 C 16 7, 20 7, 30 7 S 44 7, 58 7" stroke="#1a3a6b" stroke-width="6" fill="none" stroke-linecap="round"/></svg></dt>
+      <dt><svg width="60" height="14"><defs><marker id="arrowhead-legend-1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#333"/></marker></defs><line x1="2" y1="7" x2="58" y2="7" stroke="#1a3a6b" stroke-width="1.6" marker-end="url(#arrowhead-legend-1)"/></svg></dt>
       <dd>Pr&#233;-requisito</dd>
-      <dt><svg width="60" height="14"><path d="M2 7 C 16 7, 20 7, 30 7 S 44 7, 58 7" stroke="#b45309" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="8,4"/></svg></dt>
+      <dt><svg width="60" height="14"><defs><marker id="arrowhead-legend-2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#333"/></marker></defs><line x1="2" y1="7" x2="58" y2="7" stroke="#b45309" stroke-width="1.6" stroke-dasharray="8,4" marker-end="url(#arrowhead-legend-2)"/></svg></dt>
       <dd>Pr&#233;-requisito especial (RE)</dd>
-      <dt><svg width="60" height="14"><path d="M2 7 C 16 7, 20 7, 30 7 S 44 7, 58 7" stroke="#475569" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="3,3"/></svg></dt>
+      <dt><svg width="60" height="14"><defs><marker id="arrowhead-legend-3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#333"/></marker></defs><line x1="2" y1="7" x2="58" y2="7" stroke="#475569" stroke-width="1.4" stroke-dasharray="3,3" marker-end="url(#arrowhead-legend-3)"/></svg></dt>
       <dd>Co-requisito</dd>
       <dt><span class="credit-req-badge">XX CR</span></dt>
       <dd>Requisito de cr&#233;ditos m&#237;nimos</dd>
     
       <dt><span class="tag tag-lab">lab</span></dt>
-      <dd>Disciplina lab</dd>
+      <dd>Disciplinas lab</dd>
       <dt><span class="tag tag-online">online</span></dt>
-      <dd>Disciplina online</dd>
+      <dd>Disciplinas online</dd>
       <dt><span class="tag tag-extensionista">extensionista</span></dt>
-      <dd>Disciplina extensionista</dd>
+      <dd>Disciplinas extensionista</dd>
     </dl>
     <div class="legend-toggle">
       <label>
@@ -1181,21 +1293,50 @@
   // Hover over cards
   const allCards = Array.from(document.querySelectorAll('.course-card'));
   const allArrows = Array.from(document.querySelectorAll('.arrow-group'));
+  const forwardGraph = new Map();
+  const reverseGraph = new Map();
+
+  function addEdge(graph, from, to) {
+    if (!from || !to) return;
+    if (!graph.has(from)) graph.set(from, new Set());
+    graph.get(from).add(to);
+  }
+
+  for (const req of REQUIREMENTS) {
+    if (req.type === 'credit_requirement' || !req.from || !req.to) continue;
+    addEdge(forwardGraph, req.from, req.to);
+    addEdge(reverseGraph, req.to, req.from);
+  }
+
+  function collectReachable(startCode, graph) {
+    const visited = new Set();
+    const pending = [startCode];
+
+    while (pending.length > 0) {
+      const code = pending.pop();
+      const neighbors = graph.get(code);
+      if (!neighbors) continue;
+      for (const next of neighbors) {
+        if (visited.has(next)) continue;
+        visited.add(next);
+        pending.push(next);
+      }
+    }
+
+    return visited;
+  }
 
   function getRelated(code) {
-    const prereqs = new Set();
-    const dependents = new Set();
-    for (const req of REQUIREMENTS) {
-      if (req.type === 'credit_requirement') continue;
-      if (req.to === code && req.from) prereqs.add(req.from);
-      if (req.from === code) dependents.add(req.to);
-    }
-    return { prereqs, dependents };
+    const prereqs = collectReachable(code, reverseGraph);
+    const dependents = collectReachable(code, forwardGraph);
+    const prerequisiteChain = new Set([...prereqs, code]);
+    const dependentChain = new Set([code, ...dependents]);
+    const related = new Set([...prerequisiteChain, ...dependentChain]);
+    return { prereqs, dependents, prerequisiteChain, dependentChain, related };
   }
 
   function onCardEnter(code) {
-    const { prereqs, dependents } = getRelated(code);
-    const related = new Set([code, ...prereqs, ...dependents]);
+    const { prerequisiteChain, dependentChain, related } = getRelated(code);
 
     allCards.forEach(card => {
       const c = card.dataset.code;
@@ -1208,7 +1349,10 @@
     allArrows.forEach(arrow => {
       const from = arrow.dataset.from;
       const to = arrow.dataset.to;
-      const active = (from === code || to === code);
+      const active = Boolean(from && to) && (
+        (prerequisiteChain.has(from) && prerequisiteChain.has(to)) ||
+        (dependentChain.has(from) && dependentChain.has(to))
+      );
       arrow.style.display = active ? '' : 'none';
     });
   }

@@ -89,10 +89,16 @@ def compute_routes(
 
     # Pass 2: apply occupancy-based lane offsets (horizontal + vertical)
     h_occupancy, v_occupancy = _build_lane_occupancy(base_paths)
+    vertical_spacing = max(0.0, vertical_clearance)
     arrows: List[ArrowRoute] = []
     for index, req, base_path in base_paths:
         final_path = _apply_lane_offsets(
-            base_path, index, h_occupancy, v_occupancy, LANE_SPACING
+            base_path,
+            index,
+            h_occupancy,
+            v_occupancy,
+            horizontal_spacing=LANE_SPACING,
+            vertical_spacing=vertical_spacing,
         )
         arrows.append(
             ArrowRoute(
@@ -103,7 +109,7 @@ def compute_routes(
             )
         )
 
-    _apply_global_vertical_clearance(arrows, max(0.0, vertical_clearance))
+    _apply_global_vertical_clearance(arrows, vertical_spacing)
 
     return RouteData(arrows=arrows)
 
@@ -493,7 +499,8 @@ def _apply_lane_offsets(
     arrow_index: int,
     h_occupancy: Dict[float, List[Tuple[int, float, float]]],
     v_occupancy: Dict[float, List[Tuple[int, float, float]]],
-    spacing: float = LANE_SPACING,
+    horizontal_spacing: float = LANE_SPACING,
+    vertical_spacing: float = MIN_VERTICAL_CLEARANCE,
 ) -> List[Point]:
     """Evenly distribute arrows whose interior lane segments overlap.
 
@@ -530,7 +537,7 @@ def _apply_lane_offsets(
                 except ValueError:
                     continue
                 center = (n - 1) / 2.0
-                seg_y_shift[i] = (pos - center) * spacing
+                seg_y_shift[i] = (pos - center) * horizontal_spacing
         elif _is_vertical_segment(a, b):
             x = a.x
             y_min = min(a.y, b.y)
@@ -549,7 +556,7 @@ def _apply_lane_offsets(
                 except ValueError:
                     continue
                 center = (n - 1) / 2.0
-                seg_x_shift[i] = (pos - center) * spacing
+                seg_x_shift[i] = (pos - center) * vertical_spacing
 
     if not seg_y_shift and not seg_x_shift:
         return points

@@ -232,8 +232,11 @@ def _render_card(
         f'               role="button"\n'
         f'               aria-label="{_esc(course.name)}">\n'
         f'              <div class="card-body">\n'
-        f'                <span class="card-name">{_esc(course.name)}</span>\n'
-        f'                <span class="card-credits">({course.credits})</span>\n'
+        f'                <div class="card-code">{_esc(course.code)}</div>\n'
+        f'                <div class="card-main">\n'
+        f'                  <span class="card-name">{_esc(course.name)}</span>\n'
+        f'                  <span class="card-credits">({course.credits})</span>\n'
+        f"                </div>\n"
         f"              </div>\n"
         f'              <div class="card-footer">{tags}</div>\n'
         f"            </div>\n"

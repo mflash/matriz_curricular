@@ -9,7 +9,7 @@ from .types import CardRect, ColumnLayout, CurriculumFile, LayoutData
 # ─────────────────────────────────────────────────────────────────────────────
 
 CARD_WIDTH = 140
-CARD_HEIGHT = 72
+CARD_HEIGHT = 90
 COL_GAP = 60  # espaço horizontal entre colunas (canal para setas)
 ROW_GAP = 24  # espaço vertical entre cartões (canal para setas)
 COL_PADDING = 10  # margem interna horizontal da coluna

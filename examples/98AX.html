@@ -94,7 +94,7 @@
     .card-wrapper {
       position: relative;
       width: 100%;
-      height: 72px;
+      height: 90px;
     }
 
     /* Badge de requisito de creditos minimos */
@@ -119,7 +119,7 @@
     /* Cartoes de disciplina */
     .course-card {
       width: 100%;
-      height: 72px;
+      height: 90px;
       background: #fff;
       border: 1.5px solid #aaa;
       border-radius: 4px;
@@ -144,16 +144,39 @@
     }
     .card-body {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 6px 8px 2px;
+      flex-direction: column;
       flex: 1 1 auto;
       min-height: 0;
     }
-    .card-name    { font-size: 0.78rem; line-height: 1.3; }
+    .card-code {
+      padding: 4px 8px 3px;
+      font-size: 0.62rem;
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #1a3a6b;
+      border-bottom: 1px solid rgba(26, 58, 107, 0.2);
+      background: rgba(255,255,255,0.35);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .card-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 4px;
+      padding: 2px 8px 2px;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+    .card-name    { font-size: 0.78rem; line-height: 1.18; }
     .card-credits { font-size: 0.75rem; color: #555; white-space: nowrap; margin-left: 4px; }
-    .card-footer  { margin-top: auto; padding: 2px 6px 4px; display: flex; gap: 4px; flex-wrap: wrap; min-height: 16px; }
+    .card-footer  { margin-top: auto; padding: 4px 6px 4px; display: flex; gap: 4px; flex-wrap: wrap; min-height: 16px; }
     .card-footer:not(:empty) { background: rgba(255,255,255,0.85); }
+    .course-card.fill-category .card-code {
+      color: #16324f;
+      border-bottom-color: rgba(0,0,0,0.18);
+      background: rgba(255,255,255,0.2);
+    }
     .course-card.fill-category .card-name,
     .course-card.fill-category .card-credits {
       color: #222;
@@ -489,9 +512,9 @@
   <div class="course-meta">98AX &bull; desde 2027/1</div>
 </header>
 <div class="matrix-wrapper">
-  <div class="matrix-area" style="--matrix-base-w:1540px; --matrix-base-h:1036px;">
-    <div class="matrix-canvas" style="width:1540px; height:1036px;">
-      <svg class="arrows-layer link-style-arrows" width="1540" height="1036" aria-hidden="true">
+  <div class="matrix-area" style="--matrix-base-w:1540px; --matrix-base-h:1180px;">
+    <div class="matrix-canvas" style="width:1540px; height:1180px;">
+      <svg class="arrows-layer link-style-arrows" width="1540" height="1180" aria-hidden="true">
       <defs>
         <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
           <path d="M0,0 L8,3 L0,6 Z" fill="#333"/>
@@ -501,7 +524,7 @@
        data-type="prerequisite"
        data-from="95303-04"
        data-to="4611E-04">
-      <polyline points="140,124.0 200,124.0"
+      <polyline points="140,133.0 200,133.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -512,7 +535,7 @@
        data-type="prerequisite"
        data-from="98707-02"
        data-to="98702-04">
-      <polyline points="140,236.0 161.0,236.0 161.0,177.0 379.0,177.0 379.0,232.0 400,232.0"
+      <polyline points="140,263.0 161.0,263.0 161.0,195.0 379.0,195.0 379.0,259.0 400,259.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -523,7 +546,7 @@
        data-type="prerequisite"
        data-from="4611C-06"
        data-to="4611F-04">
-      <polyline points="140,348.0 158.0,348.0 158.0,401.0 179.0,401.0 179.0,460.0 200,460.0"
+      <polyline points="140,393.0 151.0,393.0 151.0,455.0 179.0,455.0 179.0,523.0 200,523.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -534,7 +557,7 @@
        data-type="prerequisite"
        data-from="4611C-06"
        data-to="4645G-04">
-      <polyline points="140,340.0 161.0,340.0 161.0,292.0 179.0,292.0 179.0,236.0 200,236.0"
+      <polyline points="140,385.0 161.0,385.0 161.0,328.0 179.0,328.0 179.0,263.0 200,263.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -545,7 +568,7 @@
        data-type="prerequisite"
        data-from="4611C-06"
        data-to="98701-04">
-      <polyline points="140,356.0 164.0,356.0 164.0,401.0 370.0,401.0 370.0,792.0 400,792.0"
+      <polyline points="140,401.0 171.0,401.0 171.0,455.0 349.0,455.0 349.0,909.0 400,909.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -556,7 +579,7 @@
        data-type="prerequisite"
        data-from="95300-04"
        data-to="95301-04">
-      <polyline points="140,680.0 158.0,680.0 158.0,737.0 179.0,737.0 179.0,796.0 200,796.0"
+      <polyline points="140,779.0 151.0,779.0 151.0,845.0 179.0,845.0 179.0,913.0 200,913.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -567,7 +590,7 @@
        data-type="prerequisite"
        data-from="4611F-04"
        data-to="98906-04">
-      <polyline points="340,460.0 358.0,460.0 358.0,513.0 579.0,513.0 579.0,464.0 600,464.0"
+      <polyline points="340,523.0 351.0,523.0 351.0,585.0 579.0,585.0 579.0,527.0 600,527.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -578,7 +601,7 @@
        data-type="prerequisite"
        data-from="4611F-04"
        data-to="TMP_0006220">
-      <polyline points="340,468.0 364.0,468.0 364.0,519.0 382.0,519.0 382.0,572.0 400,572.0"
+      <polyline points="340,531.0 371.0,531.0 371.0,591.0 389.0,591.0 389.0,653.0 400,653.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -589,7 +612,7 @@
        data-type="prerequisite"
        data-from="4645G-04"
        data-to="4645H-04">
-      <polyline points="340,236.0 361.0,236.0 361.0,289.0 379.0,289.0 379.0,348.0 400,348.0"
+      <polyline points="340,263.0 361.0,263.0 361.0,325.0 379.0,325.0 379.0,393.0 400,393.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -600,7 +623,7 @@
        data-type="prerequisite"
        data-from="98901-04"
        data-to="98902-02">
-      <polyline points="340,344.0 361.0,344.0 361.0,292.0 779.0,292.0 779.0,236.0 800,236.0"
+      <polyline points="340,389.0 361.0,389.0 361.0,328.0 779.0,328.0 779.0,263.0 800,263.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -611,7 +634,7 @@
        data-type="prerequisite"
        data-from="TMP_0006195"
        data-to="TMP_0006218">
-      <polyline points="340,568.0 358.0,568.0 358.0,628.0 382.0,628.0 382.0,684.0 400,684.0"
+      <polyline points="340,649.0 351.0,649.0 351.0,718.0 389.0,718.0 389.0,783.0 400,783.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -622,7 +645,7 @@
        data-type="prerequisite"
        data-from="4611E-04"
        data-to="4646M-04">
-      <polyline points="340,116.0 358.0,116.0 358.0,59.0 1179.0,59.0 1179.0,124.0 1200,124.0"
+      <polyline points="340,125.0 351.0,125.0 351.0,59.0 1179.0,59.0 1179.0,133.0 1200,133.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -633,7 +656,7 @@
        data-type="prerequisite"
        data-from="4611E-04"
        data-to="TMP_0006219">
-      <polyline points="340,132.0 361.0,132.0 361.0,180.0 579.0,180.0 579.0,232.0 600,232.0"
+      <polyline points="340,141.0 361.0,141.0 361.0,198.0 579.0,198.0 579.0,259.0 600,259.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -644,7 +667,7 @@
        data-type="prerequisite"
        data-from="4645H-04"
        data-to="4646Z-04">
-      <polyline points="540,348.0 600,348.0"
+      <polyline points="540,393.0 600,393.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -655,7 +678,7 @@
        data-type="prerequisite"
        data-from="TMP_0006199"
        data-to="TMP_0006222">
-      <polyline points="540,460.0 561.0,460.0 561.0,398.0 976.0,398.0 976.0,456.0 1000,456.0"
+      <polyline points="540,523.0 561.0,523.0 561.0,452.0 969.0,452.0 969.0,519.0 1000,519.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -666,7 +689,7 @@
        data-type="prerequisite"
        data-from="TMP_0006219"
        data-to="98706-04">
-      <polyline points="740,236.0 761.0,236.0 761.0,177.0 779.0,177.0 779.0,124.0 800,124.0"
+      <polyline points="740,263.0 761.0,263.0 761.0,195.0 779.0,195.0 779.0,133.0 800,133.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -677,7 +700,7 @@
        data-type="prerequisite"
        data-from="98906-04"
        data-to="TMP_0006222">
-      <polyline points="740,460.0 761.0,460.0 761.0,507.0 976.0,507.0 976.0,464.0 1000,464.0"
+      <polyline points="740,523.0 761.0,523.0 761.0,579.0 969.0,579.0 969.0,527.0 1000,527.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -688,7 +711,7 @@
        data-type="prerequisite"
        data-from="98700-04"
        data-to="98709-04">
-      <polyline points="740,568.0 761.0,568.0 761.0,519.0 779.0,519.0 779.0,460.0 800,460.0"
+      <polyline points="740,649.0 761.0,649.0 761.0,591.0 779.0,591.0 779.0,523.0 800,523.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -699,7 +722,7 @@
        data-type="prerequisite"
        data-from="98700-04"
        data-to="4646I-04">
-      <polyline points="740,576.0 761.0,576.0 761.0,625.0 779.0,625.0 779.0,684.0 800,684.0"
+      <polyline points="740,657.0 761.0,657.0 761.0,715.0 779.0,715.0 779.0,783.0 800,783.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -710,7 +733,7 @@
        data-type="prerequisite"
        data-from="95304-04"
        data-to="4611G-04">
-      <polyline points="740,796.0 758.0,796.0 758.0,731.0 1376.0,731.0 1376.0,348.0 1400,348.0"
+      <polyline points="740,913.0 751.0,913.0 751.0,839.0 1369.0,839.0 1369.0,393.0 1400,393.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -721,7 +744,7 @@
        data-type="prerequisite"
        data-from="98706-04"
        data-to="TMP_0006254">
-      <polyline points="940,124.0 961.0,124.0 961.0,174.0 973.0,174.0 973.0,344.0 1000,344.0"
+      <polyline points="940,133.0 961.0,133.0 961.0,192.0 959.0,192.0 959.0,389.0 1000,389.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -732,7 +755,7 @@
        data-type="prerequisite"
        data-from="95302-04"
        data-to="4646N-04">
-      <polyline points="940,796.0 961.0,796.0 961.0,737.0 1176.0,737.0 1176.0,680.0 1200,680.0"
+      <polyline points="940,913.0 961.0,913.0 961.0,845.0 1169.0,845.0 1169.0,779.0 1200,779.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -743,7 +766,7 @@
        data-type="prerequisite"
        data-from="98716-04"
        data-to="4646X-04">
-      <polyline points="940,344.0 961.0,344.0 961.0,292.0 1179.0,292.0 1179.0,348.0 1200,348.0"
+      <polyline points="940,389.0 961.0,389.0 961.0,328.0 1179.0,328.0 1179.0,393.0 1200,393.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -754,7 +777,7 @@
        data-type="prerequisite"
        data-from="98709-04"
        data-to="TMP_0006223">
-      <polyline points="940,468.0 958.0,468.0 958.0,516.0 973.0,516.0 973.0,684.0 1000,684.0"
+      <polyline points="940,531.0 951.0,531.0 951.0,588.0 959.0,588.0 959.0,783.0 1000,783.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -765,7 +788,7 @@
        data-type="prerequisite"
        data-from="98711-02"
        data-to="98714-02">
-      <polyline points="1340,460.0 1361.0,460.0 1361.0,404.0 1382.0,404.0 1382.0,236.0 1400,236.0"
+      <polyline points="1340,523.0 1361.0,523.0 1361.0,458.0 1389.0,458.0 1389.0,263.0 1400,263.0"
       stroke-dasharray="none"
       stroke-width="1.6"
       class="arrow-line"
@@ -776,7 +799,7 @@
        data-type="special"
        data-from="95303-04"
        data-to="TMP_0006217">
-      <polyline points="140,128.0 161.0,128.0 161.0,68.0 379.0,68.0 379.0,124.0 400,124.0"
+      <polyline points="140,137.0 161.0,137.0 161.0,68.0 379.0,68.0 379.0,133.0 400,133.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -787,7 +810,7 @@
        data-type="special"
        data-from="98705-02"
        data-to="TMP_0006195">
-      <polyline points="140,572.0 200,572.0"
+      <polyline points="140,653.0 200,653.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -798,7 +821,7 @@
        data-type="special"
        data-from="95300-04"
        data-to="95304-04">
-      <polyline points="140,688.0 164.0,688.0 164.0,737.0 579.0,737.0 579.0,796.0 600,796.0"
+      <polyline points="140,787.0 171.0,787.0 171.0,845.0 579.0,845.0 579.0,913.0 600,913.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -809,7 +832,7 @@
        data-type="special"
        data-from="4611E-04"
        data-to="TMP_0006205">
-      <polyline points="340,124.0 364.0,124.0 364.0,71.0 579.0,71.0 579.0,124.0 600,124.0"
+      <polyline points="340,133.0 371.0,133.0 371.0,71.0 579.0,71.0 579.0,133.0 600,133.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -820,7 +843,7 @@
        data-type="special"
        data-from="95301-04"
        data-to="4646N-04">
-      <polyline points="340,796.0 361.0,796.0 361.0,743.0 1182.0,743.0 1182.0,688.0 1200,688.0"
+      <polyline points="340,913.0 361.0,913.0 361.0,851.0 1189.0,851.0 1189.0,787.0 1200,787.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -831,7 +854,7 @@
        data-type="special"
        data-from="98901-04"
        data-to="98906-04">
-      <polyline points="340,352.0 361.0,352.0 361.0,407.0 579.0,407.0 579.0,456.0 600,456.0"
+      <polyline points="340,397.0 361.0,397.0 361.0,461.0 579.0,461.0 579.0,519.0 600,519.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -842,7 +865,7 @@
        data-type="special"
        data-from="4611F-04"
        data-to="98716-04">
-      <polyline points="340,452.0 361.0,452.0 361.0,413.0 779.0,413.0 779.0,348.0 800,348.0"
+      <polyline points="340,515.0 361.0,515.0 361.0,467.0 779.0,467.0 779.0,393.0 800,393.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -853,7 +876,7 @@
        data-type="special"
        data-from="TMP_0006195"
        data-to="98701-04">
-      <polyline points="340,576.0 364.0,576.0 364.0,746.0 382.0,746.0 382.0,800.0 400,800.0"
+      <polyline points="340,657.0 371.0,657.0 371.0,854.0 389.0,854.0 389.0,917.0 400,917.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -864,7 +887,7 @@
        data-type="special"
        data-from="4645H-04"
        data-to="TMP_0006219">
-      <polyline points="540,340.0 561.0,340.0 561.0,295.0 579.0,295.0 579.0,240.0 600,240.0"
+      <polyline points="540,385.0 561.0,385.0 561.0,331.0 579.0,331.0 579.0,267.0 600,267.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -875,7 +898,7 @@
        data-type="special"
        data-from="TMP_0006217"
        data-to="4647F-04">
-      <polyline points="540,120.0 561.0,120.0 561.0,74.0 979.0,74.0 979.0,124.0 1000,124.0"
+      <polyline points="540,129.0 561.0,129.0 561.0,74.0 979.0,74.0 979.0,133.0 1000,133.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -886,7 +909,7 @@
        data-type="special"
        data-from="TMP_0006217"
        data-to="4645K-04">
-      <polyline points="540,128.0 561.0,128.0 561.0,186.0 982.0,186.0 982.0,232.0 1000,232.0"
+      <polyline points="540,137.0 561.0,137.0 561.0,204.0 989.0,204.0 989.0,259.0 1000,259.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -897,7 +920,7 @@
        data-type="special"
        data-from="TMP_0006220"
        data-to="98700-04">
-      <polyline points="540,572.0 600,572.0"
+      <polyline points="540,653.0 600,653.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -908,7 +931,7 @@
        data-type="special"
        data-from="TMP_0006218"
        data-to="98700-04">
-      <polyline points="540,688.0 558.0,688.0 558.0,625.0 579.0,625.0 579.0,576.0 600,576.0"
+      <polyline points="540,787.0 551.0,787.0 551.0,715.0 579.0,715.0 579.0,657.0 600,657.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -919,7 +942,7 @@
        data-type="special"
        data-from="TMP_0006218"
        data-to="4645K-04">
-      <polyline points="540,680.0 564.0,680.0 564.0,631.0 988.0,631.0 988.0,240.0 1000,240.0"
+      <polyline points="540,779.0 571.0,779.0 571.0,721.0 1009.0,721.0 1009.0,267.0 1000,267.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -930,7 +953,7 @@
        data-type="special"
        data-from="TMP_0006221"
        data-to="TMP_0006224">
-      <polyline points="740,684.0 764.0,684.0 764.0,749.0 979.0,749.0 979.0,796.0 1000,796.0"
+      <polyline points="740,783.0 771.0,783.0 771.0,857.0 979.0,857.0 979.0,913.0 1000,913.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -941,7 +964,7 @@
        data-type="special"
        data-from="98902-02"
        data-to="98H00-04">
-      <polyline points="940,236.0 961.0,236.0 961.0,186.0 1179.0,186.0 1179.0,236.0 1200,236.0"
+      <polyline points="940,263.0 961.0,263.0 961.0,204.0 1179.0,204.0 1179.0,263.0 1200,263.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -952,7 +975,7 @@
        data-type="special"
        data-from="98709-04"
        data-to="4647B-04">
-      <polyline points="940,452.0 964.0,452.0 964.0,522.0 985.0,522.0 985.0,572.0 1000,572.0"
+      <polyline points="940,515.0 971.0,515.0 971.0,594.0 999.0,594.0 999.0,653.0 1000,653.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -963,7 +986,7 @@
        data-type="special"
        data-from="98716-04"
        data-to="TMP_0006254">
-      <polyline points="940,348.0 1000,348.0"
+      <polyline points="940,393.0 1000,393.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -974,7 +997,7 @@
        data-type="special"
        data-from="4646I-04"
        data-to="4645J-04">
-      <polyline points="940,684.0 961.0,684.0 961.0,631.0 1179.0,631.0 1179.0,572.0 1200,572.0"
+      <polyline points="940,783.0 961.0,783.0 961.0,721.0 1179.0,721.0 1179.0,653.0 1200,653.0"
       stroke-dasharray="8,4"
       stroke-width="1.6"
       class="arrow-line"
@@ -985,7 +1008,7 @@
        data-type="corequisite"
        data-from="4645H-04"
        data-to="98702-04">
-      <polyline points="470.0,312 470.0,272"
+      <polyline points="470.0,348 470.0,308"
       stroke-dasharray="3,3"
       stroke-width="1.4"
       class="arrow-line"
@@ -996,7 +1019,7 @@
        data-type="corequisite"
        data-from="98709-04"
        data-to="98710-02">
-      <polyline points="870.0,496 870.0,536"
+      <polyline points="870.0,568 870.0,608"
       stroke-dasharray="3,3"
       stroke-width="1.4"
       class="arrow-line"
@@ -1019,8 +1042,11 @@
                role="button"
                aria-label="Matemática Discreta">
               <div class="card-body">
-                <span class="card-name">Matemática Discreta</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">95303-04</div>
+                <div class="card-main">
+                  <span class="card-name">Matemática Discreta</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1033,8 +1059,11 @@
                role="button"
                aria-label="Metodologia Científica">
               <div class="card-body">
-                <span class="card-name">Metodologia Científica</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">98707-02</div>
+                <div class="card-main">
+                  <span class="card-name">Metodologia Científica</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1047,8 +1076,11 @@
                role="button"
                aria-label="Fundamentos de Programação">
               <div class="card-body">
-                <span class="card-name">Fundamentos de Programação</span>
-                <span class="card-credits">(6)</span>
+                <div class="card-code">4611C-06</div>
+                <div class="card-main">
+                  <span class="card-name">Fundamentos de Programação</span>
+                  <span class="card-credits">(6)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1061,8 +1093,11 @@
                role="button"
                aria-label="Ética e Cidadania">
               <div class="card-body">
-                <span class="card-name">Ética e Cidadania</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">1501A-04</div>
+                <div class="card-main">
+                  <span class="card-name">Ética e Cidadania</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1075,8 +1110,11 @@
                role="button"
                aria-label="Introdução à Computação">
               <div class="card-body">
-                <span class="card-name">Introdução à Computação</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">98705-02</div>
+                <div class="card-main">
+                  <span class="card-name">Introdução à Computação</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1089,8 +1127,11 @@
                role="button"
                aria-label="Cálculo I">
               <div class="card-body">
-                <span class="card-name">Cálculo I</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">95300-04</div>
+                <div class="card-main">
+                  <span class="card-name">Cálculo I</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1111,8 +1152,11 @@
                role="button"
                aria-label="Lógica para Computação">
               <div class="card-body">
-                <span class="card-name">Lógica para Computação</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4611E-04</div>
+                <div class="card-main">
+                  <span class="card-name">Lógica para Computação</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1125,8 +1169,11 @@
                role="button"
                aria-label="Algoritmos e Estruturas de Dados I">
               <div class="card-body">
-                <span class="card-name">Algoritmos e Estruturas de Dados I</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4645G-04</div>
+                <div class="card-main">
+                  <span class="card-name">Algoritmos e Estruturas de Dados I</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1139,8 +1186,11 @@
                role="button"
                aria-label="Banco de Dados I">
               <div class="card-body">
-                <span class="card-name">Banco de Dados I</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98901-04</div>
+                <div class="card-main">
+                  <span class="card-name">Banco de Dados I</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1153,8 +1203,11 @@
                role="button"
                aria-label="Programação Orientada a Objetos">
               <div class="card-body">
-                <span class="card-name">Programação Orientada a Objetos</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4611F-04</div>
+                <div class="card-main">
+                  <span class="card-name">Programação Orientada a Objetos</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1167,8 +1220,11 @@
                role="button"
                aria-label="Organização e Arquitetura de Computadores I">
               <div class="card-body">
-                <span class="card-name">Organização e Arquitetura de Computadores I</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TMP_0006195</div>
+                <div class="card-main">
+                  <span class="card-name">Organização e Arquitetura de Computadores I</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1181,8 +1237,11 @@
                role="button"
                aria-label="Empreendedorismo">
               <div class="card-body">
-                <span class="card-name">Empreendedorismo</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">TMP_0006253</div>
+                <div class="card-main">
+                  <span class="card-name">Empreendedorismo</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-online">online</span></div>
             </div>
@@ -1195,8 +1254,11 @@
                role="button"
                aria-label="Cálculo II">
               <div class="card-body">
-                <span class="card-name">Cálculo II</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">95301-04</div>
+                <div class="card-main">
+                  <span class="card-name">Cálculo II</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1209,8 +1271,11 @@
                role="button"
                aria-label="Disciplinas Eletivas">
               <div class="card-body">
-                <span class="card-name">Disciplinas Eletivas</span>
-                <span class="card-credits">(24)</span>
+                <div class="card-code">980E8-24</div>
+                <div class="card-main">
+                  <span class="card-name">Disciplinas Eletivas</span>
+                  <span class="card-credits">(24)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-eletivas">eletivas</span></div>
             </div>
@@ -1231,8 +1296,11 @@
                role="button"
                aria-label="Linguagens, Autômatos e Computação">
               <div class="card-body">
-                <span class="card-name">Linguagens, Autômatos e Computação</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TMP_0006217</div>
+                <div class="card-main">
+                  <span class="card-name">Linguagens, Autômatos e Computação</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1245,8 +1313,11 @@
                role="button"
                aria-label="Prática em Pesquisa">
               <div class="card-body">
-                <span class="card-name">Prática em Pesquisa</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98702-04</div>
+                <div class="card-main">
+                  <span class="card-name">Prática em Pesquisa</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-extensionista">extensionista</span></div>
             </div>
@@ -1259,8 +1330,11 @@
                role="button"
                aria-label="Algoritmos e Estruturas de Dados II">
               <div class="card-body">
-                <span class="card-name">Algoritmos e Estruturas de Dados II</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4645H-04</div>
+                <div class="card-main">
+                  <span class="card-name">Algoritmos e Estruturas de Dados II</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1274,8 +1348,11 @@
                role="button"
                aria-label="Engenharia de Software">
               <div class="card-body">
-                <span class="card-name">Engenharia de Software</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TMP_0006199</div>
+                <div class="card-main">
+                  <span class="card-name">Engenharia de Software</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-extensionista">extensionista</span></div>
             </div>
@@ -1288,8 +1365,11 @@
                role="button"
                aria-label="Programação Concorrente">
               <div class="card-body">
-                <span class="card-name">Programação Concorrente</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">TMP_0006220</div>
+                <div class="card-main">
+                  <span class="card-name">Programação Concorrente</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1302,8 +1382,11 @@
                role="button"
                aria-label="Organização e Arquitetura de Computadores II">
               <div class="card-body">
-                <span class="card-name">Organização e Arquitetura de Computadores II</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TMP_0006218</div>
+                <div class="card-main">
+                  <span class="card-name">Organização e Arquitetura de Computadores II</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1316,8 +1399,11 @@
                role="button"
                aria-label="Programação de Baixo Nível">
               <div class="card-body">
-                <span class="card-name">Programação de Baixo Nível</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98701-04</div>
+                <div class="card-main">
+                  <span class="card-name">Programação de Baixo Nível</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1338,8 +1424,11 @@
                role="button"
                aria-label="Programação Funcional">
               <div class="card-body">
-                <span class="card-name">Programação Funcional</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">TMP_0006205</div>
+                <div class="card-main">
+                  <span class="card-name">Programação Funcional</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-online">online</span></div>
             </div>
@@ -1352,8 +1441,11 @@
                role="button"
                aria-label="Fundamentos de Inteligência Artificial">
               <div class="card-body">
-                <span class="card-name">Fundamentos de Inteligência Artificial</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TMP_0006219</div>
+                <div class="card-main">
+                  <span class="card-name">Fundamentos de Inteligência Artificial</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-online">online</span></div>
             </div>
@@ -1366,8 +1458,11 @@
                role="button"
                aria-label="Projeto e Otimização de Algoritmos">
               <div class="card-body">
-                <span class="card-name">Projeto e Otimização de Algoritmos</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4646Z-04</div>
+                <div class="card-main">
+                  <span class="card-name">Projeto e Otimização de Algoritmos</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1380,8 +1475,11 @@
                role="button"
                aria-label="Projeto e Arquitetura de Software">
               <div class="card-body">
-                <span class="card-name">Projeto e Arquitetura de Software</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98906-04</div>
+                <div class="card-main">
+                  <span class="card-name">Projeto e Arquitetura de Software</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1394,8 +1492,11 @@
                role="button"
                aria-label="Sistemas Operacionais">
               <div class="card-body">
-                <span class="card-name">Sistemas Operacionais</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98700-04</div>
+                <div class="card-main">
+                  <span class="card-name">Sistemas Operacionais</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1409,8 +1510,11 @@
                role="button"
                aria-label="Princípios de Segurança em Computação">
               <div class="card-body">
-                <span class="card-name">Princípios de Segurança em Computação</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TMP_0006221</div>
+                <div class="card-main">
+                  <span class="card-name">Princípios de Segurança em Computação</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1423,8 +1527,11 @@
                role="button"
                aria-label="Probabilidade e Estatística">
               <div class="card-body">
-                <span class="card-name">Probabilidade e Estatística</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">95304-04</div>
+                <div class="card-main">
+                  <span class="card-name">Probabilidade e Estatística</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1445,8 +1552,11 @@
                role="button"
                aria-label="Aprendizado de Máquina">
               <div class="card-body">
-                <span class="card-name">Aprendizado de Máquina</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98706-04</div>
+                <div class="card-main">
+                  <span class="card-name">Aprendizado de Máquina</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-extensionista">extensionista</span></div>
             </div>
@@ -1459,8 +1569,11 @@
                role="button"
                aria-label="Banco de Dados II">
               <div class="card-body">
-                <span class="card-name">Banco de Dados II</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">98902-02</div>
+                <div class="card-main">
+                  <span class="card-name">Banco de Dados II</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1473,8 +1586,11 @@
                role="button"
                aria-label="Computação Gráfica">
               <div class="card-body">
-                <span class="card-name">Computação Gráfica</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98716-04</div>
+                <div class="card-main">
+                  <span class="card-name">Computação Gráfica</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1487,8 +1603,11 @@
                role="button"
                aria-label="Fundamentos de Redes de Computadores">
               <div class="card-body">
-                <span class="card-name">Fundamentos de Redes de Computadores</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98709-04</div>
+                <div class="card-main">
+                  <span class="card-name">Fundamentos de Redes de Computadores</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1501,8 +1620,11 @@
                role="button"
                aria-label="Laboratório de Redes de Computadores">
               <div class="card-body">
-                <span class="card-name">Laboratório de Redes de Computadores</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">98710-02</div>
+                <div class="card-main">
+                  <span class="card-name">Laboratório de Redes de Computadores</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1515,8 +1637,11 @@
                role="button"
                aria-label="Laboratório de Sistemas Operacionais">
               <div class="card-body">
-                <span class="card-name">Laboratório de Sistemas Operacionais</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4646I-04</div>
+                <div class="card-main">
+                  <span class="card-name">Laboratório de Sistemas Operacionais</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1529,8 +1654,11 @@
                role="button"
                aria-label="Álgebra Linear e Geometria Analítica">
               <div class="card-body">
-                <span class="card-name">Álgebra Linear e Geometria Analítica</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">95302-04</div>
+                <div class="card-main">
+                  <span class="card-name">Álgebra Linear e Geometria Analítica</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1551,8 +1679,11 @@
                role="button"
                aria-label="Teoria da Computabilidade e Complexidade">
               <div class="card-body">
-                <span class="card-name">Teoria da Computabilidade e Complexidade</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4647F-04</div>
+                <div class="card-main">
+                  <span class="card-name">Teoria da Computabilidade e Complexidade</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-online">online</span></div>
             </div>
@@ -1565,8 +1696,11 @@
                role="button"
                aria-label="Construção de Compiladores">
               <div class="card-body">
-                <span class="card-name">Construção de Compiladores</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4645K-04</div>
+                <div class="card-main">
+                  <span class="card-name">Construção de Compiladores</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1579,8 +1713,11 @@
                role="button"
                aria-label="Projeto de Interfaces Inteligentes">
               <div class="card-body">
-                <span class="card-name">Projeto de Interfaces Inteligentes</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">TMP_0006254</div>
+                <div class="card-main">
+                  <span class="card-name">Projeto de Interfaces Inteligentes</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-extensionista">extensionista</span></div>
             </div>
@@ -1593,8 +1730,11 @@
                role="button"
                aria-label="Prática em Engenharia de Software">
               <div class="card-body">
-                <span class="card-name">Prática em Engenharia de Software</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TMP_0006222</div>
+                <div class="card-main">
+                  <span class="card-name">Prática em Engenharia de Software</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-extensionista">extensionista</span></div>
             </div>
@@ -1607,8 +1747,11 @@
                role="button"
                aria-label="Sistemas Distribuídos">
               <div class="card-body">
-                <span class="card-name">Sistemas Distribuídos</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4647B-04</div>
+                <div class="card-main">
+                  <span class="card-name">Sistemas Distribuídos</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1621,8 +1764,11 @@
                role="button"
                aria-label="Redes Avançadas e Segurança">
               <div class="card-body">
-                <span class="card-name">Redes Avançadas e Segurança</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TMP_0006223</div>
+                <div class="card-main">
+                  <span class="card-name">Redes Avançadas e Segurança</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1635,8 +1781,11 @@
                role="button"
                aria-label="Segurança de Sistemas">
               <div class="card-body">
-                <span class="card-name">Segurança de Sistemas</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">TMP_0006224</div>
+                <div class="card-main">
+                  <span class="card-name">Segurança de Sistemas</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-extensionista">extensionista</span></div>
             </div>
@@ -1657,8 +1806,11 @@
                role="button"
                aria-label="Métodos Formais para Computação">
               <div class="card-body">
-                <span class="card-name">Métodos Formais para Computação</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4646M-04</div>
+                <div class="card-main">
+                  <span class="card-name">Métodos Formais para Computação</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1671,8 +1823,11 @@
                role="button"
                aria-label="Infraestrutura para Gestão de Dados">
               <div class="card-body">
-                <span class="card-name">Infraestrutura para Gestão de Dados</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98H00-04</div>
+                <div class="card-main">
+                  <span class="card-name">Infraestrutura para Gestão de Dados</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1685,8 +1840,11 @@
                role="button"
                aria-label="Projeto de Desenvolvimento de Jogos">
               <div class="card-body">
-                <span class="card-name">Projeto de Desenvolvimento de Jogos</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4646X-04</div>
+                <div class="card-main">
+                  <span class="card-name">Projeto de Desenvolvimento de Jogos</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1699,8 +1857,11 @@
                role="button"
                aria-label="Trabalho de Conclusão I">
               <div class="card-body">
-                <span class="card-name">Trabalho de Conclusão I</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">98711-02</div>
+                <div class="card-main">
+                  <span class="card-name">Trabalho de Conclusão I</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1713,8 +1874,11 @@
                role="button"
                aria-label="Computação Paralela">
               <div class="card-body">
-                <span class="card-name">Computação Paralela</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4645J-04</div>
+                <div class="card-main">
+                  <span class="card-name">Computação Paralela</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1727,8 +1891,11 @@
                role="button"
                aria-label="Métodos Numéricos">
               <div class="card-body">
-                <span class="card-name">Métodos Numéricos</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4646N-04</div>
+                <div class="card-main">
+                  <span class="card-name">Métodos Numéricos</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1749,8 +1916,11 @@
                role="button"
                aria-label="Humanismo e Cultura Religiosa">
               <div class="card-body">
-                <span class="card-name">Humanismo e Cultura Religiosa</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">11521-04</div>
+                <div class="card-main">
+                  <span class="card-name">Humanismo e Cultura Religiosa</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-online">online</span></div>
             </div>
@@ -1763,8 +1933,11 @@
                role="button"
                aria-label="Trabalho de Conclusão II">
               <div class="card-body">
-                <span class="card-name">Trabalho de Conclusão II</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">98714-02</div>
+                <div class="card-main">
+                  <span class="card-name">Trabalho de Conclusão II</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1777,8 +1950,11 @@
                role="button"
                aria-label="Simulação e Métodos Analíticos">
               <div class="card-body">
-                <span class="card-name">Simulação e Métodos Analíticos</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4611G-04</div>
+                <div class="card-main">
+                  <span class="card-name">Simulação e Métodos Analíticos</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"><span class="tag tag-online">online</span></div>
             </div>
@@ -1791,8 +1967,11 @@
                role="button"
                aria-label="Atividades Complementares">
               <div class="card-body">
-                <span class="card-name">Atividades Complementares</span>
-                <span class="card-credits">(8)</span>
+                <div class="card-code">98P0-00</div>
+                <div class="card-main">
+                  <span class="card-name">Atividades Complementares</span>
+                  <span class="card-credits">(8)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1968,21 +2147,50 @@
   // Hover over cards
   const allCards = Array.from(document.querySelectorAll('.course-card'));
   const allArrows = Array.from(document.querySelectorAll('.arrow-group'));
+  const forwardGraph = new Map();
+  const reverseGraph = new Map();
+
+  function addEdge(graph, from, to) {
+    if (!from || !to) return;
+    if (!graph.has(from)) graph.set(from, new Set());
+    graph.get(from).add(to);
+  }
+
+  for (const req of REQUIREMENTS) {
+    if (req.type === 'credit_requirement' || !req.from || !req.to) continue;
+    addEdge(forwardGraph, req.from, req.to);
+    addEdge(reverseGraph, req.to, req.from);
+  }
+
+  function collectReachable(startCode, graph) {
+    const visited = new Set();
+    const pending = [startCode];
+
+    while (pending.length > 0) {
+      const code = pending.pop();
+      const neighbors = graph.get(code);
+      if (!neighbors) continue;
+      for (const next of neighbors) {
+        if (visited.has(next)) continue;
+        visited.add(next);
+        pending.push(next);
+      }
+    }
+
+    return visited;
+  }
 
   function getRelated(code) {
-    const prereqs = new Set();
-    const dependents = new Set();
-    for (const req of REQUIREMENTS) {
-      if (req.type === 'credit_requirement') continue;
-      if (req.to === code && req.from) prereqs.add(req.from);
-      if (req.from === code) dependents.add(req.to);
-    }
-    return { prereqs, dependents };
+    const prereqs = collectReachable(code, reverseGraph);
+    const dependents = collectReachable(code, forwardGraph);
+    const prerequisiteChain = new Set([...prereqs, code]);
+    const dependentChain = new Set([code, ...dependents]);
+    const related = new Set([...prerequisiteChain, ...dependentChain]);
+    return { prereqs, dependents, prerequisiteChain, dependentChain, related };
   }
 
   function onCardEnter(code) {
-    const { prereqs, dependents } = getRelated(code);
-    const related = new Set([code, ...prereqs, ...dependents]);
+    const { prerequisiteChain, dependentChain, related } = getRelated(code);
 
     allCards.forEach(card => {
       const c = card.dataset.code;
@@ -1995,7 +2203,10 @@
     allArrows.forEach(arrow => {
       const from = arrow.dataset.from;
       const to = arrow.dataset.to;
-      const active = (from === code || to === code);
+      const active = Boolean(from && to) && (
+        (prerequisiteChain.has(from) && prerequisiteChain.has(to)) ||
+        (dependentChain.has(from) && dependentChain.has(to))
+      );
       arrow.style.display = active ? '' : 'none';
     });
   }

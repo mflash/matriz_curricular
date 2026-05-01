@@ -54,21 +54,50 @@
   // Hover over cards
   const allCards = Array.from(document.querySelectorAll('.course-card'));
   const allArrows = Array.from(document.querySelectorAll('.arrow-group'));
+  const forwardGraph = new Map();
+  const reverseGraph = new Map();
+
+  function addEdge(graph, from, to) {
+    if (!from || !to) return;
+    if (!graph.has(from)) graph.set(from, new Set());
+    graph.get(from).add(to);
+  }
+
+  for (const req of REQUIREMENTS) {
+    if (req.type === 'credit_requirement' || !req.from || !req.to) continue;
+    addEdge(forwardGraph, req.from, req.to);
+    addEdge(reverseGraph, req.to, req.from);
+  }
+
+  function collectReachable(startCode, graph) {
+    const visited = new Set();
+    const pending = [startCode];
+
+    while (pending.length > 0) {
+      const code = pending.pop();
+      const neighbors = graph.get(code);
+      if (!neighbors) continue;
+      for (const next of neighbors) {
+        if (visited.has(next)) continue;
+        visited.add(next);
+        pending.push(next);
+      }
+    }
+
+    return visited;
+  }
 
   function getRelated(code) {
-    const prereqs = new Set();
-    const dependents = new Set();
-    for (const req of REQUIREMENTS) {
-      if (req.type === 'credit_requirement') continue;
-      if (req.to === code && req.from) prereqs.add(req.from);
-      if (req.from === code) dependents.add(req.to);
-    }
-    return { prereqs, dependents };
+    const prereqs = collectReachable(code, reverseGraph);
+    const dependents = collectReachable(code, forwardGraph);
+    const prerequisiteChain = new Set([...prereqs, code]);
+    const dependentChain = new Set([code, ...dependents]);
+    const related = new Set([...prerequisiteChain, ...dependentChain]);
+    return { prereqs, dependents, prerequisiteChain, dependentChain, related };
   }
 
   function onCardEnter(code) {
-    const { prereqs, dependents } = getRelated(code);
-    const related = new Set([code, ...prereqs, ...dependents]);
+    const { prerequisiteChain, dependentChain, related } = getRelated(code);
 
     allCards.forEach(card => {
       const c = card.dataset.code;
@@ -81,7 +110,10 @@
     allArrows.forEach(arrow => {
       const from = arrow.dataset.from;
       const to = arrow.dataset.to;
-      const active = (from === code || to === code);
+      const active = Boolean(from && to) && (
+        (prerequisiteChain.has(from) && prerequisiteChain.has(to)) ||
+        (dependentChain.has(from) && dependentChain.has(to))
+      );
       arrow.style.display = active ? '' : 'none';
     });
   }

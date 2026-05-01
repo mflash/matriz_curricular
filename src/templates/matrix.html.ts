@@ -1,5 +1,5 @@
 import { CurriculumFile, CourseInput, RequirementInput, ArrowRoute, Point, LayoutData, ColumnLayout, CardRect, RouteData, RenderOptions, LinkRenderStyle, CategoryInput } from '../types';
-import { CARD_WIDTH, COL_HEADER_H, HEADER_H, PAGE_MARGIN } from '../layout';
+import { CARD_HEIGHT, CARD_WIDTH, COL_HEADER_H, HEADER_H, PAGE_MARGIN } from '../layout';
 
 // ─── Ponto de entrada ─────────────────────────────────────────────────────────
 
@@ -115,8 +115,11 @@ function renderCard(
                role="button"
                aria-label="${esc(course.name)}">
               <div class="card-body">
-                <span class="card-name">${esc(course.name)}</span>
-                <span class="card-credits">(${course.credits})</span>
+                <div class="card-code">${esc(course.code)}</div>
+                <div class="card-main">
+                  <span class="card-name">${esc(course.name)}</span>
+                  <span class="card-credits">(${course.credits})</span>
+                </div>
               </div>
               <div class="card-footer">${tags}</div>
             </div>
@@ -288,7 +291,7 @@ function renderPopup(): string {
 
 function renderLegend(tags: string[], linkStyle: LinkRenderStyle, categories: CategoryInput[]): string {
   const tagItems = tags.map(t =>
-    `      <dt><span class="tag tag-${esc(t)}">${esc(t)}</span></dt>\n      <dd>Disciplina ${esc(t)}</dd>`
+    `      <dt><span class="tag tag-${esc(t)}">${esc(t)}</span></dt>\n      <dd>Disciplinas ${esc(t)}</dd>`
   ).join('\n');
 
   const categoryItems = categories.map(category => {
@@ -506,7 +509,7 @@ function renderCss(tags: string[], categories: CategoryInput[]): string {
     /* Cartões de disciplina */
     .course-card {
       width: 100%;
-      height: 60px;
+      height: ${CARD_HEIGHT}px;
       background: #fff;
       border: 1.5px solid #aaa;
       border-radius: 4px;
@@ -531,15 +534,39 @@ function renderCss(tags: string[], categories: CategoryInput[]): string {
     }
     .card-body {
       display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+    .card-code {
+      padding: 4px 8px 3px;
+      font-size: 0.62rem;
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #1a3a6b;
+      border-bottom: 1px solid rgba(26, 58, 107, 0.2);
+      background: rgba(255,255,255,0.35);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .card-main {
+      display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      padding: 6px 8px 4px;
-      flex: 1;
+      gap: 4px;
+      padding: 4px 8px 1px;
+      flex: 1 1 auto;
+      min-height: 0;
     }
-    .card-name    { font-size: 0.78rem; line-height: 1.3; }
+    .card-name    { font-size: 0.78rem; line-height: 1.18; }
     .card-credits { font-size: 0.75rem; color: #555; white-space: nowrap; margin-left: 4px; }
-    .card-footer  { position: absolute; bottom: 0; left: 0; right: 0; padding: 2px 6px 4px; display: flex; gap: 4px; flex-wrap: wrap; min-height: 16px; }
+    .card-footer  { margin-top: auto; padding: 2px 6px 4px; display: flex; gap: 4px; flex-wrap: wrap; min-height: 16px; }
     .card-footer:not(:empty) { background: rgba(255,255,255,0.85); }
+    .course-card.fill-category .card-code {
+      color: #16324f;
+      border-bottom-color: rgba(0,0,0,0.18);
+      background: rgba(255,255,255,0.2);
+    }
     .course-card.fill-category .card-name,
     .course-card.fill-category .card-credits {
       color: #222;
@@ -948,21 +975,50 @@ function renderJs(data: CurriculumFile, _layout: LayoutData, _routes: RouteData)
   // ── Hover sobre cartões ─────────────────────────────────────────────────────
   const allCards = Array.from(document.querySelectorAll('.course-card'));
   const allArrows = Array.from(document.querySelectorAll('.arrow-group'));
+  const forwardGraph = new Map<string, Set<string>>();
+  const reverseGraph = new Map<string, Set<string>>();
 
-  function getRelated(code) {
-    const prereqs = new Set();
-    const dependents = new Set();
-    for (const req of REQUIREMENTS) {
-      if (req.type === 'credit_requirement') continue;
-      if (req.to === code && req.from)   prereqs.add(req.from);
-      if (req.from === code)             dependents.add(req.to);
-    }
-    return { prereqs, dependents };
+  function addEdge(graph: Map<string, Set<string>>, from: string | null | undefined, to: string | null | undefined) {
+    if (!from || !to) return;
+    if (!graph.has(from)) graph.set(from, new Set<string>());
+    graph.get(from)!.add(to);
   }
 
-  function onCardEnter(code) {
-    const { prereqs, dependents } = getRelated(code);
-    const related = new Set([code, ...prereqs, ...dependents]);
+  for (const req of REQUIREMENTS) {
+    if (req.type === 'credit_requirement' || !req.from || !req.to) continue;
+    addEdge(forwardGraph, req.from, req.to);
+    addEdge(reverseGraph, req.to, req.from);
+  }
+
+  function collectReachable(code: string, graph: Map<string, Set<string>>) {
+    const visited = new Set<string>();
+    const pending = [code];
+
+    while (pending.length > 0) {
+      const current = pending.pop()!;
+      const neighbors = graph.get(current);
+      if (!neighbors) continue;
+      for (const next of neighbors) {
+        if (visited.has(next)) continue;
+        visited.add(next);
+        pending.push(next);
+      }
+    }
+
+    return visited;
+  }
+
+  function getRelated(code: string) {
+    const prereqs = collectReachable(code, reverseGraph);
+    const dependents = collectReachable(code, forwardGraph);
+    const prerequisiteChain = new Set<string>([...prereqs, code]);
+    const dependentChain = new Set<string>([code, ...dependents]);
+    const related = new Set<string>([...prerequisiteChain, ...dependentChain]);
+    return { prereqs, dependents, prerequisiteChain, dependentChain, related };
+  }
+
+  function onCardEnter(code: string) {
+    const { prerequisiteChain, dependentChain, related } = getRelated(code);
 
     allCards.forEach(card => {
       const c = card.dataset.code;
@@ -976,7 +1032,10 @@ function renderJs(data: CurriculumFile, _layout: LayoutData, _routes: RouteData)
     allArrows.forEach(arrow => {
       const from = arrow.dataset.from;
       const to   = arrow.dataset.to;
-      const active = (from === code || to === code);
+      const active = Boolean(from && to) && (
+        (prerequisiteChain.has(from) && prerequisiteChain.has(to)) ||
+        (dependentChain.has(from) && dependentChain.has(to))
+      );
       arrow.style.display = active ? '' : 'none';
     });
   }

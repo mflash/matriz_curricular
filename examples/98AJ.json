@@ -20,8 +20,7 @@
     {"id": "aplic", "name": "Aplicações Avançadas", "color": "#d9b8ec"},
     {"id": "sist", "name": "Espec. e Construção de Sistemas", "color": "#c3ac68"},
     {"id": "social", "name": "Contexto Profissional e Social", "color": "#10dec3"},
-    {"id": "net", "name": "Computação Distribuída e em Rede", "color": "#30c1d9"},
-    {"id": "cs", "name": "Computação", "color": "#a8e88c" }
+    {"id": "net", "name": "Computação Distribuída e em Rede", "color": "#30c1d9"}
   ],
 
   "courses": [
@@ -73,7 +72,7 @@
       "level": 1,
       "syllabus": "Apresentação da Computação como área de estudo: suas origens, seu tema de estudo e sua relação com os diversos cursos de computação. Apresentação das grandes camadas de um sistema computacional: informação, hardware, sistema operacional, aplicações. Estudo teórico-prático da representação de informação, com ênfase em sistemas de numeração, em particular o sistema binário. Discussão sobre os grandes desafios da computação.",
       "tags": [],
-      "category": "cs"
+      "category": "infra"
     },
     {
       "code": "95300-04",
@@ -228,16 +227,6 @@
     },
 
     {
-      "code": "98713-04",
-      "name": "Fundamentos de Proc. Paralelo e Distribuído",
-      "hours": 60,
-      "credits": 4,
-      "level": 4,
-      "syllabus": "Introdução à computação concorrente e sua representação com sistemas de transição de estados. Estudo de processos e threads. Estudo sobre memória compartilhada e passagem de mensagem. Descrição da semântica de mecanismos de sincronização e seu uso na programação concorrente. Apresentação de abordagens para modelagem e avaliação de propriedades de sistemas concorrentes. Apresentação dos objetivos e pressupostos ambientais para sistemas paralelos e para sistemas distribuídos. Análise das abordagens para modelagem de aplicações paralelas com memória compartilhada e passagem de mensagem. Estudo das principais abstrações para programação distribuída. Apresentação de estudos de caso de sistemas paralelos e de sistemas distribuídos.",
-      "tags": [],
-      "category": "net"
-    },
-    {
       "code": "98703-02",
       "name": "Programação Funcional",
       "hours": 60,
@@ -246,6 +235,16 @@
       "syllabus": "x",
       "tags": [],
       "category": "aplic"
+    },
+    {
+      "code": "98713-04",
+      "name": "Fundamentos de Proc. Paralelo e Distribuído",
+      "hours": 60,
+      "credits": 4,
+      "level": 4,
+      "syllabus": "Introdução à computação concorrente e sua representação com sistemas de transição de estados. Estudo de processos e threads. Estudo sobre memória compartilhada e passagem de mensagem. Descrição da semântica de mecanismos de sincronização e seu uso na programação concorrente. Apresentação de abordagens para modelagem e avaliação de propriedades de sistemas concorrentes. Apresentação dos objetivos e pressupostos ambientais para sistemas paralelos e para sistemas distribuídos. Análise das abordagens para modelagem de aplicações paralelas com memória compartilhada e passagem de mensagem. Estudo das principais abstrações para programação distribuída. Apresentação de estudos de caso de sistemas paralelos e de sistemas distribuídos.",
+      "tags": [],
+      "category": "net"
     },
     {
       "code": "4636H-04",

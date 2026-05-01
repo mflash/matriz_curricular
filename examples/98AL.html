@@ -86,15 +86,15 @@
     .cards-area {
       display: flex;
       flex-direction: column;
-      gap: 24px;
-      padding: 24px 0;
+      gap: 40px;
+      padding: 40px 0;
     }
 
     /* Wrapper do cartao */
     .card-wrapper {
       position: relative;
       width: 100%;
-      height: 60px;
+      height: 90px;
     }
 
     /* Badge de requisito de creditos minimos */
@@ -119,7 +119,7 @@
     /* Cartoes de disciplina */
     .course-card {
       width: 100%;
-      height: 60px;
+      height: 90px;
       background: #fff;
       border: 1.5px solid #aaa;
       border-radius: 4px;
@@ -144,15 +144,39 @@
     }
     .card-body {
       display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+    .card-code {
+      padding: 4px 8px 3px;
+      font-size: 0.62rem;
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #1a3a6b;
+      border-bottom: 1px solid rgba(26, 58, 107, 0.2);
+      background: rgba(255,255,255,0.35);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .card-main {
+      display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      padding: 6px 8px 4px;
-      flex: 1;
+      gap: 4px;
+      padding: 2px 8px 2px;
+      flex: 1 1 auto;
+      min-height: 0;
     }
-    .card-name    { font-size: 0.78rem; line-height: 1.3; }
+    .card-name    { font-size: 0.78rem; line-height: 1.18; }
     .card-credits { font-size: 0.75rem; color: #555; white-space: nowrap; margin-left: 4px; }
-    .card-footer  { position: absolute; bottom: 0; left: 0; right: 0; padding: 2px 6px 4px; display: flex; gap: 4px; flex-wrap: wrap; min-height: 16px; }
+    .card-footer  { margin-top: auto; padding: 4px 6px 4px; display: flex; gap: 4px; flex-wrap: wrap; min-height: 16px; }
     .card-footer:not(:empty) { background: rgba(255,255,255,0.85); }
+    .course-card.fill-category .card-code {
+      color: #16324f;
+      border-bottom-color: rgba(0,0,0,0.18);
+      background: rgba(255,255,255,0.2);
+    }
     .course-card.fill-category .card-name,
     .course-card.fill-category .card-credits {
       color: #222;
@@ -478,418 +502,463 @@
   <div class="course-meta">98AL &bull; desde 2022/1</div>
 </header>
 <div class="matrix-wrapper">
-  <div class="matrix-area" style="--matrix-base-w:1540px; --matrix-base-h:712px;">
-    <div class="matrix-canvas" style="width:1540px; height:712px;">
-      <svg class="arrows-layer link-style-paths" width="1540" height="712" aria-hidden="true">
-
+  <div class="matrix-area" style="--matrix-base-w:1540px; --matrix-base-h:1050px;">
+    <div class="matrix-canvas" style="width:1540px; height:1050px;">
+      <svg class="arrows-layer link-style-arrows" width="1540" height="1050" aria-hidden="true">
+      <defs>
+        <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6 Z" fill="#333"/>
+        </marker>
+      </defs>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="95303-04"
        data-to="4611E-04">
-      <path d="M 140 350 L 148.25 350 Q 155 350 155 343.25 L 155 318.45 Q 155 309 164.45 309 L 166.55 309 Q 176 309 176 299.55 L 176 112.8 Q 176 102 186.8 102 L 200 102"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="140,519.0 155.0,519.0 155.0,455.0 176.0,455.0 176.0,133.0 200,133.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="4611C-06"
        data-to="4611F-04">
-      <path d="M 140 186 L 200 186"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="140,263.0 200,263.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="4611C-06"
        data-to="4645G-04">
-      <path d="M 140 190 L 151.55 190 Q 161 190 161 199.45 L 161 218.55 Q 161 228 170.45 228 L 172.55 228 Q 182 228 182 237.45 L 182 261.9 Q 182 270 190.1 270 L 200 270"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="140,267.0 161.0,267.0 161.0,328.0 182.0,328.0 182.0,393.0 200,393.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="98900-02"
        data-to="46506-04">
-      <path d="M 140 526 L 149.9 526 Q 158 526 158 517.9 L 158 483.45 Q 158 474 167.45 474 L 169.55 474 Q 179 474 179 464.55 L 179 363.45 Q 179 354 188.45 354 L 200 354"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="140,787.0 158.0,787.0 158.0,712.0 179.0,712.0 179.0,523.0 200,523.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="4645G-04"
        data-to="4645H-04">
-      <path d="M 340 266 L 349.9 266 Q 358 266 358 257.9 L 358 227.1 Q 358 219 366.1 219 L 367.9 219 Q 376 219 376 210.9 L 376 112.8 Q 376 102 386.8 102 L 400 102"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="340,389.0 358.0,389.0 358.0,319.0 376.0,319.0 376.0,133.0 400,133.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="4611F-04"
        data-to="46522-04">
-      <path d="M 340 178 L 348.25 178 Q 355 178 355 184.75 L 355 215.55 Q 355 225 364.45 225 L 366.55 225 Q 376 225 376 234.45 L 376 251.2 Q 376 262 386.8 262 L 400 262"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="340,255.0 355.0,255.0 355.0,325.0 376.0,325.0 376.0,385.0 400,385.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="98901-04"
        data-to="98902-02">
-      <path d="M 340 610 L 349.9 610 Q 358 610 358 601.9 L 358 570.45 Q 358 561 367.45 561 L 369.55 561 Q 379 561 379 551.55 L 379 531.45 Q 379 522 388.45 522 L 400 522"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="340,917.0 358.0,917.0 358.0,845.0 379.0,845.0 379.0,783.0 400,783.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="4645H-04"
        data-to="4646Z-04">
-      <path d="M 540 102 L 600 102"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="540,133.0 600,133.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="46515-04"
        data-to="46514-04">
-      <path d="M 540 186 L 600 186"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="540,263.0 600,263.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="46522-04"
        data-to="46523-04">
-      <path d="M 540 270 L 600 270"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="540,393.0 600,393.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="98901-04"
        data-to="46523-04">
-      <path d="M 340 602 L 353.2 602 Q 364 602 364 591.2 L 364 579 Q 364 567 376 567 L 558 567 Q 570 567 570 555 L 570 286 Q 570 274 582 274 L 600 274"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="340,909.0 364.0,909.0 364.0,851.0 570.0,851.0 570.0,397.0 600,397.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="46515-04"
        data-to="98713-04">
-      <path d="M 540 190 L 551.55 190 Q 561 190 561 199.45 L 561 213.9 Q 561 222 569.1 222 L 570.9 222 Q 579 222 579 230.1 L 579 340.55 Q 579 350 588.45 350 L 600 350"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="540,267.0 561.0,267.0 561.0,322.0 579.0,322.0 579.0,519.0 600,519.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="4611F-04"
        data-to="98713-04">
-      <path d="M 340 186 L 353.2 186 Q 364 186 364 196.8 L 364 222 Q 364 234 376 234 L 573 234 Q 585 234 585 246 L 585 351.25 Q 585 358 591.75 358 L 600 358"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="340,263.0 364.0,263.0 364.0,334.0 585.0,334.0 585.0,527.0 600,527.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="46506-04"
        data-to="98904-04">
-      <path d="M 340 358 L 349.9 358 Q 358 358 358 366.1 L 358 370.65 Q 358 381 368.35 381 L 570 381 Q 582 381 582 393 L 582 513.9 Q 582 522 590.1 522 L 600 522"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="340,527.0 358.0,527.0 358.0,573.0 582.0,573.0 582.0,783.0 600,783.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="95304-04"
        data-to="46507-02">
-      <path d="M 540 434 L 549.9 434 Q 558 434 558 425.9 L 558 405 Q 558 393 570 393 L 755 393 Q 767 393 767 381 L 767 114 Q 767 102 779 102 L 800 102"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="540,649.0 558.0,649.0 558.0,585.0 767.0,585.0 767.0,133.0 800,133.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="98800-04"
        data-to="98700-04">
-      <path d="M 340 522 L 351.55 522 Q 361 522 361 512.55 L 361 480 Q 361 468 373 468 L 758 468 Q 770 468 770 456 L 770 282 Q 770 270 782 270 L 800 270"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="340,783.0 361.0,783.0 361.0,706.0 770.0,706.0 770.0,393.0 800,393.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="4611E-04"
        data-to="98708-04">
-      <path d="M 340 98 L 349.9 98 Q 358 98 358 106.1 L 358 123 Q 358 135 370 135 L 767 135 Q 779 135 779 147 L 779 340.55 Q 779 350 788.45 350 L 800 350"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="340,129.0 358.0,129.0 358.0,189.0 779.0,189.0 779.0,519.0 800,519.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="4645H-04"
        data-to="98708-04">
-      <path d="M 540 106 L 551.55 106 Q 561 106 561 115.45 L 561 129 Q 561 141 573 141 L 773 141 Q 785 141 785 153 L 785 351.25 Q 785 358 791.75 358 L 800 358"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="540,137.0 561.0,137.0 561.0,195.0 785.0,195.0 785.0,527.0 800,527.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="46506-04"
        data-to="98905-04">
-      <path d="M 340 350 L 353.2 350 Q 364 350 364 360.8 L 364 381 Q 364 393 376 393 L 767 393 Q 779 393 779 405 L 779 428.55 Q 779 438 788.45 438 L 800 438"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="340,519.0 364.0,519.0 364.0,585.0 779.0,585.0 779.0,653.0 800,653.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="4611F-04"
        data-to="98906-04">
-      <path d="M 340 194 L 355 194 Q 367 194 367 206 L 367 228 Q 367 240 379 240 L 782 240 Q 794 240 794 252 L 794 519.3 Q 794 522 796.7 522 L 800 522"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="340,271.0 367.0,271.0 367.0,340.0 794.0,340.0 794.0,783.0 800,783.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="98906-04"
        data-to="46504-04">
-      <path d="M 940 522 L 951.55 522 Q 961 522 961 512.55 L 961 476.4 Q 961 471 966.4 471 L 967.6 471 Q 973 471 973 465.6 L 973 282 Q 973 270 985 270 L 1000 270"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="940,783.0 961.0,783.0 961.0,709.0 973.0,709.0 973.0,393.0 1000,393.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="98902-02"
        data-to="98H00-04">
-      <path d="M 540 518 L 549.9 518 Q 558 518 558 509.9 L 558 492 Q 558 480 570 480 L 967 480 Q 979 480 979 468 L 979 363.45 Q 979 354 988.45 354 L 1000 354"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="540,779.0 558.0,779.0 558.0,718.0 979.0,718.0 979.0,523.0 1000,523.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="98700-04"
        data-to="98709-04">
-      <path d="M 940 270 L 951.55 270 Q 961 270 961 279.45 L 961 298.2 Q 961 309 971.8 309 L 974.2 309 Q 985 309 985 319.8 L 985 431.25 Q 985 438 991.75 438 L 1000 438"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="940,393.0 961.0,393.0 961.0,455.0 985.0,455.0 985.0,653.0 1000,653.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="95304-04"
        data-to="4611G-04">
-      <path d="M 540 442 L 553.2 442 Q 564 442 564 431.2 L 564 417 Q 564 405 576 405 L 1155 405 Q 1167 405 1167 393 L 1167 282 Q 1167 270 1179 270 L 1200 270"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="540,657.0 564.0,657.0 564.0,597.0 1167.0,597.0 1167.0,393.0 1200,393.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="98902-02"
        data-to="4636N-04">
-      <path d="M 540 526 L 553.2 526 Q 564 526 564 515.2 L 564 498 Q 564 486 576 486 L 1161 486 Q 1173 486 1173 474 L 1173 366 Q 1173 354 1185 354 L 1200 354"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="540,787.0 564.0,787.0 564.0,724.0 1173.0,724.0 1173.0,523.0 1200,523.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="4611E-04"
        data-to="4646M-04">
-      <path d="M 340 106 L 353.2 106 Q 364 106 364 116.8 L 364 135 Q 364 147 376 147 L 1167 147 Q 1179 147 1179 159 L 1179 428.55 Q 1179 438 1188.45 438 L 1200 438"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="340,137.0 364.0,137.0 364.0,201.0 1179.0,201.0 1179.0,653.0 1200,653.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="46504-04"
        data-to="46524-04">
-      <path d="M 1140 270 L 1151.55 270 Q 1161 270 1161 279.45 L 1161 298.2 Q 1161 309 1171.8 309 L 1174.2 309 Q 1185 309 1185 319.8 L 1185 507.25 Q 1185 514 1191.75 514 L 1200 514"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="1140,393.0 1161.0,393.0 1161.0,455.0 1185.0,455.0 1185.0,775.0 1200,775.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="46523-04"
        data-to="46524-04">
-      <path d="M 740 270 L 751.55 270 Q 761 270 761 279.45 L 761 306 Q 761 318 773 318 L 1179 318 Q 1191 318 1191 330 L 1191 517.95 Q 1191 522 1195.05 522 L 1200 522"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="740,393.0 761.0,393.0 761.0,464.0 1191.0,464.0 1191.0,783.0 1200,783.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="98904-04"
        data-to="46517-02">
-      <path d="M 740 518 L 751.55 518 Q 761 518 761 508.55 L 761 501 Q 761 489 773 489 L 1358 489 Q 1370 489 1370 477 L 1370 198 Q 1370 186 1382 186 L 1400 186"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="740,779.0 761.0,779.0 761.0,727.0 1370.0,727.0 1370.0,263.0 1400,263.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="46524-04"
        data-to="46525-04">
-      <path d="M 1340 522 L 1351.55 522 Q 1361 522 1361 512.55 L 1361 491.1 Q 1361 483 1369.1 483 L 1370.9 483 Q 1379 483 1379 474.9 L 1379 283.45 Q 1379 274 1388.45 274 L 1400 274"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="1340,783.0 1361.0,783.0 1361.0,721.0 1379.0,721.0 1379.0,397.0 1400,397.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="46510-04"
        data-to="46525-04">
-      <path d="M 940 186 L 951.55 186 Q 961 186 961 195.45 L 961 216 Q 961 228 973 228 L 1367 228 Q 1379 228 1379 240 L 1379 256.55 Q 1379 266 1388.45 266 L 1400 266"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="940,263.0 961.0,263.0 961.0,328.0 1379.0,328.0 1379.0,389.0 1400,389.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="prerequisite"
        data-from="4646Z-04"
        data-to="98715-04">
-      <path d="M 740 102 L 751.55 102 Q 761 102 761 111.45 L 761 141 Q 761 153 773 153 L 1376 153 Q 1388 153 1388 165 L 1388 348.6 Q 1388 354 1393.4 354 L 1400 354"
-            stroke-dasharray="none"
-            stroke-width="6"
-            class="arrow-line"/>
+      <polyline points="740,133.0 761.0,133.0 761.0,207.0 1388.0,207.0 1388.0,523.0 1400,523.0"
+      stroke-dasharray="none"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="special"
        data-from="98705-02"
        data-to="98800-04">
-      <path d="M 140 438 L 151.55 438 Q 161 438 161 447.45 L 161 471.9 Q 161 480 169.1 480 L 170.9 480 Q 179 480 179 488.1 L 179 512.55 Q 179 522 188.45 522 L 200 522"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
+      <polyline points="140,653.0 161.0,653.0 161.0,718.0 179.0,718.0 179.0,783.0 200,783.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="special"
        data-from="95303-04"
        data-to="46515-04">
-      <path d="M 140 358 L 151.55 358 Q 161 358 161 348.55 L 161 324 Q 161 312 173 312 L 367 312 Q 379 312 379 300 L 379 195.45 Q 379 186 388.45 186 L 400 186"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
+      <polyline points="140,527.0 161.0,527.0 161.0,458.0 379.0,458.0 379.0,263.0 400,263.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="special"
        data-from="98900-02"
        data-to="46522-04">
-      <path d="M 140 518 L 153.2 518 Q 164 518 164 507.2 L 164 501 Q 164 489 176 489 L 361 489 Q 373 489 373 477 L 373 290 Q 373 278 385 278 L 400 278"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
+      <polyline points="140,779.0 164.0,779.0 164.0,727.0 373.0,727.0 373.0,401.0 400,401.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="special"
        data-from="46509-02"
        data-to="46522-04">
-      <path d="M 340 438 L 351.55 438 Q 361 438 361 428.55 L 361 408.45 Q 361 399 370.45 399 L 372.55 399 Q 382 399 382 389.55 L 382 278.1 Q 382 270 390.1 270 L 400 270"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
+      <polyline points="340,653.0 361.0,653.0 361.0,591.0 382.0,591.0 382.0,393.0 400,393.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="special"
        data-from="4645G-04"
        data-to="46526-02">
-      <path d="M 340 274 L 351.55 274 Q 361 274 361 283.45 L 361 304.2 Q 361 315 371.8 315 L 374.2 315 Q 385 315 385 325.8 L 385 347.25 Q 385 354 391.75 354 L 400 354"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
+      <polyline points="340,397.0 361.0,397.0 361.0,461.0 385.0,461.0 385.0,523.0 400,523.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="special"
        data-from="95300-04"
        data-to="95304-04">
-      <path d="M 140 270 L 155 270 Q 167 270 167 282 L 167 393 Q 167 405 179 405 L 370 405 Q 382 405 382 417 L 382 429.9 Q 382 438 390.1 438 L 400 438"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
+      <polyline points="140,393.0 167.0,393.0 167.0,597.0 382.0,597.0 382.0,653.0 400,653.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="special"
        data-from="4471V-02"
        data-to="4471X-02">
-      <path d="M 1140 186 L 1200 186"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
+      <polyline points="1140,263.0 1200,263.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="special"
        data-from="98904-04"
        data-to="46524-04">
-      <path d="M 740 526 L 751.55 526 Q 761 526 761 535.45 L 761 552 Q 761 564 773 564 L 1167 564 Q 1179 564 1179 552 L 1179 539.45 Q 1179 530 1188.45 530 L 1200 530"
-            stroke-dasharray="8,4"
-            stroke-width="5"
-            class="arrow-line"/>
+      <polyline points="740,787.0 761.0,787.0 761.0,848.0 1179.0,848.0 1179.0,791.0 1200,791.0"
+      stroke-dasharray="8,4"
+      stroke-width="1.6"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
     <g class="arrow-group"
        data-type="corequisite"
        data-from="98709-04"
        data-to="98710-02">
-      <path d="M 1070 468 L 1070 492"
-            stroke-dasharray="3,3"
-            stroke-width="4"
-            class="arrow-line"/>
+      <polyline points="1070.0,698 1070.0,738"
+      stroke-dasharray="3,3"
+      stroke-width="1.4"
+      class="arrow-line"
+      marker-end="url(#arrowhead)"/>
       
     </g>
       </svg>
@@ -908,8 +977,11 @@
                role="button"
                aria-label="Formação do Empreendedor">
               <div class="card-body">
-                <span class="card-name">Formação do Empreendedor</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">254CF-02</div>
+                <div class="card-main">
+                  <span class="card-name">Formação do Empreendedor</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -922,8 +994,11 @@
                role="button"
                aria-label="Fundamentos de Programação">
               <div class="card-body">
-                <span class="card-name">Fundamentos de Programação</span>
-                <span class="card-credits">(6)</span>
+                <div class="card-code">4611C-06</div>
+                <div class="card-main">
+                  <span class="card-name">Fundamentos de Programação</span>
+                  <span class="card-credits">(6)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -936,8 +1011,11 @@
                role="button"
                aria-label="Cálculo I">
               <div class="card-body">
-                <span class="card-name">Cálculo I</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">95300-04</div>
+                <div class="card-main">
+                  <span class="card-name">Cálculo I</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -950,8 +1028,11 @@
                role="button"
                aria-label="Matemática Discreta">
               <div class="card-body">
-                <span class="card-name">Matemática Discreta</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">95303-04</div>
+                <div class="card-main">
+                  <span class="card-name">Matemática Discreta</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -964,8 +1045,11 @@
                role="button"
                aria-label="Introdução à Computação">
               <div class="card-body">
-                <span class="card-name">Introdução à Computação</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">98705-02</div>
+                <div class="card-main">
+                  <span class="card-name">Introdução à Computação</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -978,8 +1062,11 @@
                role="button"
                aria-label="Introdução à Engenharia de Software">
               <div class="card-body">
-                <span class="card-name">Introdução à Engenharia de Software</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">98900-02</div>
+                <div class="card-main">
+                  <span class="card-name">Introdução à Engenharia de Software</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1000,8 +1087,11 @@
                role="button"
                aria-label="Lógica para Computação">
               <div class="card-body">
-                <span class="card-name">Lógica para Computação</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4611E-04</div>
+                <div class="card-main">
+                  <span class="card-name">Lógica para Computação</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1014,8 +1104,11 @@
                role="button"
                aria-label="Programação Orientada a Objetos">
               <div class="card-body">
-                <span class="card-name">Programação Orientada a Objetos</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4611F-04</div>
+                <div class="card-main">
+                  <span class="card-name">Programação Orientada a Objetos</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1028,8 +1121,11 @@
                role="button"
                aria-label="Algoritmos e Estruturas de Dados I">
               <div class="card-body">
-                <span class="card-name">Algoritmos e Estruturas de Dados I</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4645G-04</div>
+                <div class="card-main">
+                  <span class="card-name">Algoritmos e Estruturas de Dados I</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1042,8 +1138,11 @@
                role="button"
                aria-label="Engenharia de Requisitos">
               <div class="card-body">
-                <span class="card-name">Engenharia de Requisitos</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">46506-04</div>
+                <div class="card-main">
+                  <span class="card-name">Engenharia de Requisitos</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1056,8 +1155,11 @@
                role="button"
                aria-label="Gerenciamento de Configuração de Software">
               <div class="card-body">
-                <span class="card-name">Gerenciamento de Configuração de Software</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">46509-02</div>
+                <div class="card-main">
+                  <span class="card-name">Gerenciamento de Configuração de Software</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1070,8 +1172,11 @@
                role="button"
                aria-label="Fundamentos de Sistemas Computacionais">
               <div class="card-body">
-                <span class="card-name">Fundamentos de Sistemas Computacionais</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98800-04</div>
+                <div class="card-main">
+                  <span class="card-name">Fundamentos de Sistemas Computacionais</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1084,8 +1189,11 @@
                role="button"
                aria-label="Banco de Dados I">
               <div class="card-body">
-                <span class="card-name">Banco de Dados I</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98901-04</div>
+                <div class="card-main">
+                  <span class="card-name">Banco de Dados I</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1106,8 +1214,11 @@
                role="button"
                aria-label="Algoritmos e Estruturas de Dados II">
               <div class="card-body">
-                <span class="card-name">Algoritmos e Estruturas de Dados II</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4645H-04</div>
+                <div class="card-main">
+                  <span class="card-name">Algoritmos e Estruturas de Dados II</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1120,8 +1231,11 @@
                role="button"
                aria-label="Linguagens, Autômatos e Computação">
               <div class="card-body">
-                <span class="card-name">Linguagens, Autômatos e Computação</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">46515-04</div>
+                <div class="card-main">
+                  <span class="card-name">Linguagens, Autômatos e Computação</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1134,8 +1248,11 @@
                role="button"
                aria-label="Prática na Agência Experimental I (120h)">
               <div class="card-body">
-                <span class="card-name">Prática na Agência Experimental I (120h)</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">46522-04</div>
+                <div class="card-main">
+                  <span class="card-name">Prática na Agência Experimental I (120h)</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1148,8 +1265,11 @@
                role="button"
                aria-label="Programação de Software Básico">
               <div class="card-body">
-                <span class="card-name">Programação de Software Básico</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">46526-02</div>
+                <div class="card-main">
+                  <span class="card-name">Programação de Software Básico</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1162,8 +1282,11 @@
                role="button"
                aria-label="Probabilidade e Estatística">
               <div class="card-body">
-                <span class="card-name">Probabilidade e Estatística</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">95304-04</div>
+                <div class="card-main">
+                  <span class="card-name">Probabilidade e Estatística</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1176,8 +1299,11 @@
                role="button"
                aria-label="Banco de Dados II">
               <div class="card-body">
-                <span class="card-name">Banco de Dados II</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">98902-02</div>
+                <div class="card-main">
+                  <span class="card-name">Banco de Dados II</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1198,8 +1324,11 @@
                role="button"
                aria-label="Projeto e Otimização de Algoritmos">
               <div class="card-body">
-                <span class="card-name">Projeto e Otimização de Algoritmos</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4646Z-04</div>
+                <div class="card-main">
+                  <span class="card-name">Projeto e Otimização de Algoritmos</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1212,8 +1341,11 @@
                role="button"
                aria-label="Linguagens de Programação">
               <div class="card-body">
-                <span class="card-name">Linguagens de Programação</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">46514-04</div>
+                <div class="card-main">
+                  <span class="card-name">Linguagens de Programação</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1226,8 +1358,11 @@
                role="button"
                aria-label="Prática na Agência Experimental II (120h)">
               <div class="card-body">
-                <span class="card-name">Prática na Agência Experimental II (120h)</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">46523-04</div>
+                <div class="card-main">
+                  <span class="card-name">Prática na Agência Experimental II (120h)</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1240,8 +1375,11 @@
                role="button"
                aria-label="Fundamentos de Processamento Paralelo e Distribuído">
               <div class="card-body">
-                <span class="card-name">Fundamentos de Processamento Paralelo e Distribuído</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98713-04</div>
+                <div class="card-main">
+                  <span class="card-name">Fundamentos de Processamento Paralelo e Distribuído</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1254,8 +1392,11 @@
                role="button"
                aria-label="Processos de Software">
               <div class="card-body">
-                <span class="card-name">Processos de Software</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">98903-02</div>
+                <div class="card-main">
+                  <span class="card-name">Processos de Software</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1268,8 +1409,11 @@
                role="button"
                aria-label="Verificação e Validação de Software">
               <div class="card-body">
-                <span class="card-name">Verificação e Validação de Software</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98904-04</div>
+                <div class="card-main">
+                  <span class="card-name">Verificação e Validação de Software</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1290,8 +1434,11 @@
                role="button"
                aria-label="Engenharia de Software Experimental">
               <div class="card-body">
-                <span class="card-name">Engenharia de Software Experimental</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">46507-02</div>
+                <div class="card-main">
+                  <span class="card-name">Engenharia de Software Experimental</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1305,8 +1452,11 @@
                role="button"
                aria-label="Gerenciamento de Projeto de Software">
               <div class="card-body">
-                <span class="card-name">Gerenciamento de Projeto de Software</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">46510-04</div>
+                <div class="card-main">
+                  <span class="card-name">Gerenciamento de Projeto de Software</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1319,8 +1469,11 @@
                role="button"
                aria-label="Sistemas Operacionais">
               <div class="card-body">
-                <span class="card-name">Sistemas Operacionais</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98700-04</div>
+                <div class="card-main">
+                  <span class="card-name">Sistemas Operacionais</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1333,8 +1486,11 @@
                role="button"
                aria-label="Inteligência Artificial">
               <div class="card-body">
-                <span class="card-name">Inteligência Artificial</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98708-04</div>
+                <div class="card-main">
+                  <span class="card-name">Inteligência Artificial</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1347,8 +1503,11 @@
                role="button"
                aria-label="Experiência do Usuário">
               <div class="card-body">
-                <span class="card-name">Experiência do Usuário</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98905-04</div>
+                <div class="card-main">
+                  <span class="card-name">Experiência do Usuário</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1361,8 +1520,11 @@
                role="button"
                aria-label="Projeto e Arquitetura de Software">
               <div class="card-body">
-                <span class="card-name">Projeto e Arquitetura de Software</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98906-04</div>
+                <div class="card-main">
+                  <span class="card-name">Projeto e Arquitetura de Software</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1384,8 +1546,11 @@
                role="button"
                aria-label="Ética e Cidadania">
               <div class="card-body">
-                <span class="card-name">Ética e Cidadania</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">1501A-04</div>
+                <div class="card-main">
+                  <span class="card-name">Ética e Cidadania</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1399,8 +1564,11 @@
                role="button"
                aria-label="Sistemas de Planejamento e Custos para Engenharia">
               <div class="card-body">
-                <span class="card-name">Sistemas de Planejamento e Custos para Engenharia</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">4471V-02</div>
+                <div class="card-main">
+                  <span class="card-name">Sistemas de Planejamento e Custos para Engenharia</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1413,8 +1581,11 @@
                role="button"
                aria-label="Construção de Software">
               <div class="card-body">
-                <span class="card-name">Construção de Software</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">46504-04</div>
+                <div class="card-main">
+                  <span class="card-name">Construção de Software</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1427,8 +1598,11 @@
                role="button"
                aria-label="Infraestrutura para Gestão de Dados">
               <div class="card-body">
-                <span class="card-name">Infraestrutura para Gestão de Dados</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98H00-04</div>
+                <div class="card-main">
+                  <span class="card-name">Infraestrutura para Gestão de Dados</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1441,8 +1615,11 @@
                role="button"
                aria-label="Fundamentos de Redes de Computadores">
               <div class="card-body">
-                <span class="card-name">Fundamentos de Redes de Computadores</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98709-04</div>
+                <div class="card-main">
+                  <span class="card-name">Fundamentos de Redes de Computadores</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1455,8 +1632,11 @@
                role="button"
                aria-label="Laboratório de Redes de Computadores">
               <div class="card-body">
-                <span class="card-name">Laboratório de Redes de Computadores</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">98710-02</div>
+                <div class="card-main">
+                  <span class="card-name">Laboratório de Redes de Computadores</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1478,8 +1658,11 @@
                role="button"
                aria-label="Psicologia e Gestão de Pessoas em TI">
               <div class="card-body">
-                <span class="card-name">Psicologia e Gestão de Pessoas em TI</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">13397-02</div>
+                <div class="card-main">
+                  <span class="card-name">Psicologia e Gestão de Pessoas em TI</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1492,8 +1675,11 @@
                role="button"
                aria-label="Engenharia Econômica">
               <div class="card-body">
-                <span class="card-name">Engenharia Econômica</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">4471X-02</div>
+                <div class="card-main">
+                  <span class="card-name">Engenharia Econômica</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1506,8 +1692,11 @@
                role="button"
                aria-label="Simulação e Métodos Analíticos">
               <div class="card-body">
-                <span class="card-name">Simulação e Métodos Analíticos</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4611G-04</div>
+                <div class="card-main">
+                  <span class="card-name">Simulação e Métodos Analíticos</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1520,8 +1709,11 @@
                role="button"
                aria-label="Infraestrutura de Tecnologia da Informação">
               <div class="card-body">
-                <span class="card-name">Infraestrutura de Tecnologia da Informação</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4636N-04</div>
+                <div class="card-main">
+                  <span class="card-name">Infraestrutura de Tecnologia da Informação</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1534,8 +1726,11 @@
                role="button"
                aria-label="Métodos Formais para Computação">
               <div class="card-body">
-                <span class="card-name">Métodos Formais para Computação</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">4646M-04</div>
+                <div class="card-main">
+                  <span class="card-name">Métodos Formais para Computação</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1548,8 +1743,11 @@
                role="button"
                aria-label="Prática na Agência Experimental III (120h)">
               <div class="card-body">
-                <span class="card-name">Prática na Agência Experimental III (120h)</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">46524-04</div>
+                <div class="card-main">
+                  <span class="card-name">Prática na Agência Experimental III (120h)</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1571,8 +1769,11 @@
                role="button"
                aria-label="Humanismo e Cultura Religiosa">
               <div class="card-body">
-                <span class="card-name">Humanismo e Cultura Religiosa</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">11521-04</div>
+                <div class="card-main">
+                  <span class="card-name">Humanismo e Cultura Religiosa</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1585,8 +1786,11 @@
                role="button"
                aria-label="Melhoria de Processos de Software">
               <div class="card-body">
-                <span class="card-name">Melhoria de Processos de Software</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">46517-02</div>
+                <div class="card-main">
+                  <span class="card-name">Melhoria de Processos de Software</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1599,8 +1803,11 @@
                role="button"
                aria-label="Prática na Agência Experimental IV (120h)">
               <div class="card-body">
-                <span class="card-name">Prática na Agência Experimental IV (120h)</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">46525-04</div>
+                <div class="card-main">
+                  <span class="card-name">Prática na Agência Experimental IV (120h)</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1613,8 +1820,11 @@
                role="button"
                aria-label="Segurança de Sistemas">
               <div class="card-body">
-                <span class="card-name">Segurança de Sistemas</span>
-                <span class="card-credits">(4)</span>
+                <div class="card-code">98715-04</div>
+                <div class="card-main">
+                  <span class="card-name">Segurança de Sistemas</span>
+                  <span class="card-credits">(4)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1627,8 +1837,11 @@
                role="button"
                aria-label="Engenharia e Gestão do Conhecimento">
               <div class="card-body">
-                <span class="card-name">Engenharia e Gestão do Conhecimento</span>
-                <span class="card-credits">(2)</span>
+                <div class="card-code">98907-02</div>
+                <div class="card-main">
+                  <span class="card-name">Engenharia e Gestão do Conhecimento</span>
+                  <span class="card-credits">(2)</span>
+                </div>
               </div>
               <div class="card-footer"></div>
             </div>
@@ -1641,11 +1854,11 @@
   <aside class="legend-panel">
     <h2 class="legend-title">Legenda</h2>
     <dl class="legend-list">
-      <dt><svg width="60" height="14"><path d="M2 7 C 16 7, 20 7, 30 7 S 44 7, 58 7" stroke="#1a3a6b" stroke-width="6" fill="none" stroke-linecap="round"/></svg></dt>
+      <dt><svg width="60" height="14"><defs><marker id="arrowhead-legend-1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#333"/></marker></defs><line x1="2" y1="7" x2="58" y2="7" stroke="#1a3a6b" stroke-width="1.6" marker-end="url(#arrowhead-legend-1)"/></svg></dt>
       <dd>Pr&#233;-requisito</dd>
-      <dt><svg width="60" height="14"><path d="M2 7 C 16 7, 20 7, 30 7 S 44 7, 58 7" stroke="#b45309" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="8,4"/></svg></dt>
+      <dt><svg width="60" height="14"><defs><marker id="arrowhead-legend-2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#333"/></marker></defs><line x1="2" y1="7" x2="58" y2="7" stroke="#b45309" stroke-width="1.6" stroke-dasharray="8,4" marker-end="url(#arrowhead-legend-2)"/></svg></dt>
       <dd>Pr&#233;-requisito especial (RE)</dd>
-      <dt><svg width="60" height="14"><path d="M2 7 C 16 7, 20 7, 30 7 S 44 7, 58 7" stroke="#475569" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="3,3"/></svg></dt>
+      <dt><svg width="60" height="14"><defs><marker id="arrowhead-legend-3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#333"/></marker></defs><line x1="2" y1="7" x2="58" y2="7" stroke="#475569" stroke-width="1.4" stroke-dasharray="3,3" marker-end="url(#arrowhead-legend-3)"/></svg></dt>
       <dd>Co-requisito</dd>
       <dt><span class="credit-req-badge">XX CR</span></dt>
       <dd>Requisito de cr&#233;ditos m&#237;nimos</dd>
@@ -1768,21 +1981,50 @@
   // Hover over cards
   const allCards = Array.from(document.querySelectorAll('.course-card'));
   const allArrows = Array.from(document.querySelectorAll('.arrow-group'));
+  const forwardGraph = new Map();
+  const reverseGraph = new Map();
+
+  function addEdge(graph, from, to) {
+    if (!from || !to) return;
+    if (!graph.has(from)) graph.set(from, new Set());
+    graph.get(from).add(to);
+  }
+
+  for (const req of REQUIREMENTS) {
+    if (req.type === 'credit_requirement' || !req.from || !req.to) continue;
+    addEdge(forwardGraph, req.from, req.to);
+    addEdge(reverseGraph, req.to, req.from);
+  }
+
+  function collectReachable(startCode, graph) {
+    const visited = new Set();
+    const pending = [startCode];
+
+    while (pending.length > 0) {
+      const code = pending.pop();
+      const neighbors = graph.get(code);
+      if (!neighbors) continue;
+      for (const next of neighbors) {
+        if (visited.has(next)) continue;
+        visited.add(next);
+        pending.push(next);
+      }
+    }
+
+    return visited;
+  }
 
   function getRelated(code) {
-    const prereqs = new Set();
-    const dependents = new Set();
-    for (const req of REQUIREMENTS) {
-      if (req.type === 'credit_requirement') continue;
-      if (req.to === code && req.from) prereqs.add(req.from);
-      if (req.from === code) dependents.add(req.to);
-    }
-    return { prereqs, dependents };
+    const prereqs = collectReachable(code, reverseGraph);
+    const dependents = collectReachable(code, forwardGraph);
+    const prerequisiteChain = new Set([...prereqs, code]);
+    const dependentChain = new Set([code, ...dependents]);
+    const related = new Set([...prerequisiteChain, ...dependentChain]);
+    return { prereqs, dependents, prerequisiteChain, dependentChain, related };
   }
 
   function onCardEnter(code) {
-    const { prereqs, dependents } = getRelated(code);
-    const related = new Set([code, ...prereqs, ...dependents]);
+    const { prerequisiteChain, dependentChain, related } = getRelated(code);
 
     allCards.forEach(card => {
       const c = card.dataset.code;
@@ -1795,7 +2037,10 @@
     allArrows.forEach(arrow => {
       const from = arrow.dataset.from;
       const to = arrow.dataset.to;
-      const active = (from === code || to === code);
+      const active = Boolean(from && to) && (
+        (prerequisiteChain.has(from) && prerequisiteChain.has(to)) ||
+        (dependentChain.has(from) && dependentChain.has(to))
+      );
       arrow.style.display = active ? '' : 'none';
     });
   }

@@ -4,7 +4,7 @@ import { CardRect, ColumnLayout, LayoutData } from './types';
 // ─── Constantes de dimensionamento ───────────────────────────────────────────
 
 export const CARD_WIDTH   = 140;
-export const CARD_HEIGHT  = 60;
+export const CARD_HEIGHT  = 84;
 export const COL_GAP      = 60;   // espaço horizontal entre colunas (canal para setas)
 export const ROW_GAP      = 24;   // espaço vertical entre cartões (canal para setas)
 export const COL_PADDING  = 10;   // margem interna horizontal da coluna
